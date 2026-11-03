@@ -1,0 +1,12 @@
+# Reemplaza USUARIO_* por el usuario de GitHub de cada uno.
+# El último patrón que coincide gana: lo general primero, lo personal después.
+# Mientras tenga USUARIO_* GitHub lo ignora (no rompe nada).
+
+# Todo lo compartido (index.html, src/, assets/, .github/)
+*                      @USUARIO_LIDER
+
+# Cada portafolio es de su dueño
+/miembros/azul/        @USUARIO_AZUL
+/miembros/negro/       @USUARIO_NEGRO
+/miembros/rosado/      @USUARIO_ROSADO
+/miembros/verde/       @USUARIO_VERDE
