@@ -17,9 +17,18 @@
 <body data-member="azul">
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <!-- contorno sin relleno para ZAPATA: dilata la letra y le resta su interior -->
+    <filter id="outline" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="grown"/>
+      <feFlood flood-color="#7e9bff"/>
+      <feComposite in2="grown" operator="in" result="painted"/>
+      <feComposite in="painted" in2="SourceAlpha" operator="out"/>
+    </filter>
     <symbol id="logo" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><g stroke="currentColor" stroke-width="2" opacity=".6"><line x1="60" y1="8" x2="60" y2="13" transform="rotate(22.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(45 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(67.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(112.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(135 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(157.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(202.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(225 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(247.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(292.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(315 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(337.5 60 60)"/></g><path d="M45 31V91M45 33l29 14-29 14" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M51 63l17 11-11 2 21 18" fill="none" stroke="#ff6a1f" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/><rect x="55" y="1" width="10" height="10" transform="rotate(45 60 6)" fill="#ede8df"/><rect x="109" y="55" width="10" height="10" transform="rotate(45 114 60)" fill="#ff4fa3"/><rect x="55" y="109" width="10" height="10" transform="rotate(45 60 114)" fill="#4a74ff"/><rect x="1" y="55" width="10" height="10" transform="rotate(45 6 60)" fill="#2bff88"/></symbol>
     <symbol id="shield" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2v28M2 16h28" stroke="currentColor" stroke-width="1.5" opacity=".6"/><circle cx="16" cy="16" r="4.5" fill="currentColor"/><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/></symbol>
     <symbol id="arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 6h18v12H3zM3 7l9 7 9-7"/></symbol>
   </svg>
 
   <nav class="nav" aria-label="Principal">
@@ -35,13 +44,24 @@
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a class="pill" href="#contacto">Reclutar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    <span class="nav__progress" aria-hidden="true"></span>
   </nav>
 
   <header class="m-hero" id="inicio">
     <div class="m-stage">
+      <p class="m-kicker"><span class="m-kicker__rune" aria-hidden="true">ᛟ</span>Guerrero azul · Clan Tesla</p>
       <h1 class="m-title"><span>Oscar</span> <span>Zapata</span></h1>
       <figure class="m-figure">
         <span class="m-beam" aria-hidden="true"></span>
+        <svg class="m-ring" viewBox="0 0 400 400" aria-hidden="true">
+          <defs><path id="ring-path" d="M200 200m-172 0a172 172 0 1 1 344 0a172 172 0 1 1-344 0"/></defs>
+          <g class="m-ring__outer">
+            <circle cx="200" cy="200" r="194"/>
+            <circle cx="200" cy="200" r="150"/>
+            <text><textPath href="#ring-path" textLength="1078">ᚱᚨᚷᚾᚨᚱᛟᚲ᛫ᚱᚨᚷᚾᚨᚱᛟᚲ᛫ᚱᚨᚷᚾᚨᚱᛟᚲ᛫ᚱᚨᚷᚾᚨᚱᛟᚲ᛫</textPath></text>
+          </g>
+          <circle class="m-ring__inner" cx="200" cy="200" r="132"/>
+        </svg>
         <div class="m-crop">
           <img class="m-photo" src="../../assets/team.png" width="1402" height="1122" alt="Oscar Zapata, Backend Developer de RAGNAROK, bajo su reflector azul">
         </div>
@@ -55,35 +75,39 @@
       <p class="m-intro"><b><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Backend Developer</b>Construye la lógica, las APIs y las reglas que hacen funcionar cada producto.</p>
       <p class="m-year">MMXXVI<span>Célula RAGNAROK · Clan Tesla</span></p>
       <div class="m-socials">
-        <a class="icon-btn" href="#contacto" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        </a>
-        <a class="icon-btn" href="#contacto" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
-        </a>
-        <a class="icon-btn" href="#contacto" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z"/></svg>
-        </a>
+        <a class="m-link" href="https://github.com/zeus18416" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+        <a class="m-link" href="mailto:davidzpata5@gmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>Correo</a>
       </div>
     </div>
   </header>
 
+  <div class="marquee m-band" aria-hidden="true">
+    <div class="marquee__track">
+      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+    </div>
+  </div>
+
   <main>
     <section class="section" id="sobre-mi" aria-labelledby="t-about">
-      <div class="section__head"><h2 class="section__title" id="t-about" data-reveal>Sobre mí</h2></div>
+      <div class="section__head"><h2 class="section__title" id="t-about" data-index="// 01" data-reveal>Sobre mí</h2></div>
       <div class="about">
         <div data-reveal style="--d:80ms">
           <p class="about__big">Backend Developer de la célula <em>RAGNAROK</em>.</p>
           <p class="section__lead" style="margin-top:24px">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto. Aquí va tu historia: quién eres, qué te mueve y qué construyes.</p>
         </div>
         <div class="api" data-reveal style="--d:160ms">
-          <p class="api__req"><b>GET</b> /api/oscar</p>
+          <p class="api__req"><span><b>GET</b> /api/oscar</span><span class="api__status">200 OK</span></p>
           <dl class="api__body">
             <div><dt>rol</dt><dd>Backend Developer</dd></div>
             <div><dt>color</dt><dd>Azul</dd></div>
             <div><dt>clan</dt><dd>Tesla · RIWI</dd></div>
             <div><dt>formación</dt><dd>Primer ciclo</dd></div>
             <div><dt>ubicación</dt><dd>Colombia</dd></div>
+            <div><dt>github</dt><dd><a href="https://github.com/zeus18416" target="_blank" rel="noopener">zeus18416</a></dd></div>
+            <div><dt>correo</dt><dd><a href="mailto:davidzpata5@gmail.com">davidzpata5@gmail.com</a></dd></div>
           </dl>
         </div>
       </div>
@@ -91,7 +115,7 @@
 
     <section class="section" id="proyectos" aria-labelledby="t-proj">
       <div class="section__head">
-        <h2 class="section__title" id="t-proj" data-reveal>Proyectos</h2>
+        <h2 class="section__title" id="t-proj" data-index="// 02" data-reveal>Proyectos</h2>
         <p class="section__lead">Las batallas de cada semana durante el primer ciclo.</p>
       </div>
       <a class="m-quest" href="../../index.html#integrador" data-reveal>
@@ -126,15 +150,37 @@
           <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
         </a>
       </div>
+
+      <h3 class="cycle">En GitHub</h3>
+      <div class="repos">
+        <a class="repo" data-reveal style="--d:0ms" href="https://github.com/zeus18416/algoritmia" target="_blank" rel="noopener">
+          <span class="route"><b>GET</b> /zeus18416/algoritmia</span>
+          <span class="repo__name">Algoritmia</span>
+          <span class="repo__desc">Ejercicios organizados por semana.</span>
+          <span class="week__go">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+        <a class="repo" data-reveal style="--d:80ms" href="https://github.com/zeus18416/mi-perfil" target="_blank" rel="noopener">
+          <span class="route"><b>GET</b> /zeus18416/mi-perfil</span>
+          <span class="repo__name">Mi perfil</span>
+          <span class="repo__desc">Trabajo práctico de HTML, CSS y Git/GitHub.</span>
+          <span class="week__go">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+        <a class="repo" data-reveal style="--d:160ms" href="https://github.com/zeus18416/mi-primera-web" target="_blank" rel="noopener">
+          <span class="route"><b>GET</b> /zeus18416/mi-primera-web</span>
+          <span class="repo__name">Mi primera web</span>
+          <span class="repo__desc">Página hecha con HTML y CSS.</span>
+          <span class="week__go">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a>
+      </div>
     </section>
 
     <section class="section" id="skills" aria-labelledby="t-skills">
-      <div class="section__head"><h2 class="section__title" id="t-skills" data-reveal>Armas</h2></div>
+      <div class="section__head"><h2 class="section__title" id="t-skills" data-index="// 03" data-reveal>Armas</h2></div>
       <dl class="stack" data-reveal style="--d:80ms">
-        <div class="stack__layer"><dt>Lenguaje</dt><dd><ul class="skills"><li class="skill">JavaScript</li></ul></dd></div>
-        <div class="stack__layer"><dt>Backend</dt><dd><ul class="skills"><li class="skill">Node.js</li><li class="skill">Express</li><li class="skill">APIs REST</li></ul></dd></div>
-        <div class="stack__layer"><dt>Datos</dt><dd><ul class="skills"><li class="skill">SQL</li></ul></dd></div>
-        <div class="stack__layer"><dt>Herramientas</dt><dd><ul class="skills"><li class="skill">Git</li></ul></dd></div>
+        <div class="stack__layer" data-rune="ᚠ"><dt>Lenguaje</dt><dd><ul class="skills"><li class="skill">JavaScript</li></ul></dd></div>
+        <div class="stack__layer" data-rune="ᚺ"><dt>Backend</dt><dd><ul class="skills"><li class="skill">Node.js</li><li class="skill">Express</li><li class="skill">APIs REST</li></ul></dd></div>
+        <div class="stack__layer" data-rune="ᛞ"><dt>Datos</dt><dd><ul class="skills"><li class="skill">SQL</li></ul></dd></div>
+        <div class="stack__layer" data-rune="ᛒ"><dt>Herramientas</dt><dd><ul class="skills"><li class="skill">Git</li></ul></dd></div>
       </dl>
     </section>
   </main>
@@ -142,18 +188,31 @@
   <footer class="footer m-contact" id="contacto">
     <div class="footer__top">
       <h2 class="footer__cta" data-reveal>¿Un reto? <em>Escríbeme.</em></h2>
-      <div class="footer__links">
-        <a class="pill" href="#contacto">correo@ejemplo.com <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+      <div class="m-channels">
+        <div class="m-channel">
+          <a class="m-channel__link" href="mailto:davidzpata5@gmail.com">
+            <svg class="m-channel__icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span class="m-channel__label">Correo</span>
+            <span class="m-channel__value">davidzpata5@gmail.com</span>
+          </a>
+          <button class="m-copy" type="button" data-copy="davidzpata5@gmail.com" hidden>Copiar</button>
+        </div>
+        <div class="m-channel">
+          <a class="m-channel__link" href="https://github.com/zeus18416" target="_blank" rel="noopener">
+            <svg class="m-channel__icon" aria-hidden="true"><use href="#i-github"/></svg>
+            <span class="m-channel__label">GitHub</span>
+            <span class="m-channel__value">github.com/zeus18416</span>
+          </a>
+        </div>
       </div>
     </div>
     <nav aria-label="Otros guerreros">
       <ul class="others">
-        <li><a href="../negro/index.html"><i style="--c:var(--negro)"></i>NEGRO</a></li>
-        <li><a href="../rosado/index.html"><i style="--c:var(--rosado)"></i>ROSA</a></li>
-        <li><a href="../verde/index.html"><i style="--c:var(--verde)"></i>VERDE</a></li>
+        <li><a href="../negro/index.html"><i style="--c:var(--negro)"></i>SAMUEL</a></li>
+        <li><a href="../rosado/index.html"><i style="--c:var(--rosado)"></i>MARIA</a></li>
+        <li><a href="../verde/index.html"><i style="--c:var(--verde)"></i>JUAN</a></li>
       </ul>
     </nav>
-    <p class="footer__word" aria-hidden="true">AZUL</p>
     <div class="footer__legal">
       <span>© 2026 Oscar Zapata · AZUL · RAGNAROK · Clan Tesla</span>
       <a href="../../index.html">← Volver a la célula</a>
