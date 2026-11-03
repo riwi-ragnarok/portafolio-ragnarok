@@ -404,7 +404,6 @@ body::before {
 
 /* contacto */
 .m-channels { display: grid; gap: var(--s-2); }
-@media (min-width: 600px) { .m-channels { grid-template-columns: 1fr 1fr; } }
 .m-channel { position: relative; }
 .m-channel__link {
   display: grid; gap: var(--s-1); height: 100%;
