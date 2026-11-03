@@ -1,0 +1,34 @@
+# Bloquea un PR si un miembro toca archivos fuera de su carpeta.
+# Rama "azul/..." solo puede cambiar miembros/azul/** (igual negro, rosado, verde).
+# Cualquier otra rama (ej. "general/...") = cambio compartido: lo revisa CODEOWNERS.
+name: scope-check
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verificar que solo cambie su carpeta
+        env:
+          BRANCH: ${{ github.head_ref }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          member="${BRANCH%%/*}"
+          case "$member" in
+            azul|negro|rosado|verde) ;;
+            *) echo "Rama '$BRANCH' no es de miembro: cambio general, requiere revisión."; exit 0 ;;
+          esac
+          bad=$(git diff --name-only "$BASE" "$HEAD" | grep -v "^miembros/$member/" || true)
+          if [ -n "$bad" ]; then
+            echo "::error::La rama de $member tocó archivos fuera de miembros/$member/:"
+            echo "$bad"
+            echo "Si el cambio es para todos, hazlo en una rama general/... y pide revisión."
+            exit 1
+          fi
+          echo "OK: solo cambió miembros/$member/"
