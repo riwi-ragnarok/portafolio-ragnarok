@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAGNAROK — Célula del Clan Tesla</title>
+  <meta name="description" content="RAGNAROK, célula del Clan Tesla en RIWI: cuatro guerreros del desarrollo web, cuatro portafolios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2724%27 fill=%27%230b0a09%27/%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2748%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%276%27/%3E%3Cpath d=%27M45 31V91M45 33l29 14-29 14%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%2710%27/%3E%3Cpath d=%27M51 63l17 11-11 2 21 18%27 fill=%27none%27 stroke=%27%23ff6a1f%27 stroke-width=%279%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <!-- símbolos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><g stroke="currentColor" stroke-width="2" opacity=".6"><line x1="60" y1="8" x2="60" y2="13" transform="rotate(22.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(45 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(67.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(112.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(135 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(157.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(202.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(225 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(247.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(292.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(315 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(337.5 60 60)"/></g><path d="M45 31V91M45 33l29 14-29 14" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M51 63l17 11-11 2 21 18" fill="none" stroke="#ff6a1f" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/><rect x="55" y="1" width="10" height="10" transform="rotate(45 60 6)" fill="#ede8df"/><rect x="109" y="55" width="10" height="10" transform="rotate(45 114 60)" fill="#ff4fa3"/><rect x="55" y="109" width="10" height="10" transform="rotate(45 60 114)" fill="#4a74ff"/><rect x="1" y="55" width="10" height="10" transform="rotate(45 6 60)" fill="#2bff88"/></symbol>
+    <symbol id="axe" viewBox="0 0 32 32"><path fill="currentColor" d="M14 2h3v28h-3zM17 4c6 0 11 3 13 9-3-1-6-1-8 1-2 2-3 5-5 6z"/></symbol>
+    <symbol id="shield" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2v28M2 16h28" stroke="currentColor" stroke-width="1.5" opacity=".6"/><circle cx="16" cy="16" r="4.5" fill="currentColor"/><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  </svg>
+
+  <header class="hero" id="inicio">
+    <nav class="nav" aria-label="Principal">
+      <a class="nav__logo" href="#inicio" aria-label="RAGNAROK, célula del Clan Tesla, inicio">
+        <svg class="logo-mark" aria-hidden="true"><use href="#logo"/></svg>
+        <span class="nav__brand">RAGNAROK<small>Clan Tesla</small></span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#guerreros">Guerreros</a></li>
+        <li><a href="#integrador">Proyecto</a></li>
+        <li><a href="#celula">La célula</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a class="pill" href="#guerreros">Entrar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </nav>
+
+    <div class="hero__stage">
+      <h1 class="hero__title">  
+        <span class="hero__crest" aria-hidden="true">
+          <span class="hero__runes">
+            <svg class="axe" viewBox="0 0 32 32"><use href="#axe"/></svg>
+            <span class="runes">ᚱᚨᚷᚾ</span>
+            <svg class="hero__mark"><use href="#logo"/></svg>
+            <span class="runes">ᚨᚱᛟᚲ</span>
+            <svg class="axe axe--flip" viewBox="0 0 32 32"><use href="#axe"/></svg>
+          </span>
+        </span>
+        RAGNAROK
+      </h1>
+
+      <figure class="hero__figure">
+        <span class="beam p-negro" aria-hidden="true"></span>
+        <span class="beam p-rosado" aria-hidden="true"></span>
+        <span class="beam p-azul" aria-hidden="true"></span>
+        <span class="beam p-verde" aria-hidden="true"></span>
+
+        <img class="rim p-negro"  src="assets/team.png" alt="" aria-hidden="true">
+        <img class="rim p-rosado" src="assets/team.png" alt="" aria-hidden="true">
+        <img class="rim p-azul"   src="assets/team.png" alt="" aria-hidden="true">
+        <img class="rim p-verde"  src="assets/team.png" alt="" aria-hidden="true">
+        <img class="hero__photo" src="assets/team.png" width="1402" height="1122"
+             alt="Los cuatro guerreros de RAGNAROK, cada uno iluminado por un reflector de su color">
+
+        <span class="beam beam--front p-negro" aria-hidden="true"></span>
+        <span class="beam beam--front p-rosado" aria-hidden="true"></span>
+        <span class="beam beam--front p-azul" aria-hidden="true"></span>
+        <span class="beam beam--front p-verde" aria-hidden="true"></span>
+
+        <div class="cast" aria-label="Guerreros">
+          <a class="cast__tag p-negro"  href="miembros/negro.html">NEGRO <small>Full Stack</small></a>
+          <a class="cast__tag p-rosado" href="miembros/rosado.html">ROSA <small>Frontend</small></a>
+          <a class="cast__tag p-azul"   href="miembros/azul.html">AZUL <small>Backend</small></a>
+          <a class="cast__tag p-verde"  href="miembros/verde.html">VERDE <small>Base de datos</small></a>
+        </div>
+      </figure>
+    </div>
+
+    <div class="smoke" aria-hidden="true"></div>
+
+    <span class="hero__year" aria-hidden="true">CLAN TESLA · MMXXVI</span>
+
+    <div class="hero__foot">
+      <p class="hero__lead"><strong>Célula del Clan Tesla · RIWI.</strong> Cuatro guerreros del desarrollo web, un color cada uno.</p>
+      <span class="dotline" aria-hidden="true"></span>
+      <a class="pill" href="#guerreros" style="justify-self:start">Elige tu guerrero <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+  </header>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>FUERZA <b style="--c:var(--rosado)">ᚠ</b> HONOR <b style="--c:var(--azul)">ᚺ</b> CÓDIGO <b style="--c:#159a52">ᚲ</b> DISEÑO <b style="--c:#0b0a09">ᛞ</b> BATALLA <b style="--c:var(--rosado)">ᛒ</b> CLAN <b style="--c:var(--azul)">ᚲ</b> RAGNAROK <b style="--c:#159a52">ᚱ</b></span>
+      <span>FUERZA <b style="--c:var(--rosado)">ᚠ</b> HONOR <b style="--c:var(--azul)">ᚺ</b> CÓDIGO <b style="--c:#159a52">ᚲ</b> DISEÑO <b style="--c:#0b0a09">ᛞ</b> BATALLA <b style="--c:var(--rosado)">ᛒ</b> CLAN <b style="--c:var(--azul)">ᚲ</b> RAGNAROK <b style="--c:#159a52">ᚱ</b></span>
+    </div>
+  </div>
+
+  <main>
+    <section class="section" id="guerreros" aria-labelledby="t-guerreros">
+      <div class="section__head">
+        <h2 class="section__title" id="t-guerreros" data-reveal>Cuatro guerreros</h2>
+        <p class="section__lead" data-reveal style="--d:90ms">Cada uno entra a la batalla con su color. Elige uno y mira su portafolio.</p>
+      </div>
+
+      <div class="strips">
+        <a class="strip p-negro" data-reveal style="--d:0ms" href="miembros/negro.html">
+          <span class="strip__beam" aria-hidden="true"></span>
+          <img class="strip__img" src="assets/negro.png" alt="" loading="lazy">
+          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
+          <div class="strip__body">
+            <span class="strip__num" aria-hidden="true">I</span>
+            <h3 class="strip__name">NEGRO</h3>
+            <div class="strip__info">
+              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Full Stack Developer</p>
+              <p class="strip__desc">Une frontend y backend: lleva las ideas de cero a producción.</p>
+              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+            </div>
+          </div>
+        </a>
+        <a class="strip p-rosado" data-reveal style="--d:80ms" href="miembros/rosado.html">
+          <span class="strip__beam" aria-hidden="true"></span>
+          <img class="strip__img" src="assets/rosado.png" alt="" loading="lazy">
+          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
+          <div class="strip__body">
+            <span class="strip__num" aria-hidden="true">II</span>
+            <h3 class="strip__name">ROSA</h3>
+            <div class="strip__info">
+              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Frontend Developer</p>
+              <p class="strip__desc">Convierte diseños en interfaces rápidas, limpias y al detalle.</p>
+              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+            </div>
+          </div>
+        </a>
+        <a class="strip p-azul" data-reveal style="--d:160ms" href="miembros/azul.html">
+          <span class="strip__beam" aria-hidden="true"></span>
+          <img class="strip__img" src="assets/azul.png" alt="" loading="lazy">
+          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
+          <div class="strip__body">
+            <span class="strip__num" aria-hidden="true">III</span>
+            <h3 class="strip__name">AZUL</h3>
+            <div class="strip__info">
+              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Backend Developer</p>
+              <p class="strip__desc">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto.</p>
+              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+            </div>
+          </div>
+        </a>
+        <a class="strip p-verde" data-reveal style="--d:240ms" href="miembros/verde.html">
+          <span class="strip__beam" aria-hidden="true"></span>
+          <img class="strip__img" src="assets/verde.png" alt="" loading="lazy">
+          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
+          <div class="strip__body">
+            <span class="strip__num" aria-hidden="true">IV</span>
+            <h3 class="strip__name">VERDE</h3>
+            <div class="strip__info">
+              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Database Developer</p>
+              <p class="strip__desc">Diseña y cuida los datos: modelos, consultas y que nada se pierda.</p>
+              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><use href="#axe"/></svg><span class="runes">ᚠᚢᚦᚨᚱᚲ</span><svg viewBox="0 0 32 32"><use href="#axe"/></svg>
+    </div>
+
+    <section class="section" id="integrador" aria-labelledby="t-integrador">
+      <div class="section__head">
+        <h2 class="section__title" id="t-integrador" data-reveal>Proyecto integrador</h2>
+        <p class="section__lead">La batalla que libramos juntos como célula del Clan Tesla.</p>
+      </div>
+
+      <div class="quest" data-reveal>
+        <span class="quest__rune" aria-hidden="true">ᚱ</span>
+        <div class="quest__intro">
+          <p class="quest__name">Nombre del proyecto</p>
+          <p class="quest__what"><strong>Qué es.</strong> Escribe aquí en una o dos líneas qué es el proyecto: una plataforma web que permite a [quién] hacer [qué] de forma [cómo].</p>
+        </div>
+        <div class="quest__cols">
+          <article class="quest__card">
+            <h3 class="quest__label"><span class="dia" style="--c:var(--fire)"></span>El problema</h3>
+            <p>Qué dolor o necesidad real existe hoy. Quién lo sufre y por qué las soluciones actuales no alcanzan.</p>
+          </article>
+          <article class="quest__card">
+            <h3 class="quest__label"><span class="dia" style="--c:var(--verde)"></span>La solución</h3>
+            <p>Cómo lo resuelve el proyecto: la idea principal y el resultado para el usuario en una frase clara.</p>
+          </article>
+        </div>
+        <ul class="quest__roles" aria-label="Quién hace qué">
+          <li class="p-negro"><b>NEGRO</b><span>Full Stack · une todas las piezas</span></li>
+          <li class="p-rosado"><b>ROSA</b><span>Frontend · la interfaz</span></li>
+          <li class="p-azul"><b>AZUL</b><span>Backend · la lógica y las APIs</span></li>
+          <li class="p-verde"><b>VERDE</b><span>Base de datos · el modelo de datos</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><use href="#axe"/></svg><span class="runes">ᚠᚢᚦᚨᚱᚲ</span><svg viewBox="0 0 32 32"><use href="#axe"/></svg>
+    </div>
+
+    <section class="section" id="celula" aria-labelledby="t-clan">
+      <div class="section__head">
+        <h2 class="section__title" id="t-clan">La célula</h2>
+      </div>
+      <div class="manifest">
+        <div data-reveal>
+          <p class="manifest__quote">El fin de lo aburrido empieza aquí.</p>
+          <p class="section__lead" style="margin-top:24px">RAGNAROK es una célula del Clan Tesla en RIWI. Ragnarok es el fin de un mundo y el comienzo de otro: así entramos a cada proyecto, con código limpio, diseño con carácter y cuatro formas de pelear un mismo problema.</p>
+        </div>
+        <ul class="manifest__list" data-reveal style="--d:120ms">
+          <li><b style="--c:var(--negro)">IV</b><span>Guerreros, cada uno con su especialidad y su color.</span></li>
+          <li><b style="--c:var(--rosado)">I</b><span>Célula del Clan Tesla, forjada en RIWI.</span></li>
+          <li><b style="--c:var(--verde)">∞</b><span>Batallas por venir: web, apps y experiencias.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="footer__top">
+      <h2 class="footer__cta">¿Listo para la batalla?</h2>
+      <div class="footer__links">
+        <a class="pill" href="#contacto">Escríbenos <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="icon-btn" href="#contacto" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a class="icon-btn" href="#contacto" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+        </a>
+        <a class="icon-btn" href="#contacto" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__lockup" aria-hidden="true">
+      <svg class="footer__mark"><use href="#logo"/></svg>
+      <p class="footer__word">RAGNAROK</p>
+    </div>
+    <div class="footer__legal">
+      <span>© 2026 RAGNAROK — Célula del Clan Tesla · RIWI</span>
+      <span class="runes" aria-hidden="true">ᚱᚨᚷᚾᚨᚱᛟᚲ</span>
+    </div>
+  </footer>
+
+</body>
+</html>
