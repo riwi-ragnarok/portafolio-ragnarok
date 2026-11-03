@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2724%27 fill=%27%230b0a09%27/%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2748%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%276%27/%3E%3Cpath d=%27M45 31V91M45 33l29 14-29 14%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%2710%27/%3E%3Cpath d=%27M51 63l17 11-11 2 21 18%27 fill=%27none%27 stroke=%27%23ff6a1f%27 stroke-width=%279%27/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="src/style.css?v=8">
 </head>
 <body>
 
@@ -33,7 +33,6 @@
         <li><a href="#celula">La célula</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-      <a class="pill" href="#guerreros">Entrar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
     </nav>
 
     <div class="hero__stage">
@@ -69,10 +68,10 @@
         <span class="beam beam--front p-verde" aria-hidden="true"></span>
 
         <div class="cast" aria-label="Guerreros">
-          <a class="cast__tag p-negro"  href="miembros/negro/index.html">NEGRO <small>Full Stack</small></a>
-          <a class="cast__tag p-rosado" href="miembros/rosado/index.html">ROSA <small>Frontend</small></a>
-          <a class="cast__tag p-azul"   href="miembros/azul/index.html">AZUL <small>Backend</small></a>
-          <a class="cast__tag p-verde"  href="miembros/verde/index.html">VERDE <small>Base de datos</small></a>
+          <a class="cast__tag p-negro"  href="miembros/negro/index.html">SAMUEL <small>Full Stack</small></a>
+          <a class="cast__tag p-rosado" href="miembros/rosado/index.html">MARÍA <small>Frontend</small></a>
+          <a class="cast__tag p-azul"   href="miembros/azul/index.html">OSCAR <small>Backend</small></a>
+          <a class="cast__tag p-verde"  href="miembros/verde/index.html">JUAN <small>Base de datos</small></a>
         </div>
       </figure>
     </div>
@@ -88,12 +87,97 @@
     </div>
   </header>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>FUERZA <b style="--c:var(--rosado)">ᚠ</b> HONOR <b style="--c:var(--azul)">ᚺ</b> CÓDIGO <b style="--c:#159a52">ᚲ</b> DISEÑO <b style="--c:#0b0a09">ᛞ</b> BATALLA <b style="--c:var(--rosado)">ᛒ</b> CLAN <b style="--c:var(--azul)">ᚲ</b> RAGNAROK <b style="--c:#159a52">ᚱ</b></span>
-      <span>FUERZA <b style="--c:var(--rosado)">ᚠ</b> HONOR <b style="--c:var(--azul)">ᚺ</b> CÓDIGO <b style="--c:#159a52">ᚲ</b> DISEÑO <b style="--c:#0b0a09">ᛞ</b> BATALLA <b style="--c:var(--rosado)">ᛒ</b> CLAN <b style="--c:var(--azul)">ᚲ</b> RAGNAROK <b style="--c:#159a52">ᚱ</b></span>
+  <section class="vows" aria-labelledby="t-vows" data-carousel>
+    <div class="vows__head">
+      <h2 class="vows__title" id="t-vows">Código de guerra</h2>
     </div>
-  </div>
+    <div class="vows__viewport">
+    <ul class="vows__track" aria-label="Valores de la célula">
+      <li class="vow p-rosado">
+        <a class="vow__kid crew__kid p-negro" href="miembros/negro/index.html" aria-label="Portafolio de Samuel Castaño">
+        <img src="assets/pixel/negro.png" width="183" height="300" alt="">
+        <span class="crew__tag" aria-hidden="true">Samuel</span>
+        </a>
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>FUERZA</h3>
+        <p class="vow__line">Entramos a cada reto con todo, sin miedo a lo difícil.</p>
+        </div>
+      </li>
+      <li class="vow p-azul">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>HONOR</h3>
+        <p class="vow__line">Cumplimos lo que prometemos y respondemos por nuestro código.</p>
+        </div>
+      </li>
+      <li class="vow p-verde">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>CÓDIGO</h3>
+        <p class="vow__line">Limpio, legible y probado. Que el siguiente lo entienda.</p>
+        </div>
+      </li>
+      <li class="vow p-negro">
+        <a class="vow__kid crew__kid p-rosado" href="miembros/rosado/index.html" aria-label="Portafolio de María de los Ángeles">
+        <img src="assets/pixel/rosado.png" width="200" height="300" alt="">
+        <span class="crew__tag" aria-hidden="true">María</span>
+        </a>
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>DISEÑO</h3>
+        <p class="vow__line">Interfaces con carácter: nada de plantillas sin alma.</p>
+        </div>
+      </li>
+      <li class="vow p-rosado">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>BATALLA</h3>
+        <p class="vow__line">Cada bug es un enemigo. Lo cazamos hasta el final.</p>
+        </div>
+      </li>
+      <li class="vow p-azul">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>CLAN</h3>
+        <p class="vow__line">Cuatro guerreros, una célula. Nadie pelea solo.</p>
+        </div>
+      </li>
+          <li class="vow p-verde">
+        <a class="vow__kid crew__kid p-azul" href="miembros/azul/index.html" aria-label="Portafolio de Oscar Zapata">
+        <img src="assets/pixel/azul.png" width="175" height="300" alt="">
+        <span class="crew__tag" aria-hidden="true">Oscar</span>
+        </a>
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>HÉROES</h3>
+        <p class="vow__line">Damos la cara cuando el proyecto se complica.</p>
+        </div>
+      </li>
+      <li class="vow p-negro">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>HONESTOS</h3>
+        <p class="vow__line">Decimos lo que funciona y lo que no, sin adornos.</p>
+        </div>
+      </li>
+      <li class="vow p-rosado">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>MENTORES</h3>
+        <p class="vow__line">Lo que aprendemos lo enseñamos: nadie se queda atrás.</p>
+        </div>
+      </li>
+      <li class="vow p-azul">
+        <a class="vow__kid crew__kid p-verde" href="miembros/verde/index.html" aria-label="Portafolio de Juan David">
+        <img src="assets/pixel/verde.png" width="168" height="300" alt="">
+        <span class="crew__tag" aria-hidden="true">Juan</span>
+        </a>
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>CREADORES</h3>
+        <p class="vow__line">Pasamos de la idea al producto que la gente usa.</p>
+        </div>
+      </li>
+      <li class="vow p-verde">
+        <div class="vow__card">
+        <h3 class="vow__word"><svg class="vow__axe" viewBox="0 0 32 32" aria-hidden="true"><use href="#axe"/></svg>EXPLORADORES</h3>
+        <p class="vow__line">Probamos herramientas nuevas antes de que estén de moda.</p>
+        </div>
+      </li>
+    </ul>
+    </div>
+  </section>
 
   <main>
     <section class="section" id="guerreros" aria-labelledby="t-guerreros">
@@ -102,63 +186,100 @@
         <p class="section__lead" data-reveal style="--d:90ms">Cada uno entra a la batalla con su color. Elige uno y mira su portafolio.</p>
       </div>
 
-      <div class="strips">
-        <a class="strip p-negro" data-reveal style="--d:0ms" href="miembros/negro/index.html">
-          <span class="strip__beam" aria-hidden="true"></span>
-          <img class="strip__img" src="assets/negro.png" alt="" loading="lazy">
-          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
-          <div class="strip__body">
-            <span class="strip__num" aria-hidden="true">I</span>
-            <h3 class="strip__name">NEGRO</h3>
-            <div class="strip__info">
-              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Full Stack Developer</p>
-              <p class="strip__desc">Une frontend y backend: lleva las ideas de cero a producción.</p>
-              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+      <div class="select" data-select>
+        <div class="select__stage">
+          <article class="fighter p-negro" role="tabpanel" id="fighter-negro" aria-labelledby="tab-negro">
+            <span class="fighter__ghost" aria-hidden="true">SAMUEL</span>
+            <span class="fighter__beam" aria-hidden="true"></span>
+            <span class="fighter__floor" aria-hidden="true"></span>
+            <img class="fighter__img" src="assets/negro.png" alt="Samuel Castaño, Full Stack Developer" loading="lazy">
+            <div class="fighter__info">
+              <p class="fighter__num">Guerrero I · Negro</p>
+              <h3 class="fighter__name">Samuel Castaño</h3>
+              <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Full Stack Developer</p>
+              <p class="fighter__desc">Une frontend y backend: lleva las ideas de cero a producción.</p>
+              <dl class="fighter__stats">
+                <div><dt>Frontend</dt><dd><span style="--v:80%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:80%"></span></dd></div>
+                <div><dt>Datos</dt><dd><span style="--v:60%"></span></dd></div>
+              </dl>
+              <a class="fighter__go" href="miembros/negro/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
-          </div>
-        </a>
-        <a class="strip p-rosado" data-reveal style="--d:80ms" href="miembros/rosado/index.html">
-          <span class="strip__beam" aria-hidden="true"></span>
-          <img class="strip__img" src="assets/rosado.png" alt="" loading="lazy">
-          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
-          <div class="strip__body">
-            <span class="strip__num" aria-hidden="true">II</span>
-            <h3 class="strip__name">ROSA</h3>
-            <div class="strip__info">
-              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Frontend Developer</p>
-              <p class="strip__desc">Convierte diseños en interfaces rápidas, limpias y al detalle.</p>
-              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+          </article>
+          <article class="fighter p-rosado" role="tabpanel" id="fighter-rosado" aria-labelledby="tab-rosado">
+            <span class="fighter__ghost" aria-hidden="true">MARÍA</span>
+            <span class="fighter__beam" aria-hidden="true"></span>
+            <span class="fighter__floor" aria-hidden="true"></span>
+            <img class="fighter__img" src="assets/rosado.png" alt="María de los Ángeles, Frontend Developer" loading="lazy">
+            <div class="fighter__info">
+              <p class="fighter__num">Guerrero II · Rosa</p>
+              <h3 class="fighter__name">María de los Ángeles</h3>
+              <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Frontend Developer</p>
+              <p class="fighter__desc">Convierte diseños en interfaces rápidas, limpias y al detalle.</p>
+              <dl class="fighter__stats">
+                <div><dt>Frontend</dt><dd><span style="--v:95%"></span></dd></div>
+                <div><dt>Diseño</dt><dd><span style="--v:85%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:40%"></span></dd></div>
+              </dl>
+              <a class="fighter__go" href="miembros/rosado/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
-          </div>
-        </a>
-        <a class="strip p-azul" data-reveal style="--d:160ms" href="miembros/azul/index.html">
-          <span class="strip__beam" aria-hidden="true"></span>
-          <img class="strip__img" src="assets/azul.png" alt="" loading="lazy">
-          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
-          <div class="strip__body">
-            <span class="strip__num" aria-hidden="true">III</span>
-            <h3 class="strip__name">AZUL</h3>
-            <div class="strip__info">
-              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Backend Developer</p>
-              <p class="strip__desc">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto.</p>
-              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+          </article>
+          <article class="fighter p-azul" role="tabpanel" id="fighter-azul" aria-labelledby="tab-azul">
+            <span class="fighter__ghost" aria-hidden="true">OSCAR</span>
+            <span class="fighter__beam" aria-hidden="true"></span>
+            <span class="fighter__floor" aria-hidden="true"></span>
+            <img class="fighter__img" src="assets/azul.png" alt="Oscar Zapata, Backend Developer" loading="lazy">
+            <div class="fighter__info">
+              <p class="fighter__num">Guerrero III · Azul</p>
+              <h3 class="fighter__name">Oscar Zapata</h3>
+              <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Backend Developer</p>
+              <p class="fighter__desc">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto.</p>
+              <dl class="fighter__stats">
+                <div><dt>Backend</dt><dd><span style="--v:95%"></span></dd></div>
+                <div><dt>APIs</dt><dd><span style="--v:90%"></span></dd></div>
+                <div><dt>Frontend</dt><dd><span style="--v:40%"></span></dd></div>
+              </dl>
+              <a class="fighter__go" href="miembros/azul/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
-          </div>
-        </a>
-        <a class="strip p-verde" data-reveal style="--d:240ms" href="miembros/verde/index.html">
-          <span class="strip__beam" aria-hidden="true"></span>
-          <img class="strip__img" src="assets/verde.png" alt="" loading="lazy">
-          <span class="strip__beam strip__beam--front" aria-hidden="true"></span>
-          <div class="strip__body">
-            <span class="strip__num" aria-hidden="true">IV</span>
-            <h3 class="strip__name">VERDE</h3>
-            <div class="strip__info">
-              <p class="strip__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Database Developer</p>
-              <p class="strip__desc">Diseña y cuida los datos: modelos, consultas y que nada se pierda.</p>
-              <span class="strip__go">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+          </article>
+          <article class="fighter p-verde" role="tabpanel" id="fighter-verde" aria-labelledby="tab-verde">
+            <span class="fighter__ghost" aria-hidden="true">JUAN DAVID</span>
+            <span class="fighter__beam" aria-hidden="true"></span>
+            <span class="fighter__floor" aria-hidden="true"></span>
+            <img class="fighter__img" src="assets/verde.png" alt="Juan David, Database Developer" loading="lazy">
+            <div class="fighter__info">
+              <p class="fighter__num">Guerrero IV · Verde</p>
+              <h3 class="fighter__name">Juan David</h3>
+              <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Database Developer</p>
+              <p class="fighter__desc">Diseña y cuida los datos: modelos, consultas y que nada se pierda.</p>
+              <dl class="fighter__stats">
+                <div><dt>Datos</dt><dd><span style="--v:95%"></span></dd></div>
+                <div><dt>SQL</dt><dd><span style="--v:90%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:60%"></span></dd></div>
+              </dl>
+              <a class="fighter__go" href="miembros/verde/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
-          </div>
-        </a>
+          </article>
+        </div>
+        <div class="select__roster" role="tablist" aria-label="Elige tu guerrero">
+          <button class="slot p-negro" type="button" role="tab" id="tab-negro" aria-controls="fighter-negro" aria-selected="true" tabindex="0">
+            <img class="slot__img" decoding="async" src="assets/negro.png" alt="">
+            <span class="slot__name">SAMUEL</span>
+          </button>
+          <button class="slot p-rosado" type="button" role="tab" id="tab-rosado" aria-controls="fighter-rosado" aria-selected="false" tabindex="-1">
+            <img class="slot__img" decoding="async" src="assets/rosado.png" alt="">
+            <span class="slot__name">MARÍA</span>
+          </button>
+          <button class="slot p-azul" type="button" role="tab" id="tab-azul" aria-controls="fighter-azul" aria-selected="false" tabindex="-1">
+            <img class="slot__img" decoding="async" src="assets/azul.png" alt="">
+            <span class="slot__name">OSCAR</span>
+          </button>
+          <button class="slot p-verde" type="button" role="tab" id="tab-verde" aria-controls="fighter-verde" aria-selected="false" tabindex="-1">
+            <img class="slot__img" decoding="async" src="assets/verde.png" alt="">
+            <span class="slot__name">JUAN DAVID</span>
+          </button>
+        </div>
+        <p class="select__hint" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd> cambiar guerrero</p>
       </div>
     </section>
 
@@ -175,24 +296,31 @@
       <div class="quest" data-reveal>
         <span class="quest__rune" aria-hidden="true">ᚱ</span>
         <div class="quest__intro">
-          <p class="quest__name">Nombre del proyecto</p>
-          <p class="quest__what"><strong>Qué es.</strong> Escribe aquí en una o dos líneas qué es el proyecto: una plataforma web que permite a [quién] hacer [qué] de forma [cómo].</p>
+          <p class="quest__name">Párchate</p>
+          <p class="quest__what"><strong>Qué es:</strong> una plataforma web para encontrar parches (planes legales) en toda Colombia, empezando por Medellín: tocas el mapa y te muestra qué hacer cerca, dónde quedarte y cómo armar tu ruta.</p>
         </div>
         <div class="quest__cols">
           <article class="quest__card">
             <h3 class="quest__label"><span class="dia" style="--c:var(--fire)"></span>El problema</h3>
-            <p>Qué dolor o necesidad real existe hoy. Quién lo sufre y por qué las soluciones actuales no alcanzan.</p>
+            <p>Uno vive en la ciudad y no sabe dónde parchar. Para encontrar planes toca revisar redes sociales y páginas sueltas, y la información está regada. Buscar finca u hotel y hablar con el dueño es otra vuelta aparte.</p>
           </article>
           <article class="quest__card">
             <h3 class="quest__label"><span class="dia" style="--c:var(--verde)"></span>La solución</h3>
-            <p>Cómo lo resuelve el proyecto: la idea principal y el resultado para el usuario en una frase clara.</p>
+            <p>Todo en un solo lugar: pones un punto en el mapa y ves los parches cercanos; la plataforma te arma una ruta por días según lo que te gusta, y le escribes directo por WhatsApp al dueño del alojamiento.</p>
           </article>
         </div>
+        <ul class="quest__feats" aria-label="Qué se puede hacer">
+          <li><b>Explorar</b><span>Mapa con parches por radio y categoría: miradores, pueblitos, parapente, playas, camping.</span></li>
+          <li><b>Mi ruta</b><span>Ruta de 1 a 3 días armada por cercanía y gustos: mañana, tarde y noche.</span></li>
+          <li><b>Dónde quedarse</b><span>Hoteles, hostales, fincas, glampings y apartamentos con contacto por WhatsApp.</span></li>
+          <li><b>Reportar</b><span>Los usuarios suben parches nuevos y pasan por revisión antes de publicarse.</span></li>
+          <li><b>Para dueños</b><span>Publican su lugar gratis, entran con su WhatsApp y ven cuántos los miran.</span></li>
+        </ul>
         <ul class="quest__roles" aria-label="Quién hace qué">
-          <li class="p-negro"><b>NEGRO</b><span>Full Stack · une todas las piezas</span></li>
-          <li class="p-rosado"><b>ROSA</b><span>Frontend · la interfaz</span></li>
-          <li class="p-azul"><b>AZUL</b><span>Backend · la lógica y las APIs</span></li>
-          <li class="p-verde"><b>VERDE</b><span>Base de datos · el modelo de datos</span></li>
+          <li class="p-negro"><b>Samuel Castaño</b><span>Full Stack · une todas las piezas</span></li>
+          <li class="p-rosado"><b>María de los Ángeles</b><span>Frontend · la interfaz</span></li>
+          <li class="p-azul"><b>Oscar Zapata</b><span>Backend · la lógica y las APIs</span></li>
+          <li class="p-verde"><b>Juan David</b><span>Base de datos · el modelo de datos</span></li>
         </ul>
       </div>
     </section>
@@ -223,11 +351,8 @@
     <div class="footer__top">
       <h2 class="footer__cta">¿Listo para la batalla?</h2>
       <div class="footer__links">
-        <a class="pill" href="#contacto">Escríbenos <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-        <a class="icon-btn" href="#contacto" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        </a>
-        <a class="icon-btn" href="#contacto" aria-label="GitHub">
+        <a class="pill" href="https://github.com/riwi-ragnarok" target="_blank" rel="noopener">Escríbenos <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="icon-btn" href="https://github.com/riwi-ragnarok" target="_blank" rel="noopener" aria-label="GitHub de RAGNAROK">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
         </a>
         <a class="icon-btn" href="#contacto" aria-label="LinkedIn">
@@ -245,5 +370,6 @@
     </div>
   </footer>
 
+  <script src="src/main.js?v=6" defer></script>
 </body>
 </html>
