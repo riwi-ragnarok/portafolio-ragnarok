@@ -8,28 +8,29 @@
 | `miembros/negro/` | NEGRO | Solo NEGRO |
 | `miembros/rosado/` | ROSA | Solo ROSA |
 | `miembros/verde/` | VERDE | Solo VERDE |
-| `index.html`, `src/style.css`, `src/member.css`, `src/main.js`, `assets/` | **Todos** | Solo con PR revisado por el equipo |
+| `index.html`, `src/style.css`, `src/main.js`, `assets/` | **Todos** (página general) | Solo con PR revisado por el equipo |
 
 Dentro de tu carpeta:
 
 ```
 miembros/<color>/
   index.html     ← tu portafolio (textos, proyectos, skills, links)
-  <color>.css    ← TU estilo. Pisa a los compartidos solo en tu página
+  style.css      ← TU copia de la base: colores, fuentes, nav, footer, secciones
+  member.css     ← TU copia del diseño del portafolio: hero, proyectos, skills
   assets/        ← tus fotos e imágenes
 ```
 
 ## Cambiar el diseño de tu página
 
-No edites `src/member.css` ni `src/style.css`. Escribe en `miembros/<color>/<color>.css`:
+Tu página carga **solo** tus `style.css` y `member.css`. Son copias tuyas:
+cámbialas todo lo que quieras (colores, fuentes, layout, borrar secciones…).
+No afecta la página general ni a los demás.
 
-```css
-body[data-member="azul"] { --accent: #00d0ff; --rgb: 0 208 255; }
-.m-title { letter-spacing: .1em; }
-```
+- Colores/fuentes globales → `:root { ... }` al inicio de tu `style.css`
+- Tu color de acento → `body[data-member="<color>"]` al inicio de tu `member.css`
+- Tus imágenes: `<img src="assets/mi-foto.png">` (relativo a tu carpeta)
 
-Ese CSS solo lo carga tu `index.html`, así que no afecta a nadie más.
-Tus imágenes: `<img src="assets/mi-foto.png">` (relativo a tu carpeta).
+`src/style.css` es solo de la página general (`index.html`). No lo toques.
 
 ## Flujo con Git (siempre)
 
