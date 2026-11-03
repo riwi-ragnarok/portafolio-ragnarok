@@ -1,0 +1,592 @@
+/* COPIA PROPIA DE ROSADO — edítala como quieras, solo afecta miembros/rosado/ */
+/* =========================================================
+   RAGNAROK — tokens + base + hub
+   Dirección: póster de guerra nórdica. Humo, brasas, reflectores
+   de color sobre cada guerrero. Cinzel (grabado) + Sora (texto).
+   ========================================================= */
+:root {
+  --bg: #0b0a09;
+  --bg-2: #161412;
+  --bg-3: #1f1c19;
+  --ink: #ede8df;
+  --ink-2: #aaa398;
+  --fire: #ff6a1f;
+
+  --verde: #2bff88;
+  --rosado: #ff4fa3;
+  --azul: #4a74ff;
+  --negro: #ede8df; /* el negro se expresa invertido: luz hueso / página clara */
+  --on-accent: #0b0a09;
+
+  --rgb-negro: 237 232 223;
+  --rgb-rosado: 255 79 163;
+  --rgb-azul: 74 116 255;
+  --rgb-verde: 43 255 136;
+
+  --accent: var(--ink);
+
+  --f-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-brand: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-text: "Sora", system-ui, sans-serif;
+  --f-rune: "Noto Sans Runic", "Segoe UI Historic", sans-serif;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 16px; --s-4: 24px; --s-5: 32px;
+  --s-6: 48px; --s-7: 64px; --s-8: 96px; --s-9: 160px;
+
+  --bevel: 12px;
+  --plate: polygon(var(--bevel) 0, 100% 0, 100% calc(100% - var(--bevel)), calc(100% - var(--bevel)) 100%, 0 100%, 0 var(--bevel));
+
+  --gutter: clamp(16px, 3vw, 40px);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur: 260ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-text);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+/* grano de película: textura sucia de guerra */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+  opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+::selection { background: var(--fire); color: var(--on-accent); }
+
+.runes {
+  font-family: var(--f-rune); font-weight: 400;
+  letter-spacing: .6em; line-height: 1; color: var(--ink-2);
+}
+
+/* ---------- NAV ---------- */
+.nav {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--gutter);
+}
+.nav__logo {
+  font-family: var(--f-brand); font-weight: 900;
+  font-size: 20px; letter-spacing: 0.08em;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.nav__dots { display: inline-flex; gap: 3px; }
+.nav__dots i { width: 7px; height: 7px; transform: rotate(45deg); display: block; }
+.nav__links { display: none; gap: var(--s-6); font-size: 14px; font-weight: 600; }
+.nav__links a {
+  position: relative; padding: var(--s-1) 0; color: var(--ink);
+  text-shadow: 0 1px 8px rgb(0 0 0 / .8);
+  transition: color var(--dur) var(--ease);
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--fire); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur) var(--ease);
+}
+.nav__links a:hover::after, .nav__links a:focus-visible::after { transform: scaleX(1); }
+@media (min-width: 820px) { .nav__links { display: flex; } }
+
+/* botón tipo placa de escudo: esquinas cortadas */
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 24px;
+  clip-path: var(--plate);
+  background: var(--ink); color: var(--bg);
+  font-family: var(--f-display); font-size: 14px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+  border: 0; cursor: pointer;
+  transition: transform 160ms var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.pill:hover { background: var(--accent-hover, var(--fire)); color: var(--on-accent); }
+.pill:active { transform: scale(0.96); }
+.pill:focus-visible { outline: 2px solid var(--bg); outline-offset: -6px; background: var(--fire); }
+.pill svg { width: 14px; height: 14px; transition: transform var(--dur) var(--ease); }
+.pill:hover svg { transform: translate(2px, -2px); }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* fuego lejano del campo de batalla */
+.hero::before {
+  content: ""; position: absolute; z-index: 0; inset: auto -10% -20% -10%; height: 70%;
+  background: radial-gradient(60% 60% at 50% 100%, rgb(255 106 31 / .28), rgb(255 106 31 / 0) 70%);
+  pointer-events: none;
+  animation: burn 4s ease-in-out infinite alternate;
+}
+.hero__stage {
+  position: relative;
+  display: flex; justify-content: center; align-items: flex-end;
+  min-height: 0;
+  padding-top: 24vw;
+}
+.hero__title {
+  position: absolute; z-index: 1;
+  left: 0; right: 0; top: var(--s-2);
+  display: grid; justify-items: center; gap: var(--s-2);
+  font-family: var(--f-brand); font-weight: 900;
+  font-size: clamp(50px, 14.2vw, 236px);
+  line-height: .9; letter-spacing: .02em;
+  color: var(--ink);
+  user-select: none;
+  animation: rise 700ms var(--ease) both;
+}
+.hero__crest {
+  display: grid; justify-items: center; gap: var(--s-2);
+  font-size: clamp(12px, 1.2vw, 18px);
+}
+.hero__runes { display: inline-flex; align-items: center; gap: var(--s-3); }
+.hero__runes .runes { color: var(--ink); opacity: .8; }
+.hero__crest .axe { width: clamp(18px, 1.8vw, 28px); height: auto; color: var(--fire); }
+.hero__crest .axe--flip { transform: scaleX(-1); }
+
+.hero__figure {
+  position: relative; /* sin z-index: los hijos comparten capas con el título */
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 1402 / 1122;
+}
+.hero__photo, .rim {
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+.hero__photo { animation: enter 700ms var(--ease) 120ms both; }
+
+/* luz de contorno: cada copia recortada a una persona brilla en su color */
+.rim {
+  clip-path: var(--clip);
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 85%), linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to bottom, #000 60%, transparent 85%), linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+          mask-composite: intersect;
+  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -10px 22px rgb(var(--rgb) / .85));
+  animation: power 1100ms linear var(--d, 0ms) both;
+}
+
+/* reflectores: conos que bajan desde arriba sobre cada guerrero */
+.beam {
+  --w: 24%;
+  rotate: var(--tilt, 0deg); transform-origin: 50% 100%;
+  position: absolute; z-index: 0;
+  left: calc(var(--x) - var(--w) / 2); width: var(--w);
+  top: -150%; bottom: 10%;
+  filter: blur(9px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: power 1100ms linear var(--d, 0ms) both;
+}
+.beam::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom,
+    rgb(var(--rgb) / .15) 0%, rgb(var(--rgb) / .95) 34%, rgb(var(--rgb) / .45) 72%, rgb(var(--rgb) / 0) 100%);
+}
+/* la misma luz cayendo ENCIMA de la persona: la tiñe */
+.beam--front {
+  z-index: 3; opacity: .55; animation-name: power-front;
+  /* solo cae sobre los cuerpos: se apaga antes de llegar al titulo */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 64%, #000 74%);
+          mask-image: linear-gradient(to bottom, transparent 64%, #000 74%);
+}
+
+.p-negro  { --tilt: -22deg; --x: 24%; --rgb: var(--rgb-negro);  --d: 200ms; --clip: inset(0 64% 0 0); }
+.p-rosado { --tilt: -8deg; --x: 41.5%; --rgb: var(--rgb-rosado); --d: 420ms; --clip: inset(0 49% 0 33%); }
+.p-azul   { --tilt: 8deg; --x: 57%; --rgb: var(--rgb-azul);   --d: 640ms; --clip: inset(0 33% 0 48%); }
+.p-verde  { --tilt: 22deg; --x: 78%; --rgb: var(--rgb-verde);  --d: 860ms; --clip: inset(0 0 0 66%); }
+
+/* humo a ras de suelo */
+.smoke {
+  position: absolute; z-index: 4; left: -20%; right: -20%; bottom: 0; height: 38%;
+  pointer-events: none;
+  background:
+    radial-gradient(30% 60% at 20% 80%, rgb(140 130 120 / .16), transparent 70%),
+    radial-gradient(35% 55% at 60% 90%, rgb(140 130 120 / .14), transparent 70%),
+    radial-gradient(25% 50% at 90% 75%, rgb(140 130 120 / .12), transparent 70%);
+  filter: blur(10px);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+/* brasas que suben (las crea main.js) */
+.embers { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+.ember {
+  position: absolute; bottom: -12px; left: var(--l);
+  width: var(--s); height: var(--s); border-radius: 50%;
+  background: var(--c, #ffb27a);
+  box-shadow: 0 0 6px 1px var(--c, var(--fire));
+  opacity: 0;
+  animation: ember var(--t) linear var(--dl) infinite;
+}
+
+.cast {
+  position: absolute; z-index: 5; inset: auto 0 19% 0; pointer-events: none;
+  display: none;
+}
+.cast__tag {
+  position: absolute; left: var(--x); translate: -50% 0; pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px 9px 12px; clip-path: var(--plate); --bevel: 8px;
+  background: rgb(11 10 9 / .85); color: var(--ink);
+  font-family: var(--f-display); font-weight: 900; font-size: 16px; letter-spacing: .06em; line-height: 1; white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.cast__tag small { font-family: var(--f-text); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--ink-2); }
+.cast__tag::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: rgb(var(--rgb)); box-shadow: 0 0 8px rgb(var(--rgb)); }
+.cast__tag:hover, .cast__tag:focus-visible { background: rgb(var(--rgb)); color: var(--on-accent); }
+.cast__tag:hover small, .cast__tag:focus-visible small { color: var(--on-accent); }
+.cast__tag.p-negro { --x: 22%; }
+.cast__tag.p-azul  { --x: 59%; }
+.cast__tag.p-verde { --x: 82%; }
+
+.hero__foot {
+  position: relative; z-index: 6;
+  display: grid; gap: var(--s-4);
+  padding: var(--s-4) var(--gutter) var(--s-5);
+  background: var(--bg);
+}
+.hero__lead { max-width: 38ch; font-size: 18px; }
+.hero__lead strong { font-weight: 600; }
+.dotline {
+  display: none; height: 2px; align-self: center;
+  background: repeating-linear-gradient(90deg, var(--ink-2) 0 10px, transparent 10px 18px); opacity: .35;
+}
+.hero__year {
+  position: absolute; z-index: 6; right: var(--gutter); top: 46%;
+  writing-mode: vertical-rl;
+  font-family: var(--f-display); font-weight: 900; font-size: 18px; letter-spacing: .12em;
+  display: none;
+}
+@media (min-width: 900px) {
+  .hero { height: 100svh; min-height: 700px; grid-template-rows: auto 1fr; }
+  .hero__stage { padding-top: 0; }
+  .hero__figure { width: auto; height: calc(100% - 5.5vw); max-width: 100%; }
+  .cast { display: block; }
+  .hero__foot {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-6);
+    background: transparent; padding-top: 0;
+  }
+  .dotline { display: block; }
+  .hero__year { display: block; }
+}
+
+/* ---------- BANDA DE RUNAS ---------- */
+.marquee {
+  overflow: hidden; background: var(--ink); color: var(--bg);
+  padding: var(--s-3) 0;
+}
+.marquee__track {
+  display: flex; width: max-content; gap: var(--s-6);
+  font-family: var(--f-display); font-weight: 900; letter-spacing: .06em;
+  font-size: clamp(24px, 3.4vw, 44px); line-height: 1;
+  animation: slide 30s linear infinite;
+}
+.marquee__track span { display: inline-flex; align-items: center; gap: var(--s-6); }
+.marquee__track b { font-family: var(--f-rune); font-weight: 400; color: var(--c); }
+
+/* ---------- SECTION HEAD ---------- */
+.section { padding: clamp(96px, 12vw, 160px) var(--gutter) 0; }
+.section__head {
+  display: grid; gap: var(--s-4); margin-bottom: var(--s-6);
+}
+.section__title {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(40px, 7.4vw, 124px); line-height: .95; letter-spacing: -0.01em;
+}
+.section__lead { max-width: 44ch; font-size: 17px; }
+@media (min-width: 900px) {
+  .section__head { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+/* ---------- GUERREROS (franjas con reflector) ---------- */
+.strips {
+  display: flex; flex-direction: column; gap: var(--s-2);
+}
+.strip {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: block;
+  min-height: 320px;
+  background: var(--bg-2); color: var(--ink);
+  clip-path: var(--plate); --bevel: 18px;
+  transition: flex-grow 500ms var(--ease), transform 160ms var(--ease);
+}
+.strip.p-negro  { --rgb: var(--rgb-negro); }
+.strip.p-rosado { --rgb: var(--rgb-rosado); }
+.strip.p-azul   { --rgb: var(--rgb-azul); }
+.strip.p-verde  { --rgb: var(--rgb-verde); }
+
+.strip__beam {
+  position: absolute; z-index: 0; top: -40%; bottom: 0; right: 0; width: 60%;
+  rotate: calc(var(--tilt, 0deg) * .6); transform-origin: 50% 100%;
+  filter: blur(14px); mix-blend-mode: screen; opacity: .8;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease);
+}
+.strip__beam::before {
+  content: ""; position: absolute; inset: 15% 18% 0;
+  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, rgb(var(--rgb) / .85), rgb(var(--rgb) / .25) 70%, rgb(var(--rgb) / 0));
+}
+.strip__beam--front { z-index: 2; opacity: .4; }
+.strip__img {
+  position: absolute; z-index: 1; right: 0; bottom: 0; height: 88%; width: 60%;
+  object-fit: cover; object-position: top center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20%, #000 80%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 20%, #000 80%, transparent 100%);
+  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -8px 18px rgb(var(--rgb) / .7));
+  transform-origin: bottom center;
+  transition: transform 500ms var(--ease);
+}
+.strip__body {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-4);
+  height: 100%; min-height: 320px; max-width: 58%;
+  padding: var(--s-4);
+}
+.strip__name {
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(40px, 5vw, 80px); line-height: .9;
+  color: rgb(var(--rgb)); text-shadow: 0 0 24px rgb(var(--rgb) / .45);
+}
+.strip__info { display: grid; gap: var(--s-2); justify-items: start; }
+.strip__role { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.shield { width: 30px; height: 30px; color: rgb(var(--rgb)); flex: none; }
+.strip__desc { font-size: 14px; color: var(--ink-2); max-width: 30ch; }
+.strip__go {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-display); font-weight: 900; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  width: fit-content; padding: 11px 18px; clip-path: var(--plate); --bevel: 8px;
+  background: rgb(var(--rgb)); color: var(--on-accent);
+  transition: transform var(--dur) var(--ease);
+}
+.strip__go { white-space: nowrap; }
+.strip__go svg { width: 14px; height: 14px; flex: none; }
+.strip:hover .strip__beam, .strip:focus-visible .strip__beam { opacity: 1; }
+.strip:hover .strip__beam--front, .strip:focus-visible .strip__beam--front { opacity: .55; }
+.strip:hover .strip__img, .strip:focus-visible .strip__img { transform: scale(1.05); }
+.strip:hover .strip__go, .strip:focus-visible .strip__go { transform: translateX(4px); }
+.strip:active { transform: scale(0.99); }
+.strip:focus-visible { outline: none; background: var(--bg-3); }
+
+@media (min-width: 900px) {
+  .strips { flex-direction: row; height: min(80vh, 780px); }
+  .strip { flex: 1 1 0; min-height: 0; }
+  .strip:hover, .strip:focus-visible { flex-grow: 2.1; }
+  .strip__beam { width: 100%; left: 0; }
+  .strip__img { width: 100%; height: 62%; bottom: 150px; }
+  .strip__body { max-width: none; min-height: 0; }
+  .strip__name { writing-mode: vertical-rl; transform: rotate(180deg); font-size: clamp(52px, 5.4vw, 92px); }
+  .strip__info { position: absolute; left: var(--s-4); right: var(--s-4); bottom: var(--s-4); }
+  .strip__desc { display: none; }
+  .strip:hover .strip__desc, .strip:focus-visible .strip__desc { display: block; }
+}
+
+/* ---------- EL CLAN ---------- */
+.manifest {
+  display: grid; gap: var(--s-6);
+}
+.manifest__quote {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(28px, 3vw, 36px); line-height: 1.1;
+  max-width: 18ch;
+}
+.manifest__list { display: grid; gap: var(--s-2); }
+.manifest__list li {
+  display: grid; grid-template-columns: 64px 1fr; gap: var(--s-3); align-items: center;
+  padding: var(--s-4); background: var(--bg-2); clip-path: var(--plate);
+}
+.manifest__list b { font-family: var(--f-display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--c); text-align: center; }
+
+@media (min-width: 900px) {
+  .manifest { grid-template-columns: 1.1fr 1fr; align-items: start; }
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: var(--s-9);
+  padding: var(--s-7) var(--gutter) var(--s-5);
+  background: var(--bg-2);
+  display: grid; gap: var(--s-6);
+}
+.footer::before {
+  content: ""; position: absolute; z-index: -1; inset: auto -10% -40% -10%; height: 80%;
+  background: radial-gradient(50% 60% at 50% 100%, rgb(255 106 31 / .22), transparent 70%);
+  animation: burn 4s ease-in-out infinite alternate;
+}
+.footer__top { display: grid; gap: var(--s-5); }
+.footer__cta { font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 4.6vw, 72px); line-height: 1.05; }
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.icon-btn {
+  width: 46px; height: 46px; clip-path: var(--plate); --bevel: 8px;
+  display: grid; place-items: center;
+  background: var(--bg); color: var(--ink);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 160ms var(--ease);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn:hover, .icon-btn:focus-visible { background: var(--accent-hover, var(--fire)); color: var(--bg); }
+.icon-btn:active { transform: scale(.94); }
+.footer__word {
+  font-family: var(--f-brand); font-weight: 900; letter-spacing: .02em; font-size: clamp(40px, 13.4vw, 220px); line-height: .8;
+  color: transparent; -webkit-text-stroke: 2px var(--ink);
+  text-align: center; user-select: none;
+}
+.footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); font-size: 13px; color: var(--ink-2); }
+.footer__legal .runes { letter-spacing: .3em; }
+@media (min-width: 900px) {
+  .footer__top { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+/* al pasar por el nombre de un guerrero, su luz sube y las demas bajan */
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .beam,
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .rim { filter: blur(9px) brightness(.35); transition: filter 300ms var(--ease); }
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .rim { filter: brightness(.35); }
+.hero__figure:has(.cast__tag.p-negro:hover, .cast__tag.p-negro:focus-visible) .beam.p-negro,
+.hero__figure:has(.cast__tag.p-rosado:hover, .cast__tag.p-rosado:focus-visible) .beam.p-rosado,
+.hero__figure:has(.cast__tag.p-azul:hover, .cast__tag.p-azul:focus-visible) .beam.p-azul,
+.hero__figure:has(.cast__tag.p-verde:hover, .cast__tag.p-verde:focus-visible) .beam.p-verde { filter: blur(7px) brightness(1.5); }
+.hero__figure:has(.cast__tag.p-negro:hover, .cast__tag.p-negro:focus-visible) .rim.p-negro,
+.hero__figure:has(.cast__tag.p-rosado:hover, .cast__tag.p-rosado:focus-visible) .rim.p-rosado,
+.hero__figure:has(.cast__tag.p-azul:hover, .cast__tag.p-azul:focus-visible) .rim.p-azul,
+.hero__figure:has(.cast__tag.p-verde:hover, .cast__tag.p-verde:focus-visible) .rim.p-verde {
+  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -12px 30px rgb(var(--rgb)));
+}
+.beam, .rim { transition: filter 300ms var(--ease); }
+
+/* numero romano grande de fondo en cada franja */
+.strip__num {
+  position: absolute; z-index: -1; right: var(--s-3); top: var(--s-2);
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(64px, 7vw, 120px); line-height: 1;
+  color: rgb(var(--rgb) / .16);
+  transition: color 400ms var(--ease);
+}
+.strip:hover .strip__num, .strip:focus-visible .strip__num { color: rgb(var(--rgb) / .45); }
+.strip__num { display: none; }
+@media (min-width: 900px) { .strip__num { display: block; right: var(--s-3); top: var(--s-3); } }
+
+/* separador: hachas + runas */
+.divider {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-3);
+  padding: clamp(72px, 9vw, 120px) var(--gutter) 0; color: var(--fire);
+}
+.divider::before, .divider::after {
+  content: ""; flex: 1; max-width: 280px; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--ink-2) 0 6px, transparent 6px 12px); opacity: .3;
+}
+.divider svg { width: 22px; height: 22px; }
+.divider svg:last-of-type { transform: scaleX(-1); }
+.divider .runes { font-size: 15px; }
+.divider + .section { padding-top: clamp(56px, 7vw, 96px); }
+
+/* ---------- PROYECTO INTEGRADOR ---------- */
+.quest {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: var(--s-6);
+  padding: clamp(24px, 5vw, 64px);
+  background: var(--bg-2); clip-path: var(--plate); --bevel: 28px;
+}
+.quest::before {
+  content: ""; position: absolute; z-index: -1; inset: -30% 40% 40% -10%;
+  background: radial-gradient(closest-side, rgb(255 106 31 / .16), transparent);
+}
+.quest__rune {
+  position: absolute; z-index: -1; right: -2%; bottom: -18%;
+  font-family: var(--f-rune); font-size: clamp(260px, 38vw, 560px); line-height: 1;
+  color: rgb(237 232 223 / .04);
+}
+.quest__intro { display: grid; gap: var(--s-4); max-width: 60ch; }
+.quest__name {
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 4.4vw, 64px); line-height: 1;
+  color: var(--ink);
+}
+.quest__what { font-size: 18px; }
+.quest__what strong { color: var(--fire); }
+.quest__cols { display: grid; gap: var(--s-2); }
+.quest__card {
+  display: grid; gap: var(--s-3); align-content: start;
+  padding: var(--s-5); background: var(--bg); clip-path: var(--plate); --bevel: 14px;
+}
+.quest__label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--f-display); font-weight: 900; font-size: 22px; letter-spacing: .04em;
+}
+.dia { width: 10px; height: 10px; transform: rotate(45deg); background: var(--c); box-shadow: 0 0 10px var(--c); }
+.quest__roles { display: grid; gap: var(--s-2); }
+.quest__roles li {
+  --rgb: 237 232 223;
+  display: grid; gap: 4px;
+  padding: var(--s-3) var(--s-4);
+  background: rgb(var(--rgb) / .07); clip-path: var(--plate); --bevel: 10px;
+  border-left: 3px solid rgb(var(--rgb));
+  font-size: 14px; color: var(--ink-2);
+}
+.quest__roles li.p-rosado { --rgb: var(--rgb-rosado); }
+.quest__roles li.p-azul   { --rgb: var(--rgb-azul); }
+.quest__roles li.p-verde  { --rgb: var(--rgb-verde); }
+.quest__roles b { font-family: var(--f-display); font-weight: 900; font-size: 18px; letter-spacing: .06em; color: rgb(var(--rgb)); }
+@media (min-width: 900px) {
+  .quest__cols { grid-template-columns: 1fr 1fr; }
+  .quest__roles { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---------- MOTION ---------- */
+.js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); transition-delay: var(--d, 0ms); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+@keyframes rise   { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes enter  { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
+@keyframes slide  { to { transform: translateX(-50%); } }
+/* encendido de reflector: parpadea y queda prendido */
+@keyframes power {
+  0% { opacity: 0; } 18% { opacity: .9; } 26% { opacity: .1; } 38% { opacity: 1; } 46% { opacity: .35; } 60%, 100% { opacity: 1; }
+}
+@keyframes power-front {
+  0% { opacity: 0; } 18% { opacity: .5; } 26% { opacity: 0; } 38% { opacity: .55; } 46% { opacity: .2; } 60%, 100% { opacity: .55; }
+}
+@keyframes burn  { from { opacity: .7; transform: scaleY(.96); } to { opacity: 1; transform: scaleY(1.04); } }
+@keyframes drift { from { transform: translateX(-4%); } to { transform: translateX(4%); } }
+@keyframes ember {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  10%  { opacity: 1; }
+  80%  { opacity: .8; }
+  100% { opacity: 0; transform: translate(var(--dx), -105svh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .ember, .embers { display: none; }
+}
+
+/* ---------- LOGO ---------- */
+.logo-mark { width: 38px; height: 38px; flex: none; color: var(--ink); }
+.nav__brand { display: grid; line-height: 1; gap: 3px; }
+.nav__brand small {
+  font-family: var(--f-text); font-weight: 600; font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fire);
+}
+.hero__crest .hero__mark {
+  width: clamp(40px, 3.8vw, 60px); height: clamp(40px, 3.8vw, 60px);
+  color: var(--ink); filter: drop-shadow(0 0 18px rgb(255 106 31 / .35));
+}
+.footer__lockup { display: grid; justify-items: center; gap: var(--s-4); }
+.footer__mark { width: clamp(72px, 9vw, 140px); height: clamp(72px, 9vw, 140px); color: var(--ink); }
+
+/* ---------- ANIMACIONES EN PAUSA ----------
+   Se activan despues: borrar esta regla para recuperar
+   el encendido de reflectores, fuego y humo. */
+*, *::before, *::after { animation: none !important; }
