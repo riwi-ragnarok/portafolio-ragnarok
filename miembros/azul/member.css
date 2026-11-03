@@ -4,13 +4,20 @@
    ========================================================= */
 body[data-member="negro"]  { --accent: var(--negro);  --accent-hover: #ffffff; --rgb: var(--rgb-negro);  --tilt: -16deg; --x: 24%; --l: 0%;  --r: 35%; }
 body[data-member="rosado"] { --accent: var(--rosado); --accent-hover: #ff86c0; --rgb: var(--rgb-rosado); --tilt: -7deg; --x: 42%; --l: 29%; --r: 54%; }
-body[data-member="azul"]   { --accent: var(--azul);   --accent-hover: #7e9bff; --rgb: var(--rgb-azul);   --tilt: 7deg; --x: 56%; --l: 46%; --r: 70%; }
+body[data-member="azul"]   { --accent: var(--azul);   --accent-hover: #7e9bff; --rgb: var(--rgb-azul);   --tilt: 3deg; --x: 50%; }
 body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; --rgb: var(--rgb-verde);  --tilt: 16deg; --x: 80%; --l: 65%; --r: 100%; }
 ::selection { background: var(--accent); color: var(--on-accent); }
 
+/* alto del nav fijo: reserva su espacio en el hero y al saltar a una sección */
+:root { --nav-h: 64px; }
+@media (max-width: 819px) { :root { --nav-h: 108px; } }
+@media (max-width: 479px) { :root { --nav-h: 90px; } }
+html { scroll-padding-top: var(--nav-h); }
+
 .m-hero {
   position: relative; overflow: hidden; isolation: isolate;
-  display: grid; grid-template-rows: auto 1fr auto;
+  display: grid; grid-template-rows: 1fr auto;
+  padding-top: var(--nav-h);
 }
 .m-hero::before {
   content: ""; position: absolute; z-index: 0; inset: auto -10% -20% -10%; height: 70%;
@@ -18,7 +25,27 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
   pointer-events: none;
   animation: burn 4s ease-in-out infinite alternate;
 }
-.m-hero .pill { background: var(--accent); color: var(--on-accent); }
+
+/* nav fijo: va fuera del hero porque su overflow e isolation lo atraparían */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: var(--s-2) var(--gutter);
+  background: rgb(11 10 9 / .88);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+.nav .pill { background: var(--accent); color: var(--on-accent); }
+
+/* en móvil los enlaces pasan a una fila propia bajo la marca */
+@media (max-width: 819px) {
+  .nav { flex-wrap: wrap; row-gap: var(--s-2); }
+  .nav__links { display: flex; order: 3; width: 100%; justify-content: space-between; gap: var(--s-3); font-size: 13px; }
+  .nav__links a { display: block; padding: var(--s-2) 0; }
+}
+/* sin espacio para el botón: "Contacto" ya lleva al mismo sitio */
+@media (max-width: 479px) { .nav .pill { display: none; } }
+/* móviles muy estrechos: los cuatro enlaces deben caber en una sola fila */
+@media (max-width: 359px) { .nav__links { gap: var(--s-2); font-size: 12px; } }
 
 .back .logo-mark { width: 30px; height: 30px; }
 .back {
@@ -30,21 +57,25 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
 
 .m-stage {
   position: relative; display: flex; justify-content: center; align-items: flex-end;
-  min-height: 0; padding-top: 20vw;
+  min-height: 0; padding-top: 26vw;
 }
 .m-title {
   position: absolute; z-index: 2; left: 0; right: 0; top: var(--s-2);
-  font-family: var(--f-brand); font-weight: 900;
-  font-size: clamp(64px, 19vw, 300px); line-height: .85; letter-spacing: .01em;
+  font-family: var(--f-brand); font-weight: 900; text-transform: uppercase;
+  --fs: clamp(56px, min(19vw, 30svh), 300px);
+  font-size: var(--fs); line-height: .85; letter-spacing: .01em;
   text-align: center; color: var(--ink);
   text-shadow: 0 6px 30px rgb(0 0 0 / .6);
-  animation: rise 700ms var(--ease) both;
+  /* sin fill "forwards": dejaría fija la opacidad y anularía el desvanecido del parallax */
+  animation: rise 700ms var(--ease) backwards;
 }
-.m-figure { position: relative; margin: 0; width: 100%; aspect-ratio: 1402 / 1122; }
+.m-title span { display: block; }
+/* ventana de 460×700 px sobre team.png, centrada en el guerrero */
+.m-figure { position: relative; margin: 0; width: min(86%, 560px); aspect-ratio: 460 / 700; }
 
 /* reflector del guerrero */
 .m-beam {
-  --w: 46%;
+  --w: 110%;
   rotate: var(--tilt, 0deg); transform-origin: 50% 100%;
   position: absolute; z-index: 3;
   left: calc(var(--x) - var(--w) / 2); width: var(--w);
@@ -60,29 +91,32 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
 }
 .m-beam--front { z-index: 5; opacity: .5; animation-name: power-front; }
 
-.m-photo {
-  position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%;
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-}
-/* el resto del clan queda en la sombra */
-.m-photo--base { z-index: 1; filter: grayscale(1) brightness(.28); animation: enter 700ms var(--ease) 80ms both; }
-/* el guerrero: a color y con luz de contorno */
-.m-photo--spot {
-  z-index: 4;
-  --side: linear-gradient(to right, transparent var(--l), #000 calc(var(--l) + 5%), #000 calc(var(--r) - 5%), transparent var(--r));
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), var(--side);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), var(--side);
-          mask-composite: intersect;
+/* la luz de contorno va en el contenedor para seguir el recorte de la foto */
+.m-crop {
+  position: absolute; inset: 0; z-index: 4;
   filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -10px 24px rgb(var(--rgb) / .85));
   animation: enter 700ms var(--ease) 160ms both;
+}
+/* team.png escalada a la ventana: 1402/460, 1122/700, -590/460 y -60/700 */
+.m-photo {
+  position: absolute; max-width: none;
+  width: 304.78%; height: 160.29%; left: -128.26%; top: -8.57%;
+  /* silueta del guerrero, en % de la imagen original */
+  clip-path: polygon(46% 11%, 52% 10%, 60% 11%, 64.5% 20%, 63.5% 33.5%, 69% 34.5%, 71% 37%, 71.5% 40%, 69% 46%, 66% 52%, 66% 62%, 54% 62%, 54% 56%, 52.5% 49%, 50.5% 43%, 49.5% 36%, 48.8% 31%, 46% 24%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 44%, transparent 60%);
+          mask-image: linear-gradient(to bottom, #000 44%, transparent 60%);
 }
 
 @media (min-width: 900px) {
   .m-hero { height: 100svh; min-height: 680px; }
-  .m-stage { padding-top: 0; }
+  .m-stage { padding-top: 0; justify-content: flex-end; padding-right: clamp(32px, 7vw, 120px); }
   .m-figure { width: auto; height: calc(100% - 3vw); max-width: 100%; }
+  /* el nombre a la izquierda; la foto solo pisa el final para que se siga leyendo */
+  .m-title {
+    --fs: min(13.5vw, 27svh);
+    left: var(--gutter); right: auto; top: calc(50% - var(--fs) * .85);
+    text-align: left;
+  }
 }
 
 .m-foot {
@@ -109,14 +143,33 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
   font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; max-width: 22ch;
 }
 .about__big em { font-style: normal; color: var(--accent); }
-.about__facts { display: grid; gap: var(--s-2); }
-.about__facts li {
-  display: flex; justify-content: space-between; gap: var(--s-3);
-  padding: var(--s-4); background: var(--bg-2); clip-path: var(--plate);
-}
-.about__facts span { color: var(--ink-2); }
-.about__facts strong { font-weight: 600; text-align: right; }
 @media (min-width: 900px) { .about { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+
+/* panel de respuesta de API */
+.api {
+  background: var(--bg-2); clip-path: var(--plate); --bevel: 18px;
+  font-family: var(--f-code); font-size: 15px;
+}
+.api__req {
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-3); color: var(--ink-2);
+}
+.api__req b, .route b { color: var(--accent-hover); font-weight: 700; }
+.api__body { margin: 0; padding: var(--s-4); display: grid; gap: var(--s-2); }
+.api__body::before, .api__body::after { color: var(--ink-2); }
+.api__body::before { content: "{"; }
+.api__body::after { content: "}"; }
+.api__body div { display: flex; flex-wrap: wrap; gap: 0 1ch; padding-left: 2ch; }
+.api__body dt { color: var(--accent-hover); }
+.api__body dt::before { content: '"'; content: '"' / ""; }
+.api__body dt::after { content: '":'; content: '":' / ""; }
+.api__body dd { margin: 0; }
+.api__body dd::before { content: '"'; content: '"' / ""; }
+.api__body dd::after { content: '",'; content: '",' / ""; }
+.api__body div:last-child dd::after { content: '"'; content: '"' / ""; }
+
+/* etiqueta de ruta */
+.route { font-family: var(--f-code); font-size: 14px; color: var(--ink-2); }
 
 /* proyectos */
 .m-quest {
@@ -127,6 +180,8 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
   border-left: 4px solid var(--accent);
   transition: transform 160ms var(--ease);
 }
+/* tarjetas seguidas: separación corta, como las semanas */
+.m-quest:has(+ .m-quest) { margin-bottom: var(--s-2); }
 .m-quest__rune {
   position: absolute; z-index: -1; right: 2%; bottom: -30%;
   font-family: var(--f-rune); font-size: clamp(200px, 26vw, 380px); line-height: 1;
@@ -138,6 +193,8 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
 .m-quest__text b { display: block; margin-top: 6px; font-weight: 600; color: var(--accent); }
 .m-quest:hover .week__go svg, .m-quest:focus-visible .week__go svg { transform: translate(3px, -3px); }
 .m-quest:active { transform: scale(.99); }
+/* clip-path recorta el outline exterior: el foco se dibuja por dentro */
+.m-quest:focus-visible, .others a:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; }
 
 .cycle { font-family: var(--f-display); font-weight: 900; font-size: 24px; letter-spacing: .06em; margin-bottom: var(--s-4); color: var(--accent); }
 .weeks { display: grid; gap: var(--s-2); }
@@ -155,14 +212,24 @@ body[data-member="verde"]  { --accent: var(--verde);  --accent-hover: #7dffb6; -
 }
 .week:hover, .week:focus-visible { color: var(--on-accent); outline: none; }
 .week:hover::before, .week:focus-visible::before { transform: scaleY(1); }
+.week__head { display: grid; gap: var(--s-2); }
+.week:hover .route, .week:focus-visible .route,
+.week:hover .route b, .week:focus-visible .route b { color: inherit; }
 .week__name { font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 4.6vw, 68px); line-height: .95; }
 .week__desc { max-width: 46ch; }
 .week__go { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-display); font-weight: 900; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
 .week__go svg { width: 14px; height: 14px; transition: transform var(--dur) var(--ease); }
-.week:hover .week__go svg { transform: translate(3px, -3px); }
+.week:hover .week__go svg, .week:focus-visible .week__go svg { transform: translate(3px, -3px); }
 @media (min-width: 900px) { .week { grid-template-columns: 1fr 1.3fr auto; } }
 
-/* armas = skills */
+/* armas = skills, agrupadas por capa */
+.stack { margin: 0; display: grid; gap: var(--s-5); }
+.stack__layer { display: grid; gap: var(--s-3); }
+.stack__layer dt { font-family: var(--f-code); font-size: 14px; color: var(--accent-hover); }
+.stack__layer dd { margin: 0; }
+@media (min-width: 900px) {
+  .stack__layer { grid-template-columns: 200px 1fr; align-items: center; }
+}
 .skills { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .skill {
   padding: 14px 24px; clip-path: var(--plate); --bevel: 10px;

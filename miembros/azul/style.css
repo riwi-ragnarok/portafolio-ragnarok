@@ -29,6 +29,7 @@
   --f-brand: "Cinzel", "Trajan Pro", Georgia, serif;
   --f-text: "Sora", system-ui, sans-serif;
   --f-rune: "Noto Sans Runic", "Segoe UI Historic", sans-serif;
+  --f-code: "JetBrains Mono", ui-monospace, monospace;
 
   --s-1: 4px; --s-2: 8px; --s-3: 16px; --s-4: 24px; --s-5: 32px;
   --s-6: 48px; --s-7: 64px; --s-8: 96px; --s-9: 160px;
@@ -585,8 +586,3 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .footer__lockup { display: grid; justify-items: center; gap: var(--s-4); }
 .footer__mark { width: clamp(72px, 9vw, 140px); height: clamp(72px, 9vw, 140px); color: var(--ink); }
-
-/* ---------- ANIMACIONES EN PAUSA ----------
-   Se activan despues: borrar esta regla para recuperar
-   el encendido de reflectores, fuego y humo. */
-*, *::before, *::after { animation: none !important; }

@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AZUL — RAGNAROK</title>
-  <meta name="description" content="Portafolio de AZUL, Backend Developer de RAGNAROK, célula del Clan Tesla.">
+  <title>OSCAR ZAPATA — RAGNAROK</title>
+  <meta name="description" content="Portafolio de Oscar Zapata (AZUL), Backend Developer de RAGNAROK, célula del Clan Tesla.">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="main.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2724%27 fill=%27%230b0a09%27/%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2748%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%276%27/%3E%3Cpath d=%27M45 31V91M45 33l29 14-29 14%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%2710%27/%3E%3Cpath d=%27M51 63l17 11-11 2 21 18%27 fill=%27none%27 stroke=%27%23ff6a1f%27 stroke-width=%279%27/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="member.css">
@@ -20,28 +22,29 @@
     <symbol id="arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   </svg>
 
-  <header class="m-hero" id="inicio">
-    <nav class="nav" aria-label="Principal">
-      <a class="back" href="../../index.html#guerreros">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
-        <svg class="logo-mark" aria-hidden="true"><use href="#logo"/></svg>
-        RAGNAROK
-      </a>
-      <ul class="nav__links">
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#skills">Armas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-      <a class="pill" href="#contacto">Reclutar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-    </nav>
+  <nav class="nav" aria-label="Principal">
+    <a class="back" href="../../index.html#guerreros">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+      <svg class="logo-mark" aria-hidden="true"><use href="#logo"/></svg>
+      RAGNAROK
+    </a>
+    <ul class="nav__links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#skills">Armas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="pill" href="#contacto">Reclutar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  </nav>
 
+  <header class="m-hero" id="inicio">
     <div class="m-stage">
-      <h1 class="m-title">AZUL</h1>
+      <h1 class="m-title"><span>Oscar</span> <span>Zapata</span></h1>
       <figure class="m-figure">
-        <img class="m-photo m-photo--base" src="../../assets/team.png" width="1402" height="1122" alt="">
         <span class="m-beam" aria-hidden="true"></span>
-        <img class="m-photo m-photo--spot" src="../../assets/team.png" width="1402" height="1122" alt="AZUL, Backend Developer de RAGNAROK, bajo su reflector de color">
+        <div class="m-crop">
+          <img class="m-photo" src="../../assets/team.png" width="1402" height="1122" alt="Oscar Zapata, Backend Developer de RAGNAROK, bajo su reflector azul">
+        </div>
         <span class="m-beam m-beam--front" aria-hidden="true"></span>
       </figure>
     </div>
@@ -73,13 +76,16 @@
           <p class="about__big">Backend Developer de la célula <em>RAGNAROK</em>.</p>
           <p class="section__lead" style="margin-top:24px">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto. Aquí va tu historia: quién eres, qué te mueve y qué construyes.</p>
         </div>
-        <ul class="about__facts" data-reveal style="--d:160ms">
-          <li><span>Rol</span><strong>Backend Developer</strong></li>
-          <li><span>Color</span><strong>Azul</strong></li>
-          <li><span>Clan</span><strong>Tesla · RIWI</strong></li>
-          <li><span>Formación</span><strong>Primer ciclo</strong></li>
-          <li><span>Ubicación</span><strong>Colombia</strong></li>
-        </ul>
+        <div class="api" data-reveal style="--d:160ms">
+          <p class="api__req"><b>GET</b> /api/oscar</p>
+          <dl class="api__body">
+            <div><dt>rol</dt><dd>Backend Developer</dd></div>
+            <div><dt>color</dt><dd>Azul</dd></div>
+            <div><dt>clan</dt><dd>Tesla · RIWI</dd></div>
+            <div><dt>formación</dt><dd>Primer ciclo</dd></div>
+            <div><dt>ubicación</dt><dd>Colombia</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
 
@@ -95,20 +101,27 @@
         <span class="m-quest__text">Qué es y qué soluciona, en una línea. <b>Mi rol: Backend, la lógica y las APIs.</b></span>
         <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
       </a>
+      <a class="m-quest" href="https://zeus18416.github.io/rueda-libre/" target="_blank" rel="noopener" data-reveal>
+        <span class="m-quest__rune" aria-hidden="true">ᚱ</span>
+        <span class="m-quest__kicker">Página web</span>
+        <span class="m-quest__name">Rueda Libre</span>
+        <span class="m-quest__text">Sitio de 3 páginas para un alquiler de bicicletas en Medellín, con tarifas, rutas y formulario de reservas. <b>Lenguajes: HTML y CSS.</b></span>
+        <span class="week__go">Ver sitio <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+      </a>
       <h3 class="cycle">Primer ciclo</h3>
       <div class="weeks">
         <a class="week" data-reveal style="--d:0ms" href="#proyectos">
-          <span class="week__name">Semana 1</span>
+          <span class="week__head"><span class="route"><b>GET</b> /semanas/1</span><span class="week__name">Semana 1</span></span>
           <p class="week__desc">Contenido de la semana 1. Fundamentos de HTML semántico y primera página.</p>
           <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
         </a>
         <a class="week" data-reveal style="--d:80ms" href="#proyectos">
-          <span class="week__name">Semana 2</span>
+          <span class="week__head"><span class="route"><b>GET</b> /semanas/2</span><span class="week__name">Semana 2</span></span>
           <p class="week__desc">Contenido de la semana 2. CSS, layout con Flexbox y Grid, diseño responsive.</p>
           <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
         </a>
         <a class="week" data-reveal style="--d:160ms" href="#proyectos">
-          <span class="week__name">Semana 3</span>
+          <span class="week__head"><span class="route"><b>GET</b> /semanas/3</span><span class="week__name">Semana 3</span></span>
           <p class="week__desc">Contenido de la semana 3. JavaScript, interacción y lógica en el navegador.</p>
           <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
         </a>
@@ -117,15 +130,18 @@
 
     <section class="section" id="skills" aria-labelledby="t-skills">
       <div class="section__head"><h2 class="section__title" id="t-skills" data-reveal>Armas</h2></div>
-      <ul class="skills" data-reveal style="--d:80ms">
-        <li class="skill">JavaScript</li><li class="skill">Node.js</li><li class="skill">Express</li><li class="skill">APIs REST</li><li class="skill">SQL</li><li class="skill">Git</li>
-      </ul>
+      <dl class="stack" data-reveal style="--d:80ms">
+        <div class="stack__layer"><dt>Lenguaje</dt><dd><ul class="skills"><li class="skill">JavaScript</li></ul></dd></div>
+        <div class="stack__layer"><dt>Backend</dt><dd><ul class="skills"><li class="skill">Node.js</li><li class="skill">Express</li><li class="skill">APIs REST</li></ul></dd></div>
+        <div class="stack__layer"><dt>Datos</dt><dd><ul class="skills"><li class="skill">SQL</li></ul></dd></div>
+        <div class="stack__layer"><dt>Herramientas</dt><dd><ul class="skills"><li class="skill">Git</li></ul></dd></div>
+      </dl>
     </section>
   </main>
 
   <footer class="footer m-contact" id="contacto">
     <div class="footer__top">
-      <h2 class="footer__cta" data-reveal>¿Una batalla? <em>Escríbeme.</em></h2>
+      <h2 class="footer__cta" data-reveal>¿Un reto? <em>Escríbeme.</em></h2>
       <div class="footer__links">
         <a class="pill" href="#contacto">correo@ejemplo.com <svg aria-hidden="true"><use href="#arrow"/></svg></a>
       </div>
@@ -139,7 +155,7 @@
     </nav>
     <p class="footer__word" aria-hidden="true">AZUL</p>
     <div class="footer__legal">
-      <span>© 2026 AZUL · RAGNAROK · Clan Tesla</span>
+      <span>© 2026 Oscar Zapata · AZUL · RAGNAROK · Clan Tesla</span>
       <a href="../../index.html">← Volver a la célula</a>
     </div>
   </footer>
