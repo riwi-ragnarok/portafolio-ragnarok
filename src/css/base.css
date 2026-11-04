@@ -1,0 +1,74 @@
+/* BASE
+   Colores, fuentes, espacios y textura de fondo. Todo lo demás usa estas variables. */
+
+/* =========================================================
+   RAGNAROK — tokens + base + hub
+   Dirección: póster de guerra nórdica. Humo, brasas, reflectores
+   de color sobre cada guerrero. Cinzel (grabado) + Sora (texto).
+   ========================================================= */
+:root {
+  --bg: #0b0a09;
+  --bg-2: #161412;
+  --bg-3: #1f1c19;
+  --ink: #ede8df;
+  --ink-2: #aaa398;
+  --fire: #ff6a1f;
+
+  --verde: #2bff88;
+  --rosado: #ff4fa3;
+  --azul: #4a74ff;
+  --negro: #ede8df; /* el negro se expresa invertido: luz hueso / página clara */
+  --on-accent: #0b0a09;
+
+  --rgb-negro: 237 232 223;
+  --rgb-rosado: 255 79 163;
+  --rgb-azul: 74 116 255;
+  --rgb-verde: 43 255 136;
+
+  --accent: var(--ink);
+
+  --f-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-brand: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-text: "Sora", system-ui, sans-serif;
+  --f-rune: "Noto Sans Runic", "Segoe UI Historic", sans-serif;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 16px; --s-4: 24px; --s-5: 32px;
+  --s-6: 48px; --s-7: 64px; --s-8: 96px; --s-9: 160px;
+
+  --bevel: 12px;
+  --plate: polygon(var(--bevel) 0, 100% 0, 100% calc(100% - var(--bevel)), calc(100% - var(--bevel)) 100%, 0 100%, 0 var(--bevel));
+
+  --gutter: clamp(16px, 3vw, 40px);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur: 260ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-text);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+/* grano de película: textura sucia de guerra */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+  opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+::selection { background: var(--fire); color: var(--on-accent); }
+
+.runes {
+  font-family: var(--f-rune); font-weight: 400;
+  letter-spacing: .6em; line-height: 1; color: var(--ink-2);
+}

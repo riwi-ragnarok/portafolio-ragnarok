@@ -1,0 +1,182 @@
+/* PORTADA
+   RAGNAROK, foto del equipo, reflectores, humo y brasas. */
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto; /* escenario + pie (el menú es fijo, ya no ocupa fila) */
+  overflow: hidden;
+  isolation: isolate;
+}
+/* fuego lejano del campo de batalla */
+.hero::before {
+  content: ""; position: absolute; z-index: 0; inset: auto -10% -20% -10%; height: 70%;
+  background: radial-gradient(60% 60% at 50% 100%, rgb(255 106 31 / .28), rgb(255 106 31 / 0) 70%);
+  pointer-events: none;
+  animation: burn 4s ease-in-out infinite alternate;
+}
+.hero__stage {
+  position: relative;
+  display: flex; justify-content: center; align-items: flex-end;
+  min-height: 0;
+  padding-top: 24vw;
+}
+.hero__title {
+  position: absolute; z-index: 1;
+  left: 0; right: 0; top: var(--s-2);
+  display: grid; justify-items: center; gap: var(--s-2);
+  font-family: var(--f-brand); font-weight: 900;
+  font-size: clamp(50px, 14.2vw, 236px);
+  line-height: .9; letter-spacing: .02em;
+  color: var(--ink);
+  user-select: none;
+  animation: rise 700ms var(--ease) both;
+}
+.hero__crest {
+  display: grid; justify-items: center; gap: var(--s-2);
+  font-size: clamp(12px, 1.2vw, 18px);
+}
+.hero__runes { display: inline-flex; align-items: center; gap: var(--s-3); }
+.hero__runes .runes { color: var(--ink); opacity: .8; }
+.hero__crest .axe { width: clamp(18px, 1.8vw, 28px); height: auto; color: var(--fire); }
+.hero__crest .axe--flip { transform: scaleX(-1); }
+
+.hero__figure {
+  position: relative; /* sin z-index: los hijos comparten capas con el título */
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 1402 / 1122;
+}
+.hero__photo, .rim {
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%;
+}
+/* la foto viene recortada a los lados: se difuminan los bordes para que no se vea la "caja" */
+.hero__photo {
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+          mask-composite: intersect;
+}
+.hero__photo { animation: enter 700ms var(--ease) 120ms both; }
+
+/* luz de contorno: cada copia recortada a una persona brilla en su color */
+.rim {
+  /* sin clip-path rectangular (dejaba una "caja de luz"): mascara horizontal con bordes difusos */
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 80%),
+    linear-gradient(to right, transparent var(--ml), #000 calc(var(--ml) + 7%), #000 calc(var(--mr) - 7%), transparent var(--mr));
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 80%),
+    linear-gradient(to right, transparent var(--ml), #000 calc(var(--ml) + 7%), #000 calc(var(--mr) - 7%), transparent var(--mr));
+          mask-composite: intersect;
+  filter: drop-shadow(0 -2px 3px rgb(var(--rgb) / .9)) drop-shadow(0 -8px 16px rgb(var(--rgb) / .55));
+  animation: power 1100ms linear var(--d, 0ms) both;
+}
+
+/* reflectores: conos que bajan desde arriba sobre cada guerrero */
+.beam {
+  --w: 24%;
+  rotate: var(--tilt, 0deg); transform-origin: 50% 100%;
+  position: absolute; z-index: 0;
+  left: calc(var(--x) - var(--w) / 2); width: var(--w);
+  top: -150%; bottom: 10%;
+  filter: blur(9px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: power 1100ms linear var(--d, 0ms) both;
+}
+.beam::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom,
+    rgb(var(--rgb) / .15) 0%, rgb(var(--rgb) / .95) 34%, rgb(var(--rgb) / .45) 72%, rgb(var(--rgb) / 0) 100%);
+}
+/* la misma luz cayendo ENCIMA de la persona: la tiñe */
+.beam--front {
+  z-index: 3; opacity: .55; animation-name: power-front;
+  /* solo cae sobre los cuerpos: se apaga antes de llegar al titulo */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 64%, #000 74%);
+          mask-image: linear-gradient(to bottom, transparent 64%, #000 74%);
+}
+
+.p-negro  { --tilt: -22deg; --x: 24%; --rgb: var(--rgb-negro);  --d: 200ms; --ml: 4%; --mr: 38%; }
+.p-rosado { --tilt: -8deg; --x: 41.5%; --rgb: var(--rgb-rosado); --d: 420ms; --ml: 30%; --mr: 54%; }
+.p-azul   { --tilt: 8deg; --x: 57%; --rgb: var(--rgb-azul);   --d: 640ms; --ml: 46%; --mr: 70%; }
+.p-verde  { --tilt: 22deg; --x: 78%; --rgb: var(--rgb-verde);  --d: 860ms; --ml: 64%; --mr: 96%; }
+
+/* humo a ras de suelo */
+.smoke {
+  position: absolute; z-index: 4; left: -20%; right: -20%; bottom: 0; height: 38%;
+  pointer-events: none;
+  background:
+    radial-gradient(30% 60% at 20% 80%, rgb(140 130 120 / .16), transparent 70%),
+    radial-gradient(35% 55% at 60% 90%, rgb(140 130 120 / .14), transparent 70%),
+    radial-gradient(25% 50% at 90% 75%, rgb(140 130 120 / .12), transparent 70%);
+  filter: blur(10px);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+/* brasas que suben (las crea main.js) */
+.embers { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+.ember {
+  position: absolute; bottom: -12px; left: var(--l);
+  width: var(--s); height: var(--s); border-radius: 50%;
+  background: var(--c, #ffb27a);
+  box-shadow: 0 0 6px 1px var(--c, var(--fire));
+  opacity: 0;
+  animation: ember var(--t) linear var(--dl) infinite;
+}
+
+.cast {
+  position: absolute; z-index: 5; inset: auto 0 19% 0; pointer-events: none;
+  display: none;
+}
+.cast__tag {
+  position: absolute; left: var(--x); translate: -50% 0; pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px 9px 12px; clip-path: var(--plate); --bevel: 8px;
+  background: rgb(11 10 9 / .85); color: var(--ink);
+  font-family: var(--f-display); font-weight: 900; font-size: 16px; letter-spacing: .06em; line-height: 1; white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.cast__tag small { font-family: var(--f-text); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--ink-2); }
+.cast__tag small { display: none; } /* con nombres reales no cabe el rol: se ve en el selector */
+.cast__tag::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: rgb(var(--rgb)); box-shadow: 0 0 8px rgb(var(--rgb)); }
+.cast__tag:hover, .cast__tag:focus-visible { background: rgb(var(--rgb)); color: var(--on-accent); }
+.cast__tag:hover small, .cast__tag:focus-visible small { color: var(--on-accent); }
+.cast__tag.p-negro { --x: 22%; }
+.cast__tag.p-azul  { --x: 59%; }
+.cast__tag.p-verde { --x: 82%; }
+
+.hero__foot {
+  position: relative; z-index: 6;
+  display: grid; gap: var(--s-4);
+  padding: var(--s-4) var(--gutter) var(--s-5);
+  background: var(--bg);
+}
+.hero__lead { max-width: 38ch; font-size: 18px; }
+.hero__lead strong { font-weight: 600; }
+.dotline {
+  display: none; height: 2px; align-self: center;
+  background: repeating-linear-gradient(90deg, var(--ink-2) 0 10px, transparent 10px 18px); opacity: .35;
+}
+.hero__year {
+  position: absolute; z-index: 6; right: var(--gutter); top: 46%;
+  writing-mode: vertical-rl;
+  font-family: var(--f-display); font-weight: 900; font-size: 18px; letter-spacing: .12em;
+  display: none;
+}
+@media (min-width: 900px) {
+  .hero { height: 100svh; min-height: 700px; grid-template-rows: 1fr; }
+  .hero__stage { padding-top: 0; }
+  .hero__figure { width: auto; height: calc(100% - 5.5vw); max-width: 100%; }
+  .cast { display: block; }
+  .hero__foot {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-6);
+    background: transparent; padding-top: 0;
+  }
+  .dotline { display: block; }
+  .hero__year { display: block; }
+}

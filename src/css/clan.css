@@ -1,0 +1,22 @@
+/* EL CLAN
+   Sección de la célula. */
+
+/* ---------- EL CLAN ---------- */
+.manifest {
+  display: grid; gap: var(--s-6);
+}
+.manifest__quote {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(28px, 3vw, 36px); line-height: 1.1;
+  max-width: 18ch;
+}
+.manifest__list { display: grid; gap: var(--s-2); }
+.manifest__list li {
+  display: grid; grid-template-columns: 64px 1fr; gap: var(--s-3); align-items: center;
+  padding: var(--s-4); background: var(--bg-2); clip-path: var(--plate);
+}
+.manifest__list b { font-family: var(--f-display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--c); text-align: center; }
+
+@media (min-width: 900px) {
+  .manifest { grid-template-columns: 1.1fr 1fr; align-items: start; }
+}

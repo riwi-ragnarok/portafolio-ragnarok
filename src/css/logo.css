@@ -1,0 +1,16 @@
+/* LOGO
+   Tamaños del logo y del nombre de la marca. */
+
+/* ---------- LOGO ---------- */
+.logo-mark { width: 38px; height: 38px; flex: none; color: var(--ink); }
+.nav__brand { display: grid; line-height: 1; gap: 3px; }
+.nav__brand small {
+  font-family: var(--f-text); font-weight: 600; font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fire);
+}
+.hero__crest .hero__mark {
+  width: clamp(40px, 3.8vw, 60px); height: clamp(40px, 3.8vw, 60px);
+  color: var(--ink); filter: drop-shadow(0 0 18px rgb(255 106 31 / .35));
+}
+.footer__lockup { display: grid; justify-items: center; gap: var(--s-4); }
+.footer__mark { width: clamp(72px, 9vw, 140px); height: clamp(72px, 9vw, 140px); color: var(--ink); }

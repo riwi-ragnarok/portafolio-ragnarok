@@ -1,0 +1,36 @@
+/* GENERAL de la página de Samuel
+   Tu color, el bloque de arriba (header) y el botón de volver. */
+
+body[data-member="negro"]  { --accent: var(--negro);  --accent-hover: #ffffff; --rgb: var(--rgb-negro);  --tilt: -16deg; --x: 50%; --l: 0%;  --r: 35%; }
+::selection { background: var(--accent); color: var(--on-accent); }
+
+.m-hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; grid-template-rows: 1fr auto;   /* portada + pie (el menú es fijo, ya no ocupa fila) */
+  padding-top: 86px;                               /* espacio que ocupa el menú fijo */
+}
+.m-hero::before {
+  content: ""; position: absolute; z-index: 0; inset: auto -10% -20% -10%; height: 70%;
+  background: radial-gradient(55% 60% at var(--x) 100%, rgb(var(--rgb) / .22), transparent 70%);
+  pointer-events: none;
+  animation: burn 4s ease-in-out infinite alternate;
+}
+.m-hero .pill { background: var(--accent); color: var(--on-accent); }
+
+.back .logo-mark { width: 30px; height: 30px; }
+.back {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-brand); font-weight: 900; font-size: 18px; letter-spacing: .08em;
+}
+.back svg { width: 16px; height: 16px; transition: transform var(--dur) var(--ease); }
+.back:hover svg, .back:focus-visible svg { transform: translateX(-4px); }
+
+/* MENÚ FIJO: se queda arriba al bajar */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  height: 86px; padding: 0 var(--gutter);
+  background: rgb(11 10 9 / .72);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+html { scroll-padding-top: 86px; }   /* los links #seccion no quedan tapados por el menú */

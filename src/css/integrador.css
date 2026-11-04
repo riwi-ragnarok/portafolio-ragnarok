@@ -1,0 +1,62 @@
+/* PROYECTO INTEGRADOR
+   Sección del proyecto del equipo. */
+
+/* ---------- PROYECTO INTEGRADOR ---------- */
+.quest {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: var(--s-6);
+  padding: clamp(24px, 5vw, 64px);
+  background: var(--bg-2); clip-path: var(--plate); --bevel: 28px;
+}
+.quest::before {
+  content: ""; position: absolute; z-index: -1; inset: -30% 40% 40% -10%;
+  background: radial-gradient(closest-side, rgb(255 106 31 / .16), transparent);
+}
+.quest__rune {
+  position: absolute; z-index: -1; right: -2%; bottom: -18%;
+  font-family: var(--f-rune); font-size: clamp(260px, 38vw, 560px); line-height: 1;
+  color: rgb(237 232 223 / .04);
+}
+.quest__intro { display: grid; gap: var(--s-4); max-width: 60ch; }
+.quest__name {
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 4.4vw, 64px); line-height: 1;
+  color: var(--ink);
+}
+.quest__what { font-size: 18px; }
+.quest__what strong { color: var(--fire); }
+.quest__cols { display: grid; gap: var(--s-2); }
+.quest__card {
+  display: grid; gap: var(--s-3); align-content: start;
+  padding: var(--s-5); background: var(--bg); clip-path: var(--plate); --bevel: 14px;
+}
+.quest__label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--f-display); font-weight: 900; font-size: 22px; letter-spacing: .04em;
+}
+.dia { width: 10px; height: 10px; transform: rotate(45deg); background: var(--c); box-shadow: 0 0 10px var(--c); }
+.quest__roles { display: grid; gap: var(--s-2); }
+.quest__roles li {
+  --rgb: 237 232 223;
+  display: grid; gap: 4px;
+  padding: var(--s-3) var(--s-4);
+  background: rgb(var(--rgb) / .07); clip-path: var(--plate); --bevel: 10px;
+  border-left: 3px solid rgb(var(--rgb));
+  font-size: 14px; color: var(--ink-2);
+}
+.quest__roles li.p-rosado { --rgb: var(--rgb-rosado); }
+.quest__roles li.p-azul   { --rgb: var(--rgb-azul); }
+.quest__roles li.p-verde  { --rgb: var(--rgb-verde); }
+.quest__roles b { font-family: var(--f-display); font-weight: 900; font-size: 18px; letter-spacing: .06em; color: rgb(var(--rgb)); }
+.quest__feats { display: grid; gap: var(--s-2); }
+.quest__feats li {
+  display: grid; align-content: start; gap: 6px; padding: var(--s-3) var(--s-4);
+  background: var(--bg); clip-path: var(--plate); --bevel: 10px;
+  font-size: 14px; color: var(--ink-2);
+}
+.quest__feats b { font-family: var(--f-display); font-weight: 900; font-size: 17px; letter-spacing: .04em; color: var(--fire); }
+@media (min-width: 700px) { .quest__feats { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .quest__feats { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 900px) {
+  .quest__cols { grid-template-columns: 1fr 1fr; }
+  .quest__roles { grid-template-columns: repeat(4, 1fr); }
+}

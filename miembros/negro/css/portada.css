@@ -1,0 +1,95 @@
+/* PORTADA
+   SAMUEL gigante, tu foto acostada, la luz y las redes de arriba. */
+
+/* ---------- PORTADA: acostado sobre tu nombre ----------
+   Capas: reflector blanco (atrás) → nombre con eco → tu foto acostada encima.
+   Tu foto: assets/yo-acostado.png (PNG sin fondo, horizontal).
+   Si tu foto queda muy arriba o muy abajo: cambia el margin-bottom de .poster__me */
+.poster {
+  position: relative; z-index: 1;
+  display: grid; justify-items: center; align-content: end; gap: var(--s-4);
+  min-height: 64svh; padding: var(--s-8) var(--gutter) 0;
+}
+.poster__beam {
+  position: absolute; z-index: 0; left: 50%; translate: -50% 0;
+  top: -30%; bottom: 10%; width: min(96vw, 900px);
+  filter: blur(22px); mix-blend-mode: screen; pointer-events: none;
+  animation: power 1100ms linear 250ms both;
+}
+.poster__beam::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom,
+    rgb(var(--rgb) / .1) 0%, rgb(var(--rgb) / .6) 45%, rgb(var(--rgb) / .25) 80%, rgb(var(--rgb) / 0) 100%);
+}
+.poster__beam--front { z-index: 3; opacity: .35; animation-name: power-front; }
+.poster__stack { position: relative; z-index: 1; width: 100%; display: grid; justify-items: center; }
+.poster__me {
+  position: relative; z-index: 2;
+  width: min(94%, 980px); height: auto;
+  margin-bottom: -9vw;                 /* cuánto se "acuesta" sobre las letras */
+  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -10px 24px rgb(var(--rgb) / .55)); /* luz de contorno */
+  animation: rise 800ms var(--ease) 200ms both;
+}
+.poster__name {
+  position: relative; z-index: 1;
+  font-family: var(--f-brand); font-weight: 900;
+  font-size: clamp(84px, 21vw, 330px); line-height: .78; letter-spacing: -.02em;
+  text-align: center; color: var(--ink);
+  animation: rise 700ms var(--ease) 100ms both;
+}
+.poster__echo {   /* eco del nombre: contorno corrido detrás */
+  position: absolute; inset: 0; z-index: -1;
+  color: transparent; -webkit-text-stroke: 1.5px rgb(var(--rgb) / .5);
+  translate: .05em -.09em;
+}
+.poster__tags {
+  position: relative; z-index: 4;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-2);
+  animation: rise 700ms var(--ease) 320ms both;
+}
+.poster__tags li {
+  padding: 10px 18px; background: rgb(11 10 9 / .8);
+  clip-path: var(--plate); --bevel: 8px; font-size: 15px;
+}
+.poster__tags b { font-family: var(--f-display); font-weight: 900; font-size: 17px; }
+.poster__side {
+  position: absolute; z-index: 3; top: 120px;
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(13px, 1.3vw, 18px);
+}
+.poster__side--left { left: var(--gutter); }
+.poster__side--right { right: var(--gutter); text-align: right; }
+@media (min-width: 900px) {
+  .m-hero { height: 100svh; min-height: 720px; }
+  .poster { min-height: 0; padding-top: var(--s-6); }
+  .poster__me { width: min(54%, 900px); margin-bottom: -4.2vw; }
+  .poster__name { font-size: clamp(84px, 17vw, 300px); }
+}
+
+.m-foot {
+  position: relative; z-index: 6;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3);
+  padding: var(--s-4) var(--gutter) var(--s-5);
+  background: var(--bg);
+}
+@media (min-width: 900px) { .m-foot { background: transparent; } }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px; background: rgb(22 20 18 / .9);
+  clip-path: var(--plate); --bevel: 10px;
+  font-family: var(--f-display); font-weight: 900; font-size: 15px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 200ms var(--ease);
+}
+.chip svg { width: 20px; height: 20px; }
+.chip:hover, .chip:focus-visible { transform: translateY(-3px); outline: none; color: #fff; }
+.chip:active { transform: scale(.96); }
+.chip--ig:hover, .chip--ig:focus-visible { background: #d6246e; }
+.chip--gh:hover, .chip--gh:focus-visible { background: var(--ink); color: var(--bg); }
+.chip--in:hover, .chip--in:focus-visible { background: #0a66c2; }
+.m-intro { font-size: 16px; max-width: 40ch; }
+.m-intro b { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 900; font-size: 24px; line-height: 1.1; margin-bottom: 4px; }
+.m-intro .shield { width: 28px; height: 28px; color: var(--accent); }
+.m-year { display: none; font-family: var(--f-display); font-weight: 900; font-size: 24px; line-height: 1.1; text-align: right; letter-spacing: .08em; }
+.m-year span { display: block; font-family: var(--f-text); font-weight: 400; font-size: 15px; letter-spacing: 0; }
+@media (min-width: 900px) { .m-year { display: block; } .m-foot { display: grid; grid-template-columns: 1fr auto auto; gap: var(--s-6); align-items: end; } }
