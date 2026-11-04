@@ -1,5 +1,7 @@
 # Cómo trabajar sin romper lo de los demás
 
+> ¿No sabes qué comando usar? Mira **[GUIA-GIT.md](GUIA-GIT.md)**: cada situación con su comando.
+
 ## Qué es de quién
 
 | Carpeta / archivo | Dueño | ¿Lo puedo editar? |
@@ -8,7 +10,7 @@
 | `miembros/negro/` | NEGRO | Solo NEGRO |
 | `miembros/rosado/` | ROSA | Solo ROSA |
 | `miembros/verde/` | VERDE | Solo VERDE |
-| `index.html`, `src/style.css`, `src/main.js`, `assets/` | **Todos** (página general) | Solo con PR revisado por el equipo |
+| `index.html`, `src/css/` (un archivo por sección), `src/main.js`, `assets/` | **Todos** (página general) | Solo con PR revisado por el equipo |
 
 Dentro de tu carpeta:
 
@@ -30,7 +32,7 @@ No afecta la página general ni a los demás.
 - Tu color de acento → `body[data-member="<color>"]` al inicio de tu `member.css`
 - Tus imágenes: `<img src="assets/mi-foto.png">` (relativo a tu carpeta)
 
-`src/style.css` es solo de la página general (`index.html`). No lo toques.
+`src/css/` es solo de la página general (`index.html`): un archivo por sección (`hero.css`, `guerreros.css`…) y el orden de los `<link>` importa. No lo toques.
 
 ## Flujo con Git (siempre)
 

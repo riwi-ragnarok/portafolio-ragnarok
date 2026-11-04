@@ -1,0 +1,67 @@
+/* SOBRE MÍ
+   Foto, texto, cuadros Front/Back/Datos y los datos (Rol, Color...). */
+
+/* ---------- SOBRE MÍ ---------- */
+.about { display: grid; gap: var(--s-6); }
+#sobre-mi { position: relative; isolation: isolate; }
+#sobre-mi::after {   /* runa gigante de fondo: cambia la letra si quieres */
+  content: "ᛋ"; position: absolute; z-index: -1; right: var(--gutter); top: var(--s-8);
+  font-family: var(--f-rune); font-size: clamp(220px, 30vw, 460px); line-height: 1;
+  color: rgb(var(--rgb) / .05); pointer-events: none;
+}
+.about__photo {
+  position: relative; margin: 0 18px 18px 0; max-width: 440px; aspect-ratio: 4 / 5;
+}
+.about__photo::before {   /* placa desplazada detrás de la foto */
+  content: ""; position: absolute; inset: 0; translate: 18px 18px;
+  background: var(--accent); clip-path: var(--plate); --bevel: 24px;
+}
+.about__photo img {
+  position: relative; width: 100%; height: 100%; object-fit: cover;
+  clip-path: var(--plate); --bevel: 24px;
+}
+.about__tag {
+  position: absolute; left: -10px; bottom: 32px;
+  padding: 10px 16px; background: var(--bg); color: var(--ink);
+  font-family: var(--f-display); font-weight: 900; font-size: 14px;
+  clip-path: var(--plate); --bevel: 8px;
+}
+.about__big {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(26px, 2.8vw, 40px); line-height: 1.1; max-width: 22ch;
+}
+.about__big em { font-style: normal; color: var(--accent); }
+.about__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); }
+.about__facts li {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: 6px; align-content: end; min-height: 108px;
+  padding: var(--s-4); background: rgb(22 20 18 / .9); clip-path: var(--plate); --bevel: 14px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 200ms var(--ease);
+}
+.about__facts i {   /* runa grande de cada dato */
+  position: absolute; z-index: -1; right: 12px; top: 50%; translate: 0 -50%;
+  font-family: var(--f-rune); font-style: normal; font-size: 72px; line-height: 1;
+  color: rgb(var(--rgb) / .1);
+  transition: color var(--dur) var(--ease), transform 300ms var(--ease);
+}
+.about__facts span { font-size: 14px; color: var(--ink-2); transition: color var(--dur) var(--ease); }
+.about__facts strong { font-family: var(--f-display); font-weight: 900; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.15; }
+.about__facts li:last-child:nth-child(odd) { grid-column: span 2; } /* si quedan impares, el último ocupa todo el ancho */
+.about__facts li:hover { background: var(--accent); color: var(--on-accent); transform: translateY(-3px); }
+.about__facts li:hover span { color: rgb(11 10 9 / .7); }
+.about__facts li:hover i { color: rgb(11 10 9 / .18); transform: scale(1.1); }
+@media (min-width: 900px) {
+  .about { grid-template-columns: minmax(300px, 440px) 1fr; column-gap: var(--s-8); align-items: center; }
+  .about__photo { grid-row: span 2; }
+}
+
+/* ---------- SOBRE MÍ: Front / Back / Datos ---------- */
+.trio { display: grid; gap: var(--s-2); margin-top: var(--s-5); }
+.trio li {
+  padding: var(--s-3) var(--s-3) var(--s-4);
+  background: var(--ink); color: var(--bg);
+  clip-path: var(--plate); --bevel: 12px;
+  font-size: 14px; line-height: 1.35;
+}
+.trio b { display: block; margin-bottom: 4px; font-family: var(--f-display); font-weight: 900; font-size: clamp(20px, 2vw, 26px); }
+@media (min-width: 600px) { .trio { grid-template-columns: repeat(3, 1fr); } }

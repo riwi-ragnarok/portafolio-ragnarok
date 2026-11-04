@@ -1,0 +1,7 @@
+/* ANIMACIONES EN PAUSA
+   Borra este archivo (y su <link>) para encender todas las animaciones. */
+
+/* ---------- ANIMACIONES EN PAUSA ----------
+   Se activan despues: borrar esta regla para recuperar
+   el encendido de reflectores, fuego y humo. */
+*, *::before, *::after { animation: none !important; }

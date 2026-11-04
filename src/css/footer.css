@@ -1,0 +1,68 @@
+/* FOOTER
+   Pie de página, efecto de luz al pasar por un nombre y separador de hachas. */
+
+/* ---------- FOOTER ---------- */
+.footer {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: var(--s-9);
+  padding: var(--s-7) var(--gutter) var(--s-5);
+  background: var(--bg-2);
+  display: grid; gap: var(--s-6);
+}
+.footer::before {
+  content: ""; position: absolute; z-index: -1; inset: auto -10% -40% -10%; height: 80%;
+  background: radial-gradient(50% 60% at 50% 100%, rgb(255 106 31 / .22), transparent 70%);
+  animation: burn 4s ease-in-out infinite alternate;
+}
+.footer__top { display: grid; gap: var(--s-5); }
+.footer__cta { font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 4.6vw, 72px); line-height: 1.05; }
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.icon-btn {
+  width: 46px; height: 46px; clip-path: var(--plate); --bevel: 8px;
+  display: grid; place-items: center;
+  background: var(--bg); color: var(--ink);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 160ms var(--ease);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn:hover, .icon-btn:focus-visible { background: var(--accent-hover, var(--fire)); color: var(--bg); }
+.icon-btn:active { transform: scale(.94); }
+.footer__word {
+  font-family: var(--f-brand); font-weight: 900; letter-spacing: .02em; font-size: clamp(40px, 13.4vw, 220px); line-height: .8;
+  color: transparent; -webkit-text-stroke: 2px var(--ink);
+  text-align: center; user-select: none;
+}
+.footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); font-size: 13px; color: var(--ink-2); }
+.footer__legal .runes { letter-spacing: .3em; }
+@media (min-width: 900px) {
+  .footer__top { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+/* al pasar por el nombre de un guerrero, su luz sube y las demas bajan */
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .beam,
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .rim { filter: blur(9px) brightness(.35); transition: filter 300ms var(--ease); }
+.hero__figure:has(.cast__tag:hover, .cast__tag:focus-visible) .rim { filter: brightness(.35); }
+.hero__figure:has(.cast__tag.p-negro:hover, .cast__tag.p-negro:focus-visible) .beam.p-negro,
+.hero__figure:has(.cast__tag.p-rosado:hover, .cast__tag.p-rosado:focus-visible) .beam.p-rosado,
+.hero__figure:has(.cast__tag.p-azul:hover, .cast__tag.p-azul:focus-visible) .beam.p-azul,
+.hero__figure:has(.cast__tag.p-verde:hover, .cast__tag.p-verde:focus-visible) .beam.p-verde { filter: blur(7px) brightness(1.5); }
+.hero__figure:has(.cast__tag.p-negro:hover, .cast__tag.p-negro:focus-visible) .rim.p-negro,
+.hero__figure:has(.cast__tag.p-rosado:hover, .cast__tag.p-rosado:focus-visible) .rim.p-rosado,
+.hero__figure:has(.cast__tag.p-azul:hover, .cast__tag.p-azul:focus-visible) .rim.p-azul,
+.hero__figure:has(.cast__tag.p-verde:hover, .cast__tag.p-verde:focus-visible) .rim.p-verde {
+  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -12px 30px rgb(var(--rgb)));
+}
+.beam, .rim { transition: filter 300ms var(--ease); }
+
+/* separador: hachas + runas */
+.divider {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-3);
+  padding: clamp(72px, 9vw, 120px) var(--gutter) 0; color: var(--fire);
+}
+.divider::before, .divider::after {
+  content: ""; flex: 1; max-width: 280px; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--ink-2) 0 6px, transparent 6px 12px); opacity: .3;
+}
+.divider svg { width: 22px; height: 22px; }
+.divider svg:last-of-type { transform: scaleX(-1); }
+.divider .runes { font-size: 15px; }
+.divider + .section { padding-top: clamp(56px, 7vw, 96px); }

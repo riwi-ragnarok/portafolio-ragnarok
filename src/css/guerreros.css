@@ -1,0 +1,154 @@
+/* GUERREROS
+   Selección de personaje: casillas P1 y ficha de cada uno. */
+
+/* ---------- GUERREROS (selección de personaje) ---------- */
+.select { display: grid; gap: var(--s-4); }
+.select__stage {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: radial-gradient(120% 80% at 50% 110%, var(--bg-3), var(--bg) 70%);
+  clip-path: var(--plate); --bevel: 24px;
+}
+.fighter {
+  --rgb: var(--rgb-negro);
+  position: relative;
+  display: grid;
+}
+.fighter.p-rosado { --rgb: var(--rgb-rosado); }
+.fighter.p-azul   { --rgb: var(--rgb-azul); }
+.fighter.p-verde  { --rgb: var(--rgb-verde); }
+.fighter[hidden] { display: none; }
+.fighter + .fighter { border-top: 2px solid var(--bg-3); } /* sin JS se ven los 4 apilados */
+.fighter__ghost {
+  position: absolute; z-index: 0; left: 50%; top: 4%; translate: -50% 0;
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(90px, 22vw, 300px); line-height: 1;
+  color: transparent; -webkit-text-stroke: 2px rgb(var(--rgb) / .1);
+  white-space: nowrap; pointer-events: none; user-select: none;
+}
+.fighter__beam {
+  position: absolute; z-index: 0; left: 50%; top: -10%; width: min(560px, 90%); height: 100%; translate: -50% 0;
+  filter: blur(22px); mix-blend-mode: screen; pointer-events: none;
+}
+.fighter__beam::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, rgb(var(--rgb) / .5), rgb(var(--rgb) / .14) 75%, transparent);
+}
+.fighter__floor {
+  position: absolute; z-index: 0; left: 50%; bottom: 0; translate: -50% 40%;
+  width: min(480px, 80%); height: 90px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(var(--rgb) / .55), transparent);
+  pointer-events: none;
+}
+.fighter__img {
+  position: relative; z-index: 1;
+  justify-self: center;
+  height: clamp(380px, 62svh, 640px); width: auto; max-width: 100%;
+  object-fit: contain; object-position: bottom center;
+  /* recorte de foto: bordes laterales e inferior difuminados */
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 20%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to bottom, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 20%, #000 78%, transparent 100%);
+          mask-composite: intersect;
+  transition: opacity 260ms var(--ease), transform 260ms var(--ease);
+}
+.fighter__info {
+  position: relative; z-index: 2;
+  display: grid; gap: var(--s-2); justify-items: start;
+  padding: var(--s-4);
+  background: var(--bg);
+}
+.fighter__num { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgb(var(--rgb)); }
+.fighter__name {
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(38px, 4.6vw, 72px); line-height: .95;
+  color: rgb(var(--rgb)); text-shadow: 0 0 28px rgb(var(--rgb) / .45);
+  max-width: 11ch; text-wrap: balance;
+}
+.fighter__role { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.shield { width: 30px; height: 30px; color: rgb(var(--rgb)); flex: none; }
+.fighter__desc { font-size: 15px; color: var(--ink-2); max-width: 34ch; }
+.fighter__stats { display: grid; gap: 10px; width: 100%; max-width: 320px; margin: var(--s-2) 0; }
+.fighter__stats div { display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: var(--s-3); }
+.fighter__stats dt { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.fighter__stats dd { margin: 0; height: 8px; background: var(--bg-3); clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%); }
+.fighter__stats dd span {
+  display: block; height: 100%; width: var(--v);
+  background: rgb(var(--rgb)); box-shadow: 0 0 10px rgb(var(--rgb));
+  transform-origin: left; transition: transform 500ms var(--ease) 120ms;
+}
+.fighter__go {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  font-family: var(--f-display); font-weight: 900; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 13px 22px; clip-path: var(--plate); --bevel: 8px;
+  background: rgb(var(--rgb)); color: var(--on-accent);
+  transition: transform 160ms var(--ease), filter var(--dur) var(--ease);
+}
+.fighter__go svg { width: 14px; height: 14px; transition: transform var(--dur) var(--ease); }
+.fighter__go:hover { filter: brightness(1.12); }
+.fighter__go:hover svg { transform: translate(2px, -2px); }
+.fighter__go:active { transform: scale(.96); }
+.fighter__go:focus-visible { outline: 3px solid rgb(var(--rgb)); outline-offset: 4px; }
+
+/* entrada al cambiar de guerrero */
+.fighter.is-entering .fighter__img { opacity: 0; transform: scale(.95) translateY(12px); transition: none; }
+.fighter.is-entering .fighter__stats dd span { transform: scaleX(0); transition: none; }
+
+/* roster: casillas tipo arcade */
+.select__roster { order: -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-2); } /* móvil: roster arriba, como en los juegos */
+.slot {
+  --rgb: var(--rgb-negro);
+  position: relative; overflow: hidden;
+  display: grid; align-items: end;
+  aspect-ratio: 3 / 4; padding: 0; border: 0; cursor: pointer;
+  background: var(--bg-2); color: var(--ink);
+  clip-path: var(--plate); --bevel: 10px;
+  transition: background var(--dur) var(--ease), transform 160ms var(--ease);
+}
+.slot.p-rosado { --rgb: var(--rgb-rosado); }
+.slot.p-azul   { --rgb: var(--rgb-azul); }
+.slot.p-verde  { --rgb: var(--rgb-verde); }
+.slot__img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 6%;
+  filter: grayscale(1) brightness(.6);
+  transition: filter var(--dur) var(--ease), transform 400ms var(--ease);
+}
+.slot__name {
+  position: relative; z-index: 1;
+  padding: 18px 8px 8px;
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(12px, 1.6vw, 18px); letter-spacing: .06em; text-align: center;
+  background: linear-gradient(to top, rgb(11 10 9 / .95), transparent);
+}
+.slot::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 2px rgb(var(--rgb) / .25);
+  transition: box-shadow var(--dur) var(--ease);
+}
+.slot:hover .slot__img { filter: grayscale(.3) brightness(.85); }
+.slot:active { transform: scale(.96); }
+.slot:focus-visible { outline: none; }
+.slot:focus-visible::after { box-shadow: inset 0 0 0 3px var(--ink); }
+.slot[aria-selected="true"] { background: rgb(var(--rgb) / .2); }
+.slot[aria-selected="true"] .slot__img { filter: none; transform: scale(1.06); }
+.slot[aria-selected="true"]::after { box-shadow: inset 0 0 0 3px rgb(var(--rgb)), inset 0 0 24px rgb(var(--rgb) / .5); }
+.slot[aria-selected="true"]::before {
+  content: "P1"; position: absolute; z-index: 2; top: 6px; left: 8px;
+  font-family: var(--f-display); font-weight: 900; font-size: 12px; line-height: 1;
+  padding: 4px 6px; background: rgb(var(--rgb)); color: var(--on-accent);
+}
+.select__hint { display: none; gap: 6px; align-items: center; font-size: 13px; color: var(--ink-2); }
+.select__hint kbd {
+  font-family: var(--f-text); font-size: 12px; padding: 2px 8px;
+  border: 1px solid var(--ink-2); border-radius: 4px; color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .select { grid-template-columns: 1fr 260px; }
+  .select__stage { min-height: min(80vh, 780px); }
+  .fighter { grid-template-columns: 1fr 1.1fr; height: 100%; }
+  .fighter__img { grid-column: 2; grid-row: 1; align-self: end; height: min(76vh, 740px); }
+  .fighter__info { grid-column: 1; grid-row: 1; align-self: center; padding: var(--s-6); background: none; }
+  .fighter__beam, .fighter__floor { left: 72%; }
+  .fighter__ghost { top: auto; bottom: 2%; }
+  .select__roster { order: 0; grid-template-columns: 1fr 1fr; align-content: start; }
+  .select__hint { display: inline-flex; grid-column: 2; }
+}

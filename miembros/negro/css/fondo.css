@@ -1,0 +1,13 @@
+/* FONDO
+   La imagen que va detrás de toda la página. */
+
+/* ---------- FONDO DE LA PÁGINA ----------
+   Para cambiarlo: reemplaza assets/fondo.jpg (misma ruta y nombre).
+   El velo oscuro de encima hace que el texto se lea sobre cualquier foto:
+   sube/baja los números .70 y .90 para aclarar u oscurecer. */
+body[data-member="negro"]::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(rgb(11 10 9 / .70), rgb(11 10 9 / .90)),
+    url("assets/fondo.jpg") center / cover no-repeat;
+}

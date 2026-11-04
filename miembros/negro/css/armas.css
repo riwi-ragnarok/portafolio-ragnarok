@@ -1,0 +1,40 @@
+/* ARMAS
+   Las franjas que giran. */
+
+/* ---------- ARMAS = franjas que giran (como la franja del index) ----------
+   Franja clara / franja oscura, un poco inclinadas, letras grandes. */
+.bands { display: grid; gap: var(--s-6); padding: var(--s-5) 0 var(--s-3); margin: 0 calc(var(--gutter) * -1); }
+.band { position: relative; padding: var(--s-3) 0; rotate: -.8deg; }
+.band--rev { rotate: .8deg; }
+.band--light { background: var(--ink); color: var(--bg); }
+.band--dark { background: var(--bg-3); color: var(--ink); }
+.band__label {   /* nombre del grupo pegado a la franja */
+  position: absolute; z-index: 2; left: var(--gutter); top: 0; translate: 0 -60%;
+  padding: 6px 14px; background: var(--bg); color: var(--ink);
+  font-family: var(--f-display); font-weight: 900; font-size: 15px;
+  clip-path: var(--plate); --bevel: 6px;
+}
+.band--dark .band__label { background: var(--ink); color: var(--bg); }
+.band__track { display: flex; overflow: hidden; }
+.band__list {
+  display: flex; flex: none; align-items: center; justify-content: space-around; gap: var(--s-6);
+  min-width: 100%; padding-right: var(--s-5); gap: var(--s-5);
+  font-family: var(--f-display); font-weight: 900; line-height: 1;
+  font-size: clamp(22px, 3vw, 40px);
+}
+.band__list li { display: inline-flex; align-items: center; gap: var(--s-6); white-space: nowrap; }
+.band__list li::after { content: "◆"; font-size: .35em; opacity: .5; }   /* separador */
+.band--dark .band__list li:nth-child(even) { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }   /* una sí, una en contorno */
+.band--light .band__list li:nth-child(even) { color: transparent; -webkit-text-stroke: 1.5px var(--bg); }
+@keyframes band { to { transform: translateX(-100%); } }
+/* style.css tiene "ANIMACIONES EN PAUSA" (apaga todo). Las franjas son la excepción,
+   salvo para quien pidió menos movimiento en su sistema. */
+@media (prefers-reduced-motion: no-preference) {
+  .band__list { animation: band 28s linear infinite !important; }
+  .band--rev .band__list { animation-direction: reverse !important; }
+  .band__track:hover .band__list { animation-play-state: paused !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .band__list[aria-hidden] { display: none; }
+  .band__list { flex-wrap: wrap; justify-content: center; min-width: 0; padding: 0 var(--gutter); }
+}
