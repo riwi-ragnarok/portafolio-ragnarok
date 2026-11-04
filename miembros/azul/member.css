@@ -430,3 +430,6 @@ body::before {
 
 @keyframes spin  { to { rotate: 360deg; } }
 @keyframes pulse { 50% { opacity: .35; } }
+
+/* la banda inclinada (104%) no debe crear scroll horizontal */
+html { overflow-x: clip; }
