@@ -1,0 +1,81 @@
+/* CONTACTO / PIE
+   Escríbeme, redes grandes, el resto de la célula y el SAMUEL de abajo. */
+
+/* ---------- CONTACTO / PIE DE PÁGINA ---------- */
+.m-contact { background: rgb(22 20 18 / .92); gap: var(--s-7); padding-top: var(--s-8); }
+.m-contact::before { background: radial-gradient(50% 60% at 50% 100%, rgb(var(--rgb) / .14), transparent 70%); }
+.m-contact .footer__cta em { font-style: normal; color: var(--accent); }
+.m-contact__lead { margin-top: var(--s-3); max-width: 44ch; font-size: 17px; color: var(--ink-2); }
+.m-contact__side { display: grid; gap: var(--s-3); justify-items: start; }
+.m-contact .pill { background: var(--accent); color: var(--on-accent); font-size: 15px; padding: 16px 24px; }
+.m-contact .footer__word {
+  font-size: clamp(64px, 21vw, 340px); line-height: .78; letter-spacing: -.01em;
+  -webkit-text-stroke: 1.5px rgb(var(--rgb) / .45);
+  margin-bottom: calc(var(--s-5) * -1);
+}
+.m-contact .footer__legal a:hover { color: var(--ink); }
+@media (min-width: 900px) {
+  .m-contact__side { justify-items: end; }
+}
+
+/* ---------- REDES GRANDES (pie de página) ---------- */
+.socials { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--s-3); }
+.social {
+  display: grid; grid-template-columns: auto 1fr auto; column-gap: var(--s-3); align-items: center;
+  padding: var(--s-5) var(--s-4);
+  background: var(--bg-3); clip-path: var(--plate); --bevel: 18px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 200ms var(--ease);
+}
+.social > svg { grid-row: span 2; width: 44px; height: 44px; }
+.social__name { font-family: var(--f-display); font-weight: 900; font-size: 22px; line-height: 1.1; }
+.social__user { grid-column: 2; font-size: 14px; color: var(--ink-2); }
+.social__go { grid-column: 3; grid-row: 1 / span 2; }
+.social__go svg { width: 18px; height: 18px; transition: transform var(--dur) var(--ease); }
+.social:hover, .social:focus-visible { transform: translateY(-4px); color: #fff; outline: none; }
+.social:hover .social__user, .social:focus-visible .social__user { color: inherit; }
+.social:hover .social__go svg { transform: translate(3px, -3px); }
+.social:active { transform: scale(.98); }
+.social--ig:hover, .social--ig:focus-visible { background: #d6246e; }
+.social--gh:hover, .social--gh:focus-visible { background: var(--ink); color: var(--bg); }
+.social--in:hover, .social--in:focus-visible { background: #0a66c2; }
+
+/* ---------- PIE: el resto de la célula ---------- */
+.crew { display: grid; gap: var(--s-4); }
+.crew__title { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 2.6vw, 34px); }
+.crew__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--s-3); }
+.crew__card {
+  position: relative; isolation: isolate;
+  display: grid; grid-template-columns: auto 1fr; column-gap: var(--s-3); align-items: end;
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  transition: color var(--dur) var(--ease), transform 200ms var(--ease);
+}
+.crew__card::before {   /* la placa de fondo con la franja de su color abajo */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--bg-3); clip-path: var(--plate); --bevel: 18px;
+  box-shadow: inset 0 -5px 0 var(--c);
+  transition: background var(--dur) var(--ease);
+}
+.crew__card img { grid-row: span 2; width: auto; max-width: none; height: 104px; transition: transform 300ms var(--ease); }
+.crew__name { font-family: var(--f-display); font-weight: 900; font-size: 26px; line-height: 1; }
+.crew__role { font-size: 14px; color: var(--ink-2); }
+.crew__card:hover, .crew__card:focus-visible { color: var(--bg); transform: translateY(-4px); outline: none; }
+.crew__card:hover::before, .crew__card:focus-visible::before { background: var(--c); }
+.crew__card:hover .crew__role, .crew__card:focus-visible .crew__role { color: inherit; }
+.crew__card:hover img { transform: translateY(-8px) rotate(-4deg); }
+.crew__card:active { transform: scale(.98); }
+/* la frase que dice cada uno al pasar el mouse */
+.crew__say {
+  position: absolute; z-index: 2; left: var(--s-4); bottom: calc(100% + 6px);
+  max-width: 270px; padding: 10px 14px;
+  background: var(--ink); color: var(--bg); border-radius: 12px;
+  font-size: 14px; font-weight: 600; line-height: 1.35;
+  opacity: 0; translate: 0 8px; pointer-events: none;
+  transition: opacity 200ms var(--ease), translate 200ms var(--ease);
+}
+.crew__say::after { content: ""; position: absolute; left: 28px; bottom: -6px; width: 12px; height: 12px; background: inherit; rotate: 45deg; }
+.crew__card:hover .crew__say, .crew__card:focus-visible .crew__say { opacity: 1; translate: 0 0; }
+.crew__list { row-gap: var(--s-7); padding-top: var(--s-6); }   /* espacio para que el globito no tape la fila de arriba */
+.footer__nav { display: flex; flex-wrap: wrap; gap: var(--s-4); }
+.footer__nav a:hover { color: var(--ink); }
+.footer__up { display: inline-flex; align-items: center; gap: 6px; }
+.footer__up svg { width: 12px; height: 12px; rotate: -45deg; }

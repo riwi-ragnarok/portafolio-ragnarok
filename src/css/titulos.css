@@ -1,0 +1,16 @@
+/* TÍTULOS DE SECCIÓN
+   Encabezado que usan todas las secciones. */
+
+/* ---------- SECTION HEAD ---------- */
+.section { padding: clamp(96px, 12vw, 160px) var(--gutter) 0; }
+.section__head {
+  display: grid; gap: var(--s-4); margin-bottom: var(--s-6);
+}
+.section__title {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(40px, 7.4vw, 124px); line-height: .95; letter-spacing: -0.01em;
+}
+.section__lead { max-width: 44ch; font-size: 17px; }
+@media (min-width: 900px) {
+  .section__head { grid-template-columns: 1fr auto; align-items: end; }
+}
