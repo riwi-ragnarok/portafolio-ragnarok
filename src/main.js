@@ -1,4 +1,4 @@
-// Solo motion. Sin JS el contenido se ve igual.
+// JS general: solo lo carga el index.html de la raíz. Cada miembro tiene su main.js en miembros/<color>/.
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 

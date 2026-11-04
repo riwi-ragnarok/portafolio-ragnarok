@@ -9,39 +9,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2724%27 fill=%27%230b0a09%27/%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2748%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%276%27/%3E%3Cpath d=%27M45 31V91M45 33l29 14-29 14%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%2710%27/%3E%3Cpath d=%27M51 63l17 11-11 2 21 18%27 fill=%27none%27 stroke=%27%23ff6a1f%27 stroke-width=%279%27/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="src/style.css?v=8">
+  <link rel="stylesheet" href="src/style.css?v=9">
 </head>
 <body>
 
   <!-- símbolos reutilizables -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="logo" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><g stroke="currentColor" stroke-width="2" opacity=".6"><line x1="60" y1="8" x2="60" y2="13" transform="rotate(22.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(45 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(67.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(112.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(135 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(157.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(202.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(225 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(247.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(292.5 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(315 60 60)"/><line x1="60" y1="8" x2="60" y2="13" transform="rotate(337.5 60 60)"/></g><path d="M45 31V91M45 33l29 14-29 14" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M51 63l17 11-11 2 21 18" fill="none" stroke="#ff6a1f" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/><rect x="55" y="1" width="10" height="10" transform="rotate(45 60 6)" fill="#ede8df"/><rect x="109" y="55" width="10" height="10" transform="rotate(45 114 60)" fill="#ff4fa3"/><rect x="55" y="109" width="10" height="10" transform="rotate(45 60 114)" fill="#4a74ff"/><rect x="1" y="55" width="10" height="10" transform="rotate(45 6 60)" fill="#2bff88"/></symbol>
     <symbol id="axe" viewBox="0 0 32 32"><path fill="currentColor" d="M14 2h3v28h-3zM17 4c6 0 11 3 13 9-3-1-6-1-8 1-2 2-3 5-5 6z"/></symbol>
     <symbol id="shield" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2v28M2 16h28" stroke="currentColor" stroke-width="1.5" opacity=".6"/><circle cx="16" cy="16" r="4.5" fill="currentColor"/><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/></symbol>
     <symbol id="arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   </svg>
 
-  <header class="hero" id="inicio">
-    <nav class="nav" aria-label="Principal">
-      <a class="nav__logo" href="#inicio" aria-label="RAGNAROK, célula del Clan Tesla, inicio">
-        <svg class="logo-mark" aria-hidden="true"><use href="#logo"/></svg>
-        <span class="nav__brand">RAGNAROK<small>Clan Tesla</small></span>
-      </a>
-      <ul class="nav__links">
-        <li><a href="#guerreros">Guerreros</a></li>
-        <li><a href="#integrador">Proyecto</a></li>
-        <li><a href="#celula">La célula</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+  <nav class="nav" aria-label="Principal">
+    <a class="nav__logo" href="#inicio" aria-label="RAGNAROK, célula del Clan Tesla, inicio">
+      <img class="logo-mark" src="assets/logo.png" alt="">
+      <span class="nav__brand">RAGNAROK<small>Clan Tesla</small></span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#guerreros">Guerreros</a></li>
+      <li><a href="#integrador">Proyecto</a></li>
+      <li><a href="#celula">La célula</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
+  <header class="hero" id="inicio">
     <div class="hero__stage">
       <h1 class="hero__title">  
         <span class="hero__crest" aria-hidden="true">
           <span class="hero__runes">
             <svg class="axe" viewBox="0 0 32 32"><use href="#axe"/></svg>
             <span class="runes">ᚱᚨᚷᚾ</span>
-            <svg class="hero__mark"><use href="#logo"/></svg>
+            <img class="hero__mark" src="assets/logo.png" alt="">
             <span class="runes">ᚨᚱᛟᚲ</span>
             <svg class="axe axe--flip" viewBox="0 0 32 32"><use href="#axe"/></svg>
           </span>
@@ -81,7 +80,7 @@
     <span class="hero__year" aria-hidden="true">CLAN TESLA · MMXXVI</span>
 
     <div class="hero__foot">
-      <p class="hero__lead"><strong>Célula del Clan Tesla · RIWI.</strong> Cuatro guerreros del desarrollo web, un color cada uno.</p>
+      <p class="hero__lead"><strong>Célula del Clan Tesla · RIWI.</strong></p>
       <span class="dotline" aria-hidden="true"></span>
       <a class="pill" href="#guerreros" style="justify-self:start">Elige tu guerrero <svg aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
@@ -199,9 +198,9 @@
               <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Full Stack Developer</p>
               <p class="fighter__desc">Une frontend y backend: lleva las ideas de cero a producción.</p>
               <dl class="fighter__stats">
-                <div><dt>Frontend</dt><dd><span style="--v:80%"></span></dd></div>
-                <div><dt>Backend</dt><dd><span style="--v:80%"></span></dd></div>
-                <div><dt>Datos</dt><dd><span style="--v:60%"></span></dd></div>
+                <div><dt>Frontend</dt><dd><span style="--v:90%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:100%"></span></dd></div>
+                <div><dt>Datos</dt><dd><span style="--v:70%"></span></dd></div>
               </dl>
               <a class="fighter__go" href="miembros/negro/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
@@ -217,7 +216,7 @@
               <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Frontend Developer</p>
               <p class="fighter__desc">Convierte diseños en interfaces rápidas, limpias y al detalle.</p>
               <dl class="fighter__stats">
-                <div><dt>Frontend</dt><dd><span style="--v:95%"></span></dd></div>
+                <div><dt>Frontend</dt><dd><span style="--v:85%"></span></dd></div>
                 <div><dt>Diseño</dt><dd><span style="--v:85%"></span></dd></div>
                 <div><dt>Backend</dt><dd><span style="--v:40%"></span></dd></div>
               </dl>
@@ -235,8 +234,8 @@
               <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Backend Developer</p>
               <p class="fighter__desc">Construye la lógica, las APIs y las reglas que hacen funcionar cada producto.</p>
               <dl class="fighter__stats">
-                <div><dt>Backend</dt><dd><span style="--v:95%"></span></dd></div>
-                <div><dt>APIs</dt><dd><span style="--v:90%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:85%"></span></dd></div>
+                <div><dt>APIs</dt><dd><span style="--v:70%"></span></dd></div>
                 <div><dt>Frontend</dt><dd><span style="--v:40%"></span></dd></div>
               </dl>
               <a class="fighter__go" href="miembros/azul/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -253,9 +252,9 @@
               <p class="fighter__role"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Database Developer</p>
               <p class="fighter__desc">Diseña y cuida los datos: modelos, consultas y que nada se pierda.</p>
               <dl class="fighter__stats">
-                <div><dt>Datos</dt><dd><span style="--v:95%"></span></dd></div>
-                <div><dt>SQL</dt><dd><span style="--v:90%"></span></dd></div>
-                <div><dt>Backend</dt><dd><span style="--v:60%"></span></dd></div>
+                <div><dt>Datos</dt><dd><span style="--v:85%"></span></dd></div>
+                <div><dt>SQL</dt><dd><span style="--v:70%"></span></dd></div>
+                <div><dt>Backend</dt><dd><span style="--v:50%"></span></dd></div>
               </dl>
               <a class="fighter__go" href="miembros/verde/index.html">Ver portafolio <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
@@ -263,20 +262,20 @@
         </div>
         <div class="select__roster" role="tablist" aria-label="Elige tu guerrero">
           <button class="slot p-negro" type="button" role="tab" id="tab-negro" aria-controls="fighter-negro" aria-selected="true" tabindex="0">
-            <img class="slot__img" decoding="async" src="assets/negro.png" alt="">
+            <img class="slot__img" decoding="async" src="assets/pixel/negro.png" alt="">
             <span class="slot__name">SAMUEL</span>
           </button>
           <button class="slot p-rosado" type="button" role="tab" id="tab-rosado" aria-controls="fighter-rosado" aria-selected="false" tabindex="-1">
-            <img class="slot__img" decoding="async" src="assets/rosado.png" alt="">
+            <img class="slot__img" decoding="async" src="assets/pixel/rosado.png" alt="">
             <span class="slot__name">MARÍA</span>
           </button>
           <button class="slot p-azul" type="button" role="tab" id="tab-azul" aria-controls="fighter-azul" aria-selected="false" tabindex="-1">
-            <img class="slot__img" decoding="async" src="assets/azul.png" alt="">
+            <img class="slot__img" decoding="async" src="assets/pixel/azul.png" alt="">
             <span class="slot__name">OSCAR</span>
           </button>
           <button class="slot p-verde" type="button" role="tab" id="tab-verde" aria-controls="fighter-verde" aria-selected="false" tabindex="-1">
-            <img class="slot__img" decoding="async" src="assets/verde.png" alt="">
-            <span class="slot__name">JUAN DAVID</span>
+            <img class="slot__img" decoding="async" src="assets/pixel/verde.png" alt="">
+            <span class="slot__name">JUAN</span>
           </button>
         </div>
         <p class="select__hint" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd> cambiar guerrero</p>
@@ -361,7 +360,7 @@
       </div>
     </div>
     <div class="footer__lockup" aria-hidden="true">
-      <svg class="footer__mark"><use href="#logo"/></svg>
+      <img class="footer__mark" src="assets/logo.png" alt="">
       <p class="footer__word">RAGNAROK</p>
     </div>
     <div class="footer__legal">
