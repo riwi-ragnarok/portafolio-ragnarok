@@ -9,5 +9,6 @@ body[data-member="negro"]::before {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
     linear-gradient(rgb(11 10 9 / .70), rgb(11 10 9 / .90)),
-    url("assets/fondo.jpg") center / cover no-repeat;
+    url("../assets/fondo.jpg") center / cover no-repeat;
 }
+      

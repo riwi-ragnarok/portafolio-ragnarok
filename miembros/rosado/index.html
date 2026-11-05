@@ -20,28 +20,34 @@
     <symbol id="arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   </svg>
 
-  <header class="m-hero" id="inicio">
-    <nav class="nav" aria-label="Principal">
-      <a class="back" href="../../index.html#guerreros">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
-        <img class="logo-mark" src="../../assets/logo.png" alt="">
-        RAGNAROK
-      </a>
-      <ul class="nav__links">
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#skills">Armas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-      <a class="pill" href="#contacto">Reclutar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-    </nav>
+  <!-- MENÚ FIJO: se queda arriba al bajar -->
+  <nav class="nav" aria-label="Principal">
+    <a class="back" href="../../index.html#guerreros">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+      <img class="logo-mark" src="../../assets/logo.png" alt="">
+      RAGNAROK
+    </a>
+    <ul class="nav__links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#integrador">Integrador</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#skills">Armas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="pill" href="#contacto">Reclutar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  </nav>
 
+  <header class="m-hero" id="inicio">
+    <!-- PORTADA: nombre a la izquierda, foto a la derecha -->
     <div class="m-stage">
-      <h1 class="m-title">MARÍA</h1>
+      <div class="m-name">
+        <p class="m-kicker"><svg class="shield" aria-hidden="true"><use href="#shield"/></svg>Guerrera II · Rosa</p>
+        <h1 class="m-title">MARÍA<span>de los Ángeles</span></h1>
+        <p class="m-role">Frontend Developer</p>
+      </div>
       <figure class="m-figure">
-        <img class="m-photo m-photo--base" src="../../assets/team.png" width="1402" height="1122" alt="">
         <span class="m-beam" aria-hidden="true"></span>
-        <img class="m-photo m-photo--spot" src="../../assets/team.png" width="1402" height="1122" alt="María de los Ángeles, Frontend Developer de RAGNAROK, bajo su reflector de color">
+        <img class="m-photo" src="../../assets/rosado.png" width="390" height="1122" alt="María de los Ángeles, Frontend Developer de RAGNAROK, bajo su reflector rosa">
         <span class="m-beam m-beam--front" aria-hidden="true"></span>
       </figure>
     </div>
@@ -66,59 +72,526 @@
   </header>
 
   <main>
+    <!-- SOBRE MÍ -->
     <section class="section" id="sobre-mi" aria-labelledby="t-about">
       <div class="section__head"><h2 class="section__title" id="t-about" data-reveal>Sobre mí</h2></div>
       <div class="about">
-        <div data-reveal style="--d:80ms">
-          <p class="about__big">Frontend Developer de la célula <em>RAGNAROK</em>.</p>
-          <p class="section__lead" style="margin-top:24px">Convierte diseños en interfaces rápidas, limpias y al detalle. Aquí va tu historia: quién eres, qué te mueve y qué construyes.</p>
+        <div class="about__info">
+          <div data-reveal>
+            <p class="about__big">Frontend Developer de la célula <em>RAGNAROK</em>.</p>
+            <p class="section__lead about__lead">Convierte diseños en interfaces rápidas, limpias y al detalle. Aquí va tu historia: quién eres, qué te mueve y qué construyes.</p>
+          </div>
+          <!-- burbujas: al pasar el mouse suben un poco y se pintan de rosa -->
+          <ul class="bubbles" data-reveal>
+            <li class="bubble" tabindex="0"><span>Rol</span><strong>Frontend Developer</strong></li>
+            <li class="bubble" tabindex="0"><span>Color</span><strong>Rosado</strong></li>
+            <li class="bubble" tabindex="0"><span>Clan</span><strong>Tesla · RIWI</strong></li>
+            <li class="bubble" tabindex="0"><span>Formación</span><strong>Primer ciclo</strong></li>
+            <li class="bubble" tabindex="0"><span>Ubicación</span><strong>Colombia</strong></li>
+          </ul>
         </div>
-        <ul class="about__facts" data-reveal style="--d:160ms">
-          <li><span>Rol</span><strong>Frontend Developer</strong></li>
-          <li><span>Color</span><strong>Rosado</strong></li>
-          <li><span>Clan</span><strong>Tesla · RIWI</strong></li>
-          <li><span>Formación</span><strong>Primer ciclo</strong></li>
-          <li><span>Ubicación</span><strong>Colombia</strong></li>
-        </ul>
+
+        <!-- FOTO de Sobre mí (sin animaciones). Cambia el src por tu foto. -->
+        <figure class="about__photo">
+          <span class="about__rune" aria-hidden="true">ᚱ</span>
+          <div class="about__frame">
+            <img src="../../assets/rosado.png" width="390" height="1122" alt="Foto de María de los Ángeles" loading="lazy">
+            <span class="about__corner about__corner--tl" aria-hidden="true"></span>
+            <span class="about__corner about__corner--br" aria-hidden="true"></span>
+          </div>
+          <figcaption class="about__tag"><b>María de los Ángeles</b>Guerrera II · Rosa</figcaption>
+        </figure>
       </div>
     </section>
 
+    <!-- PROYECTO INTEGRADOR -->
+    <section class="section" id="integrador" aria-labelledby="t-int">
+      <div class="section__head">
+        <h2 class="section__title" id="t-int" data-reveal>Proyecto integrador</h2>
+        <p class="section__lead">La batalla grande del ciclo, hecha en equipo.</p>
+      </div>
+      <article class="int" data-reveal>
+        <span class="int__rune" aria-hidden="true">ᚱ</span>
+        <div class="int__main">
+          <p class="int__kicker">Proyecto integrador · Ciclo 1</p>
+          <h3 class="int__name">Párchate</h3>
+          <p class="int__text">Una plataforma web para encontrar parches (planes legales) en toda Colombia, empezando por Medellín: tocas el mapa y te muestra qué hacer cerca, dónde quedarte y cómo armar tu ruta.</p>
+          <div class="int__ps">
+            <div class="int__p">
+              <p class="int__label">El problema</p>
+              <p>Uno vive en la ciudad y no sabe dónde parchar. Los planes están regados en redes y páginas sueltas, y buscar finca u hotel es otra vuelta aparte.</p>
+            </div>
+            <div class="int__p">
+              <p class="int__label">La solución</p>
+              <p>Todo en un solo lugar: pones un punto en el mapa, ves los parches cercanos, la plataforma te arma la ruta y le escribes por WhatsApp al dueño del alojamiento.</p>
+            </div>
+          </div>
+          <p class="int__role"><b>Mi rol:</b> Frontend. Construyo la interfaz que ve el usuario: el mapa, las pantallas y que todo se vea bien en el celular.</p>
+          <div class="int__actions">
+            <a class="pill" href="https://github.com/riwi-ragnarok/parchate" target="_blank" rel="noopener">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="pill pill--ghost" href="../../index.html#integrador">Ver en la célula <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+
+        <!-- FICHA TÉCNICA: la configuración del proyecto -->
+        <dl class="int__sheet">
+          <div class="int__row">
+            <dt>Funciones</dt>
+            <dd><ul class="feats">
+              <li><b>Explorar</b>Mapa con parches por radio y categoría: miradores, pueblitos, parapente, playas, camping.</li>
+              <li><b>Mi ruta</b>Ruta de 1 a 3 días por cercanía y gustos: mañana, tarde y noche.</li>
+              <li><b>Dónde quedarse</b>Hoteles, hostales, fincas y glampings con contacto por WhatsApp.</li>
+              <li><b>Reportar</b>Los usuarios suben parches nuevos y pasan por revisión.</li>
+              <li><b>Para dueños</b>Publican su lugar gratis y ven cuántos los miran.</li>
+            </ul></dd>
+          </div>
+          <div class="int__row">
+            <dt>Stack</dt>
+            <dd><ul class="chips"><li>HTML</li><li>CSS</li><li>Git</li><li>GitHub</li></ul></dd>
+          </div>
+          <div class="int__row">
+            <dt>Cómo correrlo</dt>
+            <dd><pre class="code"><code>git clone https://github.com/riwi-ragnarok/parchate.git
+cd parchate
+# abrir index.html en el navegador</code></pre></dd>
+          </div>
+          <div class="int__row">
+            <dt>Equipo</dt>
+            <dd><ul class="team">
+              <li><i class="c-negro"></i>Samuel · Full Stack</li>
+              <li><i class="c-rosado"></i>María · Frontend</li>
+              <li><i class="c-azul"></i>Oscar · Backend</li>
+              <li><i class="c-verde"></i>Juan David · Base de datos</li>
+            </ul></dd>
+          </div>
+          <div class="int__row">
+            <dt>Estado</dt>
+            <dd><span class="status">En desarrollo</span></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <!-- PROYECTOS: ciclo → semanas → días → detalle -->
     <section class="section" id="proyectos" aria-labelledby="t-proj">
       <div class="section__head">
         <h2 class="section__title" id="t-proj" data-reveal>Proyectos</h2>
-        <p class="section__lead">Las batallas de cada semana durante el primer ciclo.</p>
+        <p class="section__lead">Desliza entre los días de cada semana y abre sus 4 retos.</p>
       </div>
-      <a class="m-quest" href="../../index.html#integrador" data-reveal>
-        <span class="m-quest__rune" aria-hidden="true">ᚱ</span>
-        <span class="m-quest__kicker">Proyecto integrador</span>
-        <span class="m-quest__name">Nombre del proyecto</span>
-        <span class="m-quest__text">Qué es y qué soluciona, en una línea. <b>Mi rol: Frontend, construyo la interfaz que ve el usuario.</b></span>
-        <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-      </a>
-      <h3 class="cycle">Primer ciclo</h3>
-      <div class="weeks">
-        <a class="week" data-reveal style="--d:0ms" href="#proyectos">
-          <span class="week__name">Semana 1</span>
-          <p class="week__desc">Contenido de la semana 1. Fundamentos de HTML semántico y primera página.</p>
-          <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-        </a>
-        <a class="week" data-reveal style="--d:80ms" href="#proyectos">
-          <span class="week__name">Semana 2</span>
-          <p class="week__desc">Contenido de la semana 2. CSS, layout con Flexbox y Grid, diseño responsive.</p>
-          <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-        </a>
-        <a class="week" data-reveal style="--d:160ms" href="#proyectos">
-          <span class="week__name">Semana 3</span>
-          <p class="week__desc">Contenido de la semana 3. JavaScript, interacción y lógica en el navegador.</p>
-          <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-        </a>
+
+      <div class="projects">
+        <!-- CARRUSEL: arriba las semanas, en el centro los días como tarjetas, abajo los controles -->
+        <div class="flow">
+          <div class="flow__tabs" aria-label="Semanas">
+            <button class="flow__tab" type="button" data-go="0" aria-current="true">Semana 1</button>
+            <button class="flow__tab" type="button" data-go="3">Semana 2</button>
+            <button class="flow__tab" type="button" data-go="6">Semana 3</button>
+          </div>
+
+          <div class="flow__stage">
+            <ul class="flow__track">
+              <li class="flow__item"><button class="flow__card flow__card--s1" type="button" data-index="0" data-week="0" data-title="Día 1 · Estructura HTML" data-sub="Semana 1 · 4 retos" aria-controls="s1-d1">
+                <span class="flow__rune" aria-hidden="true">ᚠ</span>
+                <span class="flow__week">Semana 1</span>
+                <span class="flow__num">01</span>
+                <span class="flow__topic">Estructura HTML</span>
+                <ul class="flow__chips"><li>HTML</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s1" type="button" data-index="1" data-week="0" data-title="Día 2 · HTML semántico" data-sub="Semana 1 · 4 retos" aria-controls="s1-d2">
+                <span class="flow__rune" aria-hidden="true">ᚠ</span>
+                <span class="flow__week">Semana 1</span>
+                <span class="flow__num">02</span>
+                <span class="flow__topic">HTML semántico</span>
+                <ul class="flow__chips"><li>HTML</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s1" type="button" data-index="2" data-week="0" data-title="Día 3 · Primera página" data-sub="Semana 1 · 4 retos" aria-controls="s1-d3">
+                <span class="flow__rune" aria-hidden="true">ᚠ</span>
+                <span class="flow__week">Semana 1</span>
+                <span class="flow__num">03</span>
+                <span class="flow__topic">Primera página</span>
+                <ul class="flow__chips"><li>HTML</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s2" type="button" data-index="3" data-week="1" data-title="Día 1 · Selectores y caja" data-sub="Semana 2 · 4 retos" aria-controls="s2-d1">
+                <span class="flow__rune" aria-hidden="true">ᚢ</span>
+                <span class="flow__week">Semana 2</span>
+                <span class="flow__num">01</span>
+                <span class="flow__topic">Selectores y caja</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s2" type="button" data-index="4" data-week="1" data-title="Día 2 · Flexbox y Grid" data-sub="Semana 2 · 4 retos" aria-controls="s2-d2">
+                <span class="flow__rune" aria-hidden="true">ᚢ</span>
+                <span class="flow__week">Semana 2</span>
+                <span class="flow__num">02</span>
+                <span class="flow__topic">Flexbox y Grid</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s2" type="button" data-index="5" data-week="1" data-title="Día 3 · Responsive" data-sub="Semana 2 · 4 retos" aria-controls="s2-d3">
+                <span class="flow__rune" aria-hidden="true">ᚢ</span>
+                <span class="flow__week">Semana 2</span>
+                <span class="flow__num">03</span>
+                <span class="flow__topic">Responsive</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s3" type="button" data-index="6" data-week="2" data-title="Día 1 · Git" data-sub="Semana 3 · 4 retos" aria-controls="s3-d1">
+                <span class="flow__rune" aria-hidden="true">ᚦ</span>
+                <span class="flow__week">Semana 3</span>
+                <span class="flow__num">01</span>
+                <span class="flow__topic">Git</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s3" type="button" data-index="7" data-week="2" data-title="Día 2 · GitHub en equipo" data-sub="Semana 3 · 4 retos" aria-controls="s3-d2">
+                <span class="flow__rune" aria-hidden="true">ᚦ</span>
+                <span class="flow__week">Semana 3</span>
+                <span class="flow__num">02</span>
+                <span class="flow__topic">GitHub en equipo</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+              </button></li>
+              <li class="flow__item"><button class="flow__card flow__card--s3" type="button" data-index="8" data-week="2" data-title="Día 3 · Proyecto final" data-sub="Semana 3 · 4 retos" aria-controls="s3-d3">
+                <span class="flow__rune" aria-hidden="true">ᚦ</span>
+                <span class="flow__week">Semana 3</span>
+                <span class="flow__num">03</span>
+                <span class="flow__topic">Proyecto final</span>
+                <ul class="flow__chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+              </button></li>
+            </ul>
+          </div>
+
+          <!-- etiqueta debajo de la tarjeta del centro -->
+          <p class="flow__label" aria-live="polite"><b>Día 1 · Estructura HTML</b><span>Semana 1 · 4 retos</span></p>
+
+          <!-- barra de controles -->
+          <div class="flow__bar">
+            <button class="flow__btn" type="button" data-step="-1" aria-label="Día anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+            <button class="flow__btn" type="button" data-step="1" aria-label="Día siguiente"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+            <span class="flow__now"><i aria-hidden="true">01</i><span><b>Estructura HTML</b><small>Semana 1</small></span></span>
+            <span class="flow__count">1 / 9</span>
+            <button class="pill flow__open" type="button">Ver retos <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+          </div>
+        </div>
+
+        <!-- DETALLE de cada día: el resumen de sus 4 retos -->
+        <article class="proj-detail" id="s1-d1" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 1 · Día 1</p>
+            <h3 class="proj-detail__name">Estructura HTML</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Esqueleto de una página</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Encabezados y párrafos</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Enlaces e imágenes</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Listas</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s1-d2" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 1 · Día 2</p>
+            <h3 class="proj-detail__name">HTML semántico</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Header, main y footer</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Secciones y artículos</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Formulario de contacto</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Tabla de datos</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s1-d3" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 1 · Día 3</p>
+            <h3 class="proj-detail__name">Primera página</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Página personal</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Navegación interna</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Galería de imágenes</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Publicar en GitHub</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s2-d1" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 2 · Día 1</p>
+            <h3 class="proj-detail__name">Selectores y caja</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Selectores y cascada</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Modelo de caja</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Colores y tipografía</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Botones con estados</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s2-d2" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 2 · Día 2</p>
+            <h3 class="proj-detail__name">Flexbox y Grid</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Menú con Flexbox</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Tarjetas con Flexbox</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Galería con Grid</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Layout de página con Grid</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s2-d3" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 2 · Día 3</p>
+            <h3 class="proj-detail__name">Responsive</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Media queries</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Menú para móvil</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Imágenes flexibles</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Landing responsive</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s3-d1" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 3 · Día 1</p>
+            <h3 class="proj-detail__name">Git</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Iniciar un repositorio</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Commits con sentido</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Ramas</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Unir ramas</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s3-d2" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 3 · Día 2</p>
+            <h3 class="proj-detail__name">GitHub en equipo</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Subir el repo</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Pull requests</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Resolver conflictos</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Trabajo en célula</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
+        <article class="proj-detail" id="s3-d3" hidden>
+          <button class="proj-back" type="button">← Volver al carrusel</button>
+          <header class="proj-detail__head">
+            <p class="proj-detail__kicker">Semana 3 · Día 3</p>
+            <h3 class="proj-detail__name">Proyecto final</h3>
+            <p class="proj-detail__sum">Resumen del día: qué practiqué en los 4 retos y qué me llevé.</p>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>Git</li></ul>
+          </header>
+          <ol class="retos">
+            <li class="reto">
+              <span class="reto__num">Reto 1</span>
+              <h4 class="reto__name">Planear la página</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 2</span>
+              <h4 class="reto__name">Maquetar secciones</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 3</span>
+              <h4 class="reto__name">Ajustes responsive</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+            <li class="reto">
+              <span class="reto__num">Reto 4</span>
+              <h4 class="reto__name">Publicar en GitHub Pages</h4>
+              <p class="reto__text">Qué pedía el reto y cómo lo resolví, en una o dos líneas.</p>
+              <a class="reto__link" href="#proyectos">Ver repo <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            </li>
+          </ol>
+        </article>
       </div>
     </section>
 
     <section class="section" id="skills" aria-labelledby="t-skills">
       <div class="section__head"><h2 class="section__title" id="t-skills" data-reveal>Armas</h2></div>
-      <ul class="skills" data-reveal style="--d:80ms">
-        <li class="skill">HTML</li><li class="skill">CSS</li><li class="skill">JavaScript</li><li class="skill">Responsive</li><li class="skill">Figma</li><li class="skill">Git</li>
+      <ul class="skills" data-reveal>
+        <li class="skill">HTML</li><li class="skill">CSS</li><li class="skill">Responsive</li><li class="skill">Figma</li><li class="skill">Git</li>
       </ul>
     </section>
   </main>
@@ -132,9 +605,9 @@
     </div>
     <nav aria-label="Otros guerreros">
       <ul class="others">
-        <li><a href="../negro/index.html"><i style="--c:var(--negro)"></i>SAMUEL</a></li>
-        <li><a href="../azul/index.html"><i style="--c:var(--azul)"></i>OSCAR</a></li>
-        <li><a href="../verde/index.html"><i style="--c:var(--verde)"></i>JUAN DAVID</a></li>
+        <li><a href="../negro/index.html"><i class="c-negro"></i>SAMUEL</a></li>
+        <li><a href="../azul/index.html"><i class="c-azul"></i>OSCAR</a></li>
+        <li><a href="../verde/index.html"><i class="c-verde"></i>JUAN DAVID</a></li>
       </ul>
     </nav>
     <p class="footer__word" aria-hidden="true">MARÍA</p>
