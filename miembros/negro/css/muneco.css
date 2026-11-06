@@ -24,4 +24,10 @@
 .kid--saga { left: var(--s-6); top: 0; z-index: 3; translate: 0 -82%; }   /* sentado en el borde de arriba del integrador */
 .kid--saga .kid__bubble { right: auto; left: 72%; }
 .kid--saga .kid__bubble::after { right: auto; left: 10px; }
-.kid--clan { right: 0; bottom: 100%; }   /* sentado encima de "Clan Tesla · RIWI" en la portada */
+/* al LADO de "Clan Tesla · RIWI" en la portada (encima dejaba un hueco grande arriba) */
+.kid--clan { right: calc(100% + 6px); bottom: -6px; }
+.kid--clan img { height: 64px; }
+@media (min-width: 900px) {
+  .kid--clan .kid__bubble { right: 100%; bottom: 34%; }   /* globito a la izquierda: no choca con el menú */
+  .kid--clan .kid__bubble::after { right: -4px; bottom: 10px; }
+}

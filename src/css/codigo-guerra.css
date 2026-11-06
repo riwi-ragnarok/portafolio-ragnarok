@@ -4,7 +4,7 @@
 /* ---------- CÓDIGO DE GUERRA (carrusel automático) ---------- */
 .vows {
   position: relative; overflow: hidden; isolation: isolate;
-  padding: var(--s-6) 0 var(--s-6);
+  padding: var(--s-6) 0 var(--s-5);
   background: var(--bg); color: var(--ink);
   border-block: 1px solid var(--bg-3);
 }
@@ -50,6 +50,40 @@
 .crew__kid:hover .crew__tag, .crew__kid:focus-visible .crew__tag { opacity: 1; translate: -50% -2px; }
 .crew__kid:active { transform: translateY(-2px) scale(.97); }
 .crew__kid:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* Oscar y Jorge van DENTRO de su tarjeta (a la derecha), del mismo tamaño que los demás.
+   El texto de esas tarjetas se corre a la izquierda para no taparse. */
+/* solo el párrafo se corre (el título cabe completo arriba) */
+.vow:has(.vow__kid--hang) .vow__line,
+.vow:has(.vow__kid--stand) .vow__line { padding-right: clamp(64px, 7.5vw, 100px); }
+
+/* Oscar: colgado de una barra a media tarjeta; las piernas se salen por abajo.
+   La barra está arriba en la imagen (~6% del alto). */
+.vow__kid--hang {
+  --h: clamp(100px, 11.5vw, 150px);
+  top: 47%;  /* la barra queda justo debajo del título */ right: 10px; translate: 0 calc(var(--h) * -.06);
+  transform-origin: 50% 4%;            /* gira desde la barra */
+  animation: swing 3.2s ease-in-out infinite alternate;
+}
+.vow__kid--hang img { height: var(--h); }
+.vow__kid--hang::after { display: none; }           /* colgado: sin sombra de asiento */
+.vow__kid--hang .crew__tag { bottom: auto; top: 100%; translate: -50% -4px; }
+.vow__kid--hang:hover, .vow__kid--hang:focus-visible { transform: rotate(0deg); animation-play-state: paused; }
+.vow__kid--hang:hover .crew__tag, .vow__kid--hang:focus-visible .crew__tag { translate: -50% 4px; }
+@media (max-width: 899px) { .vow__kid--hang { top: 58%; } } /* en celular la tarjeta es más alta */
+@keyframes swing { from { rotate: -4deg; } to { rotate: 4deg; } }
+
+/* Jorge (Team Leader): de pie dentro de la tarjeta CLAN, la cabeza asoma por arriba */
+.crew__kid.p-tl { --rgb: 255 106 31; }
+.vow__kid--stand { top: auto; bottom: 10px; right: 16px; translate: 0 0; }
+.vow__kid--stand img {
+  height: clamp(120px, 13vw, 168px);
+  filter: drop-shadow(0 0 1px rgb(255 140 70 / .8)) drop-shadow(0 4px 0 rgb(0 0 0 / .45));
+}
+.vow__kid--stand::after { bottom: 2px; }
+/* espacio debajo para las piernas de Oscar */
+.vows__track { padding-bottom: clamp(40px, 5vw, 64px); }
+@media (prefers-reduced-motion: reduce) { .vow__kid--hang { animation: none; } }
 
 .vows__title { font-family: var(--f-display); font-weight: 900; font-size: clamp(18px, 2vw, 24px); line-height: 1; letter-spacing: .06em; }
 .vows__viewport {
@@ -97,7 +131,7 @@
 }
 .vow__word {
   display: flex; align-items: center; gap: 10px;
-  font-family: var(--f-display); font-weight: 900; font-size: 24px; line-height: 1; letter-spacing: .06em;
+  font-family: var(--f-display); font-weight: 900; font-size: min(24px, 10.6cqi); line-height: 1; letter-spacing: .06em;
   color: #e4ddd1;
   /* letra grabada en la piedra */
   text-shadow: 0 -1px 0 rgb(0 0 0 / .9), 0 1px 0 rgb(255 255 255 / .12);
@@ -109,3 +143,18 @@
   box-shadow: 0 -1px 0 rgb(255 255 255 / .06); /* surco tallado */
   font-size: 13px; line-height: 1.45; color: #c2bbaf;
 }
+
+
+/* palabra larga (EXPLORADORES): letra un poco más chica para que no se salga */
+.vow__card { container-type: inline-size; } /* la letra se mide contra el ancho de la tarjeta */
+.vow__word--long { font-size: min(20px, calc(10.4cqi - 3px)); letter-spacing: .03em; }
+
+/* tarjetas con TL de pie adentro: el título se achica con la tarjeta para no meterse bajo el muñeco */
+.vow:has(.vow__kid--stand) .vow__word { font-size: min(22px, 9.5cqi); }
+
+/* los sentados encima (Samuel, María, Juan): el nombre sale a su IZQUIERDA,
+   porque arriba de la cabeza se cortaba con el borde del carrusel */
+.vow__kid:not(.vow__kid--hang):not(.vow__kid--stand) .crew__tag {
+  bottom: auto; top: 35%; left: auto; right: 100%; translate: 4px 0;
+}
+.vow__kid:not(.vow__kid--hang):not(.vow__kid--stand):is(:hover, :focus-visible) .crew__tag { translate: -2px 0; }

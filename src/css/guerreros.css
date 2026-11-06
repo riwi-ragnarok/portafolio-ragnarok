@@ -10,8 +10,17 @@
 }
 .fighter {
   --rgb: var(--rgb-negro);
+  --cx: 50%; /* centro horizontal del guerrero: foto, luz y piso */
   position: relative;
   display: grid;
+}
+/* fondo de estudio: pared gris cálida + halo del color del guerrero detrás de él.
+   Más claro que la página para que la ropa negra se despegue del fondo. */
+.fighter::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 55% at var(--cx) 55%, rgb(var(--rgb) / .4), transparent 72%),
+    linear-gradient(to bottom, #45403a, #2b2723 65%, var(--bg-2));
 }
 .fighter.p-rosado { --rgb: var(--rgb-rosado); }
 .fighter.p-azul   { --rgb: var(--rgb-azul); }
@@ -25,7 +34,7 @@
   white-space: nowrap; pointer-events: none; user-select: none;
 }
 .fighter__beam {
-  position: absolute; z-index: 0; left: 50%; top: -10%; width: min(560px, 90%); height: 100%; translate: -50% 0;
+  position: absolute; z-index: 0; left: var(--cx); top: -10%; width: min(560px, 90%); height: 100%; translate: -50% 0;
   filter: blur(22px); mix-blend-mode: screen; pointer-events: none;
 }
 .fighter__beam::before {
@@ -34,7 +43,7 @@
   background: linear-gradient(to bottom, rgb(var(--rgb) / .5), rgb(var(--rgb) / .14) 75%, transparent);
 }
 .fighter__floor {
-  position: absolute; z-index: 0; left: 50%; bottom: 0; translate: -50% 40%;
+  position: absolute; z-index: 0; left: var(--cx); bottom: 0; translate: -50% 40%;
   width: min(480px, 80%); height: 90px; border-radius: 50%;
   background: radial-gradient(closest-side, rgb(var(--rgb) / .55), transparent);
   pointer-events: none;
@@ -44,18 +53,18 @@
   justify-self: center;
   height: clamp(380px, 62svh, 640px); width: auto; max-width: 100%;
   object-fit: contain; object-position: bottom center;
-  /* recorte de foto: bordes laterales e inferior difuminados */
-  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 20%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(to bottom, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 20%, #000 78%, transparent 100%);
-          mask-composite: intersect;
+  /* fotos ya recortadas (PNG sin fondo): solo se difumina el borde inferior */
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  /* sin filter: drop-shadow + mask pintaba un recuadro de luz alrededor de la foto */
   transition: opacity 260ms var(--ease), transform 260ms var(--ease);
 }
 .fighter__info {
   position: relative; z-index: 2;
   display: grid; gap: var(--s-2); justify-items: start;
-  padding: var(--s-4);
-  background: var(--bg);
+  padding: var(--s-6) var(--s-4) var(--s-4);
+  margin-top: calc(var(--s-6) * -1); /* la foto se funde con la ficha, sin corte duro */
+  background: linear-gradient(to bottom, transparent, var(--bg) var(--s-6));
 }
 .fighter__num { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgb(var(--rgb)); }
 .fighter__name {
@@ -144,10 +153,10 @@
 @media (min-width: 900px) {
   .select { grid-template-columns: 1fr 260px; }
   .select__stage { min-height: min(80vh, 780px); }
-  .fighter { grid-template-columns: 1fr 1.1fr; height: 100%; }
+  /* centro de la 2.ª columna: (1 + 1.1/2) / 2.1 = 73.8% */
+  .fighter { grid-template-columns: 1fr 1.1fr; height: 100%; --cx: 73.8%; }
   .fighter__img { grid-column: 2; grid-row: 1; align-self: end; height: min(76vh, 740px); }
-  .fighter__info { grid-column: 1; grid-row: 1; align-self: center; padding: var(--s-6); background: none; }
-  .fighter__beam, .fighter__floor { left: 72%; }
+  .fighter__info { grid-column: 1; grid-row: 1; align-self: center; padding: var(--s-6); margin-top: 0; background: none; }
   .fighter__ghost { top: auto; bottom: 2%; }
   .select__roster { order: 0; grid-template-columns: 1fr 1fr; align-content: start; }
   .select__hint { display: inline-flex; grid-column: 2; }

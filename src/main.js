@@ -118,7 +118,7 @@
   // distancia de un ciclo = desde la 1ra tarjeta hasta su copia
   const loop = () => track.children[originals.length].offsetLeft - originals[0].offsetLeft;
 
-  const SPEED = reduce ? 22 : 45; // px por segundo
+  const SPEED = reduce ? 30 : 60; // px por segundo
   let x = 0, last = 0, held = false;
   track.addEventListener("touchstart", () => { held = true; }, { passive: true });
   track.addEventListener("touchend", () => { held = false; }, { passive: true });

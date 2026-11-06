@@ -27,7 +27,7 @@
   left: 0; right: 0; top: var(--s-2);
   display: grid; justify-items: center; gap: var(--s-2);
   font-family: var(--f-brand); font-weight: 900;
-  font-size: clamp(50px, 14.2vw, 236px);
+  font-size: clamp(40px, 14vw, 236px); /* cabe en el ancho de la pantalla */
   line-height: .9; letter-spacing: .02em;
   color: var(--ink);
   user-select: none;
@@ -46,7 +46,7 @@
   position: relative; /* sin z-index: los hijos comparten capas con el título */
   margin: 0;
   width: 100%;
-  aspect-ratio: 1402 / 1122;
+  aspect-ratio: 1280 / 960;
 }
 .hero__photo, .rim {
   position: absolute; inset: 0; z-index: 2;
@@ -100,10 +100,10 @@
           mask-image: linear-gradient(to bottom, transparent 64%, #000 74%);
 }
 
-.p-negro  { --tilt: -22deg; --x: 24%; --rgb: var(--rgb-negro);  --d: 200ms; --ml: 4%; --mr: 38%; }
-.p-rosado { --tilt: -8deg; --x: 41.5%; --rgb: var(--rgb-rosado); --d: 420ms; --ml: 30%; --mr: 54%; }
-.p-azul   { --tilt: 8deg; --x: 57%; --rgb: var(--rgb-azul);   --d: 640ms; --ml: 46%; --mr: 70%; }
-.p-verde  { --tilt: 22deg; --x: 78%; --rgb: var(--rgb-verde);  --d: 860ms; --ml: 64%; --mr: 96%; }
+.p-negro  { --tilt: -22deg; --x: 26.5%; --rgb: var(--rgb-negro);  --d: 200ms; --ml: 0%; --mr: 37%; }
+.p-rosado { --tilt: -8deg; --x: 44%; --rgb: var(--rgb-rosado); --d: 420ms; --ml: 28%; --mr: 59%; }
+.p-azul   { --tilt: 8deg; --x: 60%; --rgb: var(--rgb-azul);   --d: 640ms; --ml: 51%; --mr: 78%; }
+.p-verde  { --tilt: 22deg; --x: 79.5%; --rgb: var(--rgb-verde);  --d: 860ms; --ml: 71%; --mr: 100%; }
 
 /* humo a ras de suelo */
 .smoke {
@@ -145,8 +145,8 @@
 .cast__tag::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: rgb(var(--rgb)); box-shadow: 0 0 8px rgb(var(--rgb)); }
 .cast__tag:hover, .cast__tag:focus-visible { background: rgb(var(--rgb)); color: var(--on-accent); }
 .cast__tag:hover small, .cast__tag:focus-visible small { color: var(--on-accent); }
-.cast__tag.p-negro { --x: 22%; }
-.cast__tag.p-azul  { --x: 59%; }
+.cast__tag.p-negro { --x: 24%; }
+.cast__tag.p-azul  { --x: 61%; }
 .cast__tag.p-verde { --x: 82%; }
 
 .hero__foot {
@@ -179,4 +179,54 @@
   }
   .dotline { display: block; }
   .hero__year { display: block; }
+}
+
+/* ---------- PORTADA: RAGNAROK multicolor DETRÁS del grupo ----------
+   El nombre gigante ocupa casi todo el ancho sin salirse; cada color cae detrás de su dueño.
+   La foto va delante y tapa la parte de abajo de las letras. */
+.hero__title {
+  margin: 0; padding: 0;
+  max-width: 1050vw;
+  white-space: nowrap;
+  background: linear-gradient(90deg,
+    var(--negro) 0 28%, var(--rosado) 38% 46%, var(--azul) 55% 62%, var(--verde) 72% 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+.beam { opacity: .35; }
+.beam--front { display: none; }
+.rim { filter: drop-shadow(0 -2px 2px rgb(var(--rgb) / .9)) drop-shadow(0 -6px 10px rgb(var(--rgb) / .45)); }
+/* oscurece el piso para que el pie de página se lea */
+.hero__stage::after {
+  content: ""; position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: 24%;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+@media (min-width: 900px) {
+  .hero__title {
+    left: 50%; right: auto; width: max-content; translate: -50% 0;
+    top: clamp(56px, 7vh, 90px);
+    font-size: clamp(110px, 15.5vw, 360px); /* antes 19vw: se salía de la pantalla */ letter-spacing: -.02em; line-height: .82;
+  }
+  /* foto grande y pegada al piso: el nombre queda DETRÁS */
+  .hero__figure { height: 84svh; }
+  .hero__title::after { /* las letras se oscurecen hacia abajo, detrás del grupo */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+  }
+  /* lados que se desvanecen: no se ven los hombros cortados de la foto */
+  .hero__photo, .rim { --fade: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%); }
+  .hero__photo {
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), var(--fade);
+            mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), var(--fade);
+  }
+  /* cada contorno de color solo alrededor de su dueño */
+  .rim {
+    --own: linear-gradient(to right, transparent var(--ml), #000 calc(var(--ml) + 7%), #000 calc(var(--mr) - 7%), transparent var(--mr));
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 80%), var(--own), var(--fade);
+            mask-image: linear-gradient(to bottom, #000 55%, transparent 80%), var(--own), var(--fade);
+    -webkit-mask-composite: source-in, source-in; mask-composite: intersect;
+  }
+  .cast { bottom: 13%; }
 }

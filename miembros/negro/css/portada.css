@@ -1,18 +1,19 @@
 /* PORTADA
-   SAMUEL gigante, tu foto acostada, la luz y las redes de arriba. */
+   SAMUEL sobre tu cabeza, tu foto bajo el reflector y las redes de arriba. */
 
-/* ---------- PORTADA: acostado sobre tu nombre ----------
-   Capas: reflector blanco (atrás) → nombre con eco → tu foto acostada encima.
-   Tu foto: assets/yo-acostado.png (PNG sin fondo, horizontal).
-   Si tu foto queda muy arriba o muy abajo: cambia el margin-bottom de .poster__me */
+/* ---------- PORTADA: tu nombre sobre tu cabeza ----------
+   SAMUEL arriba, tú debajo bajo el reflector. El pelo pasa un poco por delante
+   de las letras para dar profundidad. La foto nunca se recorta: la cabeza siempre entera.
+   Tu foto: assets/yo-retrato.webp (sin fondo). */
 .poster {
   position: relative; z-index: 1;
   display: grid; justify-items: center; align-content: end; gap: var(--s-4);
-  min-height: 64svh; padding: var(--s-8) var(--gutter) 0;
+  padding: 128px var(--gutter) 0; /* deja libres los textos de los lados (top: 80px) */
 }
+/* reflector que cae sobre la cabeza */
 .poster__beam {
   position: absolute; z-index: 0; left: 50%; translate: -50% 0;
-  top: -30%; bottom: 10%; width: min(96vw, 900px);
+  top: -30%; bottom: 6%; width: min(96vw, 820px);
   filter: blur(22px); mix-blend-mode: screen; pointer-events: none;
   animation: power 1100ms linear 250ms both;
 }
@@ -20,28 +21,40 @@
   content: ""; position: absolute; inset: 0;
   clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
   background: linear-gradient(to bottom,
-    rgb(var(--rgb) / .1) 0%, rgb(var(--rgb) / .6) 45%, rgb(var(--rgb) / .25) 80%, rgb(var(--rgb) / 0) 100%);
+    rgb(var(--rgb) / .1) 0%, rgb(var(--rgb) / .55) 45%, rgb(var(--rgb) / .2) 80%, rgb(var(--rgb) / 0) 100%);
 }
-.poster__beam--front { z-index: 3; opacity: .35; animation-name: power-front; }
-.poster__stack { position: relative; z-index: 1; width: 100%; display: grid; justify-items: center; }
+.poster__beam--front { z-index: 3; opacity: .25; animation-name: power-front; }
+/* charco de luz en el piso */
+.poster::after {
+  content: ""; position: absolute; z-index: 0; left: 50%; bottom: 0; translate: -50% 40%;
+  width: min(90vw, 640px); height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(var(--rgb) / .28), transparent);
+  pointer-events: none;
+}
+.poster__stack { position: relative; z-index: 1; width: 100%; display: flex; flex-direction: column-reverse; align-items: center; } /* nombre arriba, foto debajo */
 .poster__me {
   position: relative; z-index: 2;
-  width: min(94%, 980px); height: auto;
-  margin-bottom: -9vw;                 /* cuánto se "acuesta" sobre las letras */
-  filter: drop-shadow(0 -3px 4px rgb(var(--rgb))) drop-shadow(0 -10px 24px rgb(var(--rgb) / .55)); /* luz de contorno */
+  width: min(100%, 440px); height: auto; /* sin object-fit cover: nunca corta la cabeza */
+  margin-top: -7vw;                       /* la cabeza tapa un poco el nombre */
+  translate: -6% 0;                       /* la cabeza queda centrada bajo el nombre */
+  /* la foto original viene cortada abajo y a la izquierda: esos bordes se difuminan */
+  --fade: linear-gradient(to bottom, #000 78%, transparent), linear-gradient(to right, transparent, #000 16%, #000 94%, transparent);
+  -webkit-mask-image: var(--fade); -webkit-mask-composite: source-in;
+          mask-image: var(--fade);         mask-composite: intersect;
   animation: rise 800ms var(--ease) 200ms both;
 }
 .poster__name {
   position: relative; z-index: 1;
   font-family: var(--f-brand); font-weight: 900;
-  font-size: clamp(84px, 21vw, 330px); line-height: .78; letter-spacing: -.02em;
+  font-size: clamp(48px, 20vw, 360px); line-height: .78; letter-spacing: -.02em; /* 20vw: cabe en móvil */
   text-align: center; color: var(--ink);
+  text-shadow: 0 8px 40px rgb(0 0 0 / .6);
   animation: rise 700ms var(--ease) 100ms both;
 }
 .poster__echo {   /* eco del nombre: contorno corrido detrás */
   position: absolute; inset: 0; z-index: -1;
   color: transparent; -webkit-text-stroke: 1.5px rgb(var(--rgb) / .5);
-  translate: .05em -.09em;
+  translate: .05em -.09em; text-shadow: none;
 }
 .poster__tags {
   position: relative; z-index: 4;
@@ -49,21 +62,30 @@
   animation: rise 700ms var(--ease) 320ms both;
 }
 .poster__tags li {
-  padding: 10px 18px; background: rgb(11 10 9 / .8);
-  clip-path: var(--plate); --bevel: 8px; font-size: 15px;
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 18px 10px 14px; background: rgb(11 10 9 / .82);
+  box-shadow: inset 3px 0 0 rgb(var(--rgb) / .9);        /* rayita de color a la izquierda */
+  clip-path: var(--plate); --bevel: 8px;
+  font-size: 13px; letter-spacing: .04em; color: var(--ink-2);
+  animation: rise 600ms var(--ease) both;
 }
-.poster__tags b { font-family: var(--f-display); font-weight: 900; font-size: 17px; }
+.poster__tags li:nth-child(2) { animation-delay: 380ms; }
+.poster__tags li:nth-child(3) { animation-delay: 460ms; }
+.poster__tags b { font-family: var(--f-display); font-weight: 900; font-size: 19px; letter-spacing: .06em; color: var(--ink); }
 .poster__side {
-  position: absolute; z-index: 3; top: 120px;
+  position: absolute; z-index: 3; top: 80px;
   font-family: var(--f-display); font-weight: 900; font-size: clamp(13px, 1.3vw, 18px);
 }
 .poster__side--left { left: var(--gutter); }
 .poster__side--right { right: var(--gutter); text-align: right; }
 @media (min-width: 900px) {
-  .m-hero { height: 100svh; min-height: 720px; }
-  .poster { min-height: 0; padding-top: var(--s-6); }
-  .poster__me { width: min(54%, 900px); margin-bottom: -4.2vw; }
-  .poster__name { font-size: clamp(84px, 17vw, 300px); }
+  .m-hero { min-height: max(100svh, 720px); } /* crece si hace falta: el pie no se corta */
+  .poster { padding-top: 96px; }          /* el nombre arranca justo debajo de los textos de los lados */
+  .poster__side { top: 36px; }
+  .poster__name { font-size: clamp(84px, 18vw, 320px); }
+  .poster__me { width: auto; height: min(64svh, 600px); margin-top: -4.6vw; } /* la cabeza tapa un poco el nombre */
+  /* etiquetas en columna a la izquierda, a media altura */
+  .poster__tags { position: absolute; left: var(--gutter); top: 56%; flex-direction: column; align-items: flex-start; gap: var(--s-3); }
 }
 
 .m-foot {
