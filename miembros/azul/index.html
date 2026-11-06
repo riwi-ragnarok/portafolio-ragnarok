@@ -62,7 +62,7 @@
           <circle class="m-ring__inner" cx="200" cy="200" r="132"/>
         </svg>
         <div class="m-crop">
-          <img class="m-photo" src="../../assets/team.png" width="1402" height="1122" alt="Oscar Zapata, Backend Developer de RAGNAROK, bajo su reflector azul">
+          <img class="m-photo" src="assets/foto-principal.webp" width="1086" height="1448" alt="Oscar Zapata, Backend Developer de RAGNAROK, bajo su reflector azul">
         </div>
         <span class="m-beam m-beam--front" aria-hidden="true"></span>
       </figure>
@@ -82,10 +82,10 @@
 
   <div class="marquee m-band" aria-hidden="true">
     <div class="marquee__track">
-      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
-      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
-      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
-      <span>JAVASCRIPT <b>ᚠ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVA <b>ᚠ</b> HTML <b>ᛟ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVA <b>ᚠ</b> HTML <b>ᛟ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVA <b>ᚠ</b> HTML <b>ᛟ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
+      <span>JAVA <b>ᚠ</b> HTML <b>ᛟ</b> NODE.JS <b>ᚺ</b> EXPRESS <b>ᚲ</b> APIS REST <b>ᛞ</b> SQL <b>ᛒ</b> GIT <b>ᚱ</b> </span>
     </div>
   </div>
 
@@ -120,8 +120,8 @@
       <a class="m-quest" href="../../index.html#integrador" data-reveal>
         <span class="m-quest__rune" aria-hidden="true">ᚱ</span>
         <span class="m-quest__kicker">Proyecto integrador</span>
-        <span class="m-quest__name">Nombre del proyecto</span>
-        <span class="m-quest__text">Qué es y qué soluciona, en una línea. <b>Mi rol: Backend, la lógica y las APIs.</b></span>
+        <span class="m-quest__name">Párchate</span>
+        <span class="m-quest__text">Plataforma web para encontrar parches en Colombia, empezando por Medellín: tocas el mapa y ves qué hacer cerca, dónde quedarte y cómo armar tu ruta. <b>Mi rol: Backend, la lógica y las APIs.</b></span>
         <span class="week__go">Ver proyecto <svg aria-hidden="true"><use href="#arrow"/></svg></span>
       </a>
       <a class="m-quest" href="https://zeus18416.github.io/rueda-libre/" target="_blank" rel="noopener" data-reveal>
@@ -176,7 +176,7 @@
     <section class="section" id="skills" aria-labelledby="t-skills">
       <div class="section__head"><h2 class="section__title" id="t-skills" data-index="// 03" data-reveal>Armas</h2></div>
       <dl class="stack" data-reveal style="--d:80ms">
-        <div class="stack__layer" data-rune="ᚠ"><dt>Lenguaje</dt><dd><ul class="skills"><li class="skill">JavaScript</li></ul></dd></div>
+        <div class="stack__layer" data-rune="ᚠ"><dt>Lenguajes</dt><dd><ul class="skills"><li class="skill">Java</li><li class="skill">HTML</li></ul></dd></div>
         <div class="stack__layer" data-rune="ᚺ"><dt>Backend</dt><dd><ul class="skills"><li class="skill">Node.js</li><li class="skill">Express</li><li class="skill">APIs REST</li></ul></dd></div>
         <div class="stack__layer" data-rune="ᛞ"><dt>Datos</dt><dd><ul class="skills"><li class="skill">SQL</li></ul></dd></div>
         <div class="stack__layer" data-rune="ᛒ"><dt>Herramientas</dt><dd><ul class="skills"><li class="skill">Git</li></ul></dd></div>
@@ -198,11 +198,25 @@
         </div>
       </div>
     </div>
-    <nav aria-label="Otros guerreros">
-      <ul class="others">
-        <li><a href="../negro/index.html"><i style="--c:var(--negro)"></i>SAMUEL</a></li>
-        <li><a href="../rosado/index.html"><i style="--c:var(--rosado)"></i>MARIA</a></li>
-        <li><a href="../verde/index.html"><i style="--c:var(--verde)"></i>JUAN</a></li>
+    <!-- RESTO DE LA CÉLULA: cada uno dice su frase al pasar el mouse (cámbiala en crew__say) -->
+    <nav class="crew" aria-label="Otros guerreros">
+      <p class="crew__title">El resto de la célula</p>
+      <ul class="crew__list">
+        <li><a class="crew__card" href="../rosado/index.html" style="--c:var(--rosado)">
+          <img src="../../assets/pixel/rosado.png" width="257" height="300" alt="" loading="lazy">
+          <span class="crew__say">Ay mor, entrá y mirá lo bonito que quedó todo.</span>
+          <span class="crew__name">María</span><span class="crew__role">Frontend</span>
+        </a></li>
+        <li><a class="crew__card" href="../verde/index.html" style="--c:var(--verde)">
+          <img src="../../assets/pixel/verde.png" width="259" height="300" alt="" loading="lazy">
+          <span class="crew__say">¿Qué más pues, mi llave? Caele pa’ que veas lo que hay.</span>
+          <span class="crew__name">Juan David</span><span class="crew__role">Base de datos</span>
+        </a></li>
+        <li><a class="crew__card" href="../negro/index.html" style="--c:var(--negro)">
+          <img src="../../assets/pixel/negro.png" width="276" height="300" alt="" loading="lazy">
+          <span class="crew__say">Pasá, que acá todo está conectado de punta a punta.</span>
+          <span class="crew__name">Samuel</span><span class="crew__role">Full Stack</span>
+        </a></li>
       </ul>
     </nav>
     <div class="footer__legal">
