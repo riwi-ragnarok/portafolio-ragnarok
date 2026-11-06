@@ -3,8 +3,12 @@
 
 /* ---------- ARMAS = franjas que giran (como la franja del index) ----------
    Franja clara / franja oscura, un poco inclinadas, letras grandes. */
-.bands { display: grid; gap: var(--s-6); padding: var(--s-5) 0 var(--s-3); margin: 0 calc(var(--gutter) * -1); }
-.band { position: relative; padding: var(--s-3) 0; rotate: -.8deg; }
+.bands {
+  display: grid; grid-template-columns: minmax(0, 1fr); /* sin esto cada franja crece al ancho de su texto y rompe el celular */
+  gap: var(--s-6); padding: var(--s-5) 0 var(--s-3); margin: 0 calc(var(--gutter) * -1);
+  overflow-x: clip; /* las puntas de las franjas inclinadas no generan scroll lateral */
+}
+.band { position: relative; min-width: 0; padding: var(--s-3) 0; rotate: -.8deg; }
 .band--rev { rotate: .8deg; }
 .band--light { background: var(--ink); color: var(--bg); }
 .band--dark { background: var(--bg-3); color: var(--ink); }

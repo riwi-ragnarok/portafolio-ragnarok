@@ -31,7 +31,8 @@
     let ticking = false;
     const move = () => {
       const y = Math.min(window.scrollY, window.innerHeight);
-      title.style.translate = `0 ${(y * 0.35).toFixed(1)}px`;
+      // solo cambiamos la variable --py; el CSS decide el centrado horizontal
+      title.style.setProperty("--py", `${(y * 0.35).toFixed(1)}px`);
       title.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.9)));
       ticking = false;
     };

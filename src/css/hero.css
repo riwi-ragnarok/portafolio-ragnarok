@@ -186,6 +186,7 @@
    La foto va delante y tapa la parte de abajo de las letras. */
 .hero__title {
   margin: 0; padding: 0;
+  translate: 0 var(--py, 0px); /* --py lo mueve main.js al hacer scroll */
   white-space: nowrap;
   background: linear-gradient(90deg,
     var(--negro) 0 28%, var(--rosado) 38% 46%, var(--azul) 55% 62%, var(--verde) 72% 100%);
@@ -204,7 +205,7 @@
 }
 @media (min-width: 900px) {
   .hero__title {
-    left: 50%; right: auto; width: max-content; translate: -50% 0;
+    left: 50%; right: auto; width: max-content; translate: -50% var(--py, 0px);
     top: clamp(56px, 7vh, 90px);
     font-size: clamp(110px, 13.5vw, 320px); /* ~84% del ancho: deja aire y no tapa el texto vertical */ letter-spacing: -.02em; line-height: .82;
   }
