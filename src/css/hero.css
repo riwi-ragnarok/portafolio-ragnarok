@@ -27,7 +27,7 @@
   left: 0; right: 0; top: var(--s-2);
   display: grid; justify-items: center; gap: var(--s-2);
   font-family: var(--f-brand); font-weight: 900;
-  font-size: clamp(40px, 14vw, 236px); /* cabe en el ancho de la pantalla */
+  font-size: clamp(40px, 12.5vw, 236px); /* cabe en el ancho de la pantalla, con margen */
   line-height: .9; letter-spacing: .02em;
   color: var(--ink);
   user-select: none;
@@ -186,7 +186,6 @@
    La foto va delante y tapa la parte de abajo de las letras. */
 .hero__title {
   margin: 0; padding: 0;
-  max-width: 1050vw;
   white-space: nowrap;
   background: linear-gradient(90deg,
     var(--negro) 0 28%, var(--rosado) 38% 46%, var(--azul) 55% 62%, var(--verde) 72% 100%);
@@ -207,7 +206,7 @@
   .hero__title {
     left: 50%; right: auto; width: max-content; translate: -50% 0;
     top: clamp(56px, 7vh, 90px);
-    font-size: clamp(110px, 15.5vw, 360px); /* antes 19vw: se salía de la pantalla */ letter-spacing: -.02em; line-height: .82;
+    font-size: clamp(110px, 13.5vw, 320px); /* ~84% del ancho: deja aire y no tapa el texto vertical */ letter-spacing: -.02em; line-height: .82;
   }
   /* foto grande y pegada al piso: el nombre queda DETRÁS */
   .hero__figure { height: 84svh; }
