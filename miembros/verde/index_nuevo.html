@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERDE — RAGNAROK | JuanDA · Database Developer</title>
+  <meta name="description" content="Portafolio de VERDE (JuanDA), Database Developer de RAGNAROK, célula del Clan Tesla en RIWI.">
+  <meta name="theme-color" content="#0b0a09">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Runic&family=Sora:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2724%27 fill=%27%230b0a09%27/%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2748%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%276%27/%3E%3Cpath d=%27M45 31V91M45 33l29 14-29 14%27 fill=%27none%27 stroke=%27%23ede8df%27 stroke-width=%2710%27/%3E%3Cpath d=%27M51 63l17 11-11 2 21 18%27 fill=%27none%27 stroke=%27%23ff6a1f%27 stroke-width=%279%27/%3E%3C/svg%3E">
+
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="member.css">
+
+  <!-- Estilos complementarios para enriquecer y corregir los nuevos componentes semánticos sin tocar archivos previos -->
+  <style>
+    /* Reseteo de posicionamiento absoluto erróneo de la clase anterior */
+    .rueda {
+      position: static !important;
+      z-index: auto !important;
+      top: auto !important;
+      right: auto !important;
+    }
+
+    /* Guía pixel art con globo de diálogo nórdico */
+    .pixel-guide {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--s-3);
+      margin: 0 0 var(--s-6) 0;
+      padding: var(--s-4);
+      background: var(--bg-2);
+      clip-path: var(--plate);
+      --bevel: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    @media (min-width: 680px) {
+      .pixel-guide {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--s-5);
+        padding: var(--s-4) var(--s-6);
+      }
+    }
+
+    .pixel-guide img {
+      width: auto;
+      height: clamp(68px, 8vw, 92px);
+      image-rendering: pixelated;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 14px rgb(var(--rgb) / .35));
+    }
+
+    .bubble-speech {
+      margin: 0;
+      font-family: var(--f-text);
+      font-size: clamp(14px, 1.35vw, 16px);
+      line-height: 1.5;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .bubble-speech strong {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* Foto de Sobre mí */
+    .about__photo {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      clip-path: var(--plate);
+      --bevel: 20px;
+      border: 2px solid rgb(var(--rgb) / .35);
+      background: var(--bg-2);
+      box-shadow: 0 14px 34px rgb(0 0 0 / .6), 0 0 24px rgb(var(--rgb) / .12);
+    }
+
+    .about__photo img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about__tag {
+      position: absolute;
+      left: var(--s-3);
+      right: var(--s-3);
+      bottom: var(--s-3);
+      padding: 10px 14px;
+      background: rgb(11 10 9 / .92);
+      backdrop-filter: blur(8px);
+      clip-path: var(--plate);
+      --bevel: 8px;
+      color: var(--accent);
+      font-family: var(--f-display);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-align: center;
+      border: 1px solid rgb(var(--rgb) / .3);
+    }
+
+    /* Mejoras a las tarjetas de proyectos (m-quest como article) */
+    article.m-quest {
+      display: grid;
+      gap: var(--s-5);
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+
+    @media (min-width: 960px) {
+      article.m-quest {
+        grid-template-columns: 1.35fr 1fr;
+      }
+    }
+
+    .m-quest__info {
+      display: grid;
+      gap: var(--s-3);
+      justify-items: start;
+    }
+
+    .m-quest__preview {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      clip-path: var(--plate);
+      --bevel: 16px;
+      border: 1px solid rgb(var(--rgb) / .3);
+      background: var(--bg-3);
+      box-shadow: 0 12px 28px rgb(0 0 0 / .5);
+      width: 100%;
+    }
+
+    .m-quest__preview img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--dur) var(--ease);
+    }
+
+    article.m-quest:hover .m-quest__preview img {
+      transform: scale(1.04);
+    }
+
+    .m-quest__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--s-3);
+      margin-top: var(--s-2);
+    }
+
+    .m-quest__integrador {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+      border-top: 1px solid rgb(255 255 255 / .08);
+      padding-top: var(--s-4);
+      margin-top: var(--s-2);
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .m-quest__integrador {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    /* Lista de chips tecnológicos */
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-2);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-chip {
+      padding: 6px 14px;
+      clip-path: var(--plate);
+      --bevel: 6px;
+      background: rgb(var(--rgb) / .12);
+      border: 1px solid rgb(var(--rgb) / .35);
+      color: var(--accent);
+      font-family: var(--f-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* Subtítulos de semana */
+    .week__topic {
+      font-family: var(--f-display);
+      font-size: 12px;
+      color: var(--verde);
+      letter-spacing: .1em;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Dirección en el footer semántico */
+    address.footer__links {
+      font-style: normal;
+    }
+  </style>
+</head>
+
+<body data-member="verde">
+
+  <!-- Sprite SVG: símbolos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="shield" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M16 2v28M2 16h28" stroke="currentColor" stroke-width="1.5" opacity=".6" />
+      <circle cx="16" cy="16" r="4.5" fill="currentColor" />
+      <circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5" />
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 16 16">
+      <path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="2" />
+    </symbol>
+    <symbol id="check" viewBox="0 0 16 16">
+      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+  </svg>
+
+  <!-- CABECERA PRINCIPAL (HERO) -->
+  <header class="m-hero" id="inicio">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="back" href="../../index.html#guerreros">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M13 8H3M7 4 3 8l4 4" />
+        </svg>
+        <img class="logo-mark" src="../../assets/logo.png" alt="Emblema de RAGNAROK">
+        RAGNAROK
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#skills">Armas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <a class="pill" href="#contacto">
+        Reclutar
+        <svg aria-hidden="true"><use href="#arrow" /></svg>
+      </a>
+    </nav>
+
+    <!-- Escenario del guerrero -->
+    <section class="m-stage" aria-label="Presentación de JuanDA">
+      <h1 class="m-title">JuanDA</h1>
+      <figure class="m-figure">
+        <img class="m-photo m-photo--base" src="../../assets/team.png" width="1402" height="1122" alt="Célula RAGNAROK en las sombras">
+        <i class="m-beam" aria-hidden="true"></i>
+        <img class="m-photo m-photo--spot" src="../../assets/team.png" width="1402" height="1122"
+          alt="VERDE, Database Developer de RAGNAROK, iluminado bajo su reflector de combate">
+        <i class="m-beam m-beam--front" aria-hidden="true"></i>
+      </figure>
+    </section>
+
+    <!-- Efecto ambiental de humo -->
+    <aside class="smoke" aria-hidden="true"></aside>
+
+    <!-- Barra inferior del hero -->
+    <footer class="m-foot">
+      <p class="m-intro">
+        <b>
+          <svg class="shield" aria-hidden="true"><use href="#shield" /></svg>
+          Database Developer
+        </b>
+        Diseña y cuida los datos: modelos, consultas y que nada se pierda.
+      </p>
+
+      <time datetime="2026" class="m-year">
+        MMXXVI
+        <span>Célula RAGNAROK · Clan Tesla</span>
+      </time>
+
+      <nav class="m-socials" aria-label="Redes de contacto">
+        <a class="icon-btn" href="#contacto" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+          </svg>
+        </a>
+        <a class="icon-btn" href="#contacto" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" />
+          </svg>
+        </a>
+        <a class="icon-btn" href="#contacto" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z" />
+          </svg>
+        </a>
+      </nav>
+    </footer>
+  </header>
+
+  <!-- BANDA NÓRDICA DE RUNAS -->
+  <aside class="marquee" aria-hidden="true">
+    <p class="marquee__track">
+      <span>SQL <b>ᛞᚱᚦᚠᛒ</b> TAILWIND CSS <b>ᚲᚺ</b> GIT & GITHUB <b>ᛟ</b> RAGNAROK <b>ᛏ</b> RIWI <b>ᛞ</b> ARQUITECTURA DE DATOS <b>ᚱ</b> </span>
+      <span>SQL <b>ᛞᚱᚦᚠᛒ</b> TAILWIND CSS <b>ᚲᚺ</b> GIT & GITHUB <b>ᛟ</b> RAGNAROK <b>ᛏ</b> RIWI <b>ᛞ</b> ARQUITECTURA DE DATOS <b>ᚱ</b> </span>
+    </p>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+
+    <!-- SECCIÓN: SOBRE MÍ -->
+    <section class="section" id="sobre-mi" aria-labelledby="t-about">
+      <header class="section__head">
+        <h2 class="section__title" id="t-about" data-reveal>Sobre mí</h2>
+      </header>
+
+      <!-- Guía Pixel Art con Cita -->
+      <figure class="pixel-guide" data-reveal>
+        <img src="../../assets/pixel/verde.png" width="259" height="300" alt="Juan David en versión pixel art">
+        <blockquote class="bubble-speech">
+          "Un buen guerrero no deja caer su escudo; un <strong>Database Developer</strong> no permite que un dato se
+          pierda ni que una consulta se congele."
+        </blockquote>
+      </figure>
+
+      <article class="about">
+        <!-- Retrato personal con pie de figura -->
+        <figure class="about__photo" data-reveal>
+          <img src="img/juan1.jpg" width="660" height="980"
+            alt="Foto de Juan David Quintero, Database Developer de RAGNAROK" loading="lazy">
+          <figcaption class="about__tag">Juan David · Database Developer</figcaption>
+        </figure>
+
+        <section class="about__content" data-reveal style="--d:80ms">
+          <h3 class="about__big">Hola, soy JuanDa, Database Developer de <em>RAGNAROK</em>.</h3>
+
+          <p class="section__lead" style="margin-top:20px">
+            Estudiante de 31 años, combatiente del Clan Tesla en RIWI. Extrovertido,
+            apasionado por el tecno y los videojuegos de deportes, canalizo esa misma
+            energía en diseñar sistemas de software estructurados, ágiles y a prueba de fallos.
+          </p>
+
+          <p class="section__lead" style="margin-top:16px; margin-bottom: 32px">
+            En el campo de batalla digital, mi misión es custodiar el activo más valioso de cualquier aplicación:
+            <strong>los datos</strong>. Conecto la persistencia con interfaces modernas maquetadas en Tailwind CSS y
+            JavaScript.
+          </p>
+
+          <ul class="about__facts">
+            <li><span><i>ᚱ</i> Rol</span><strong>Database Developer</strong></li>
+            <li><span><i>ᚾ</i> Color de guerra</span><strong>Verde Esmeralda</strong></li>
+            <li><span><i>ᛏ</i> Célula</span><strong>RAGNAROK · Clan Tesla (RIWI)</strong></li>
+            <li><span><i>ᚠ</i> Formación</span><strong>Primer Ciclo Web & Bases de Datos</strong></li>
+            <li><span><i>ᛟ</i> Ubicación</span><strong>Medellín, Colombia</strong></li>
+            <li><span><i>ᛒ</i> Pasiones</span><strong>Tecno, videojuegos & SQL</strong></li>
+          </ul>
+        </section>
+      </article>
+    </section>
+
+    <!-- SECCIÓN: PROYECTOS -->
+    <section class="section" id="proyectos" aria-labelledby="t-proj">
+      <header class="section__head">
+        <h2 class="section__title" id="t-proj" data-reveal>Proyectos Destacados</h2>
+        <p class="section__lead">De la conceptualización arquitectónica a productos desplegados en producción.</p>
+      </header>
+
+      <!-- PROYECTO 1: RUEDA LIBRE -->
+      <article class="m-quest" data-reveal>
+        <i class="m-quest__rune" aria-hidden="true">ᚱ</i>
+
+        <div class="m-quest__info">
+          <header>
+            <p class="m-quest__kicker">Mi primer web</p>
+            <h3 class="m-quest__name">RUEDA LIBRE</h3>
+          </header>
+
+          <p class="m-quest__text">
+            Plataforma web comercial y catálogo interactivo de servicios para una empresa de alquiler de bicicletas y
+            turismo activo en Medellín y el Valle de Aburrá.
+            <b>Catálogo de Flota:</b> Modelos urbanos, de montaña, tándem y e-bikes con tarifas dinámicas y especificaciones.
+            <b>Flujo de Reserva Ágil:</b> Interfaz intuitiva y responsive optimizada para ciclistas en ruta y dispositivos móviles.
+            <b>Tecnologías:</b> HTML5 Semántico, Tailwind CSS, Git, GitHub Pages.
+          </p>
+
+          <footer class="m-quest__actions">
+            <a class="pill" href="https://yea688513-blip.github.io/rueda-libre-v2" target="_blank" rel="noopener">
+              Ver proyecto <svg aria-hidden="true"><use href="#arrow" /></svg>
+            </a>
+          </footer>
+        </div>
+
+        <figure class="m-quest__preview">
+          <img src="ruedaLibreJuan.png" width="480" height="320"
+            alt="Captura de pantalla de la plataforma web Rueda Libre Medellín" loading="lazy">
+        </figure>
+      </article>
+
+      <!-- PROYECTO 2: PÁRCHATE -->
+      <article class="m-quest" data-reveal>
+        <i class="m-quest__rune" aria-hidden="true">ᚱ</i>
+
+        <div class="m-quest__info">
+          <header>
+            <p class="m-quest__kicker">PROYECTO INTEGRADOR DE CÉLULA · RAGNAROK</p>
+            <h3 class="m-quest__name">Párchate — La Brújula del Ocio en Colombia</h3>
+          </header>
+
+          <p class="m-quest__text">
+            Una plataforma colaborativa que revoluciona la manera de descubrir y planear actividades en Medellín y
+            Colombia. Integra en un solo mapa interactivo parches naturales, miradores, deportes extremos, cultura y
+            opciones de alojamiento verificado.
+          </p>
+
+          <p class="m-quest__text">
+            <b>¿Qué resolvemos?</b> Los parches de ocio están dispersos entre páginas sueltas, redes sociales desactualizadas y grupos de mensajería. Buscar hospedaje cerca a la actividad sumaba aún más fricción.
+          </p>
+
+          <p class="m-quest__text">
+            <b>¿Cómo?</b> Puntos georreferenciados en un mapa interactivo con categorías por gustos, planificador de rutas de 1 a 3 días y enlace directo vía WhatsApp con anfitriones y operadores.
+            <b>Mi rol:</b> Database Developer (Modelado, esquemas relacionales y optimización de datos).
+          </p>
+
+          <footer class="m-quest__integrador">
+            <ul class="tech-chips" aria-label="Tecnologías utilizadas en el proyecto">
+              <li class="tech-chip">Modelado Relacional</li>
+              <li class="tech-chip">SQL</li>
+              <li class="tech-chip">PostgreSQL / MySQL</li>
+              <li class="tech-chip">Normalización 3FN</li>
+              <li class="tech-chip">Integración Célula</li>
+            </ul>
+
+            <a class="pill" href="../../index.html#integrador">
+              Ver en Célula RAGNAROK <svg aria-hidden="true"><use href="#arrow" /></svg>
+            </a>
+          </footer>
+        </div>
+
+        <figure class="m-quest__preview">
+          <img src="ruedaLibreJuan.png" width="480" height="320"
+            alt="Vista preliminar de la plataforma Párchate" loading="lazy">
+        </figure>
+      </article>
+
+      <!-- BITÁCORA DEL PRIMER CICLO -->
+      <h3 class="cycle" data-reveal>Bitácora de Batallas · Ciclo 1</h3>
+
+      <ol class="weeks">
+        <li class="week" data-reveal style="--d:0ms">
+          <header>
+            <h4 class="week__name">Semana 1</h4>
+            <p class="week__topic">Iniciándome en HTML</p>
+          </header>
+          <p class="week__desc">
+            Fundamentos de la web, HTML semántico, accesibilidad, formularios y fundamentos de CSS.
+          </p>
+          <strong class="week__go">
+            Completada <svg aria-hidden="true"><use href="#check" /></svg>
+          </strong>
+        </li>
+
+        <li class="week" data-reveal style="--d:80ms">
+          <header>
+            <h4 class="week__name">Semana 2</h4>
+            <p class="week__topic">Flexbox y Bootstrap</p>
+          </header>
+          <p class="week__desc">
+            Flexbox, Grid, diseño responsive y arquitectura de componentes en Bootstrap.
+          </p>
+          <strong class="week__go">
+            Completada <svg aria-hidden="true"><use href="#check" /></svg>
+          </strong>
+        </li>
+
+        <li class="week" data-reveal style="--d:160ms">
+          <header>
+            <h4 class="week__name">Semana 3</h4>
+            <p class="week__topic">Tailwind CSS</p>
+          </header>
+          <p class="week__desc">
+            Introducción a Tailwind, layouts avanzados, responsive design y análisis comparativo con Bootstrap.
+          </p>
+          <strong class="week__go">
+            Completada <svg aria-hidden="true"><use href="#check" /></svg>
+          </strong>
+        </li>
+
+        <li class="week" data-reveal style="--d:240ms">
+          <header>
+            <h4 class="week__name">Semana 4</h4>
+            <p class="week__topic">Persistencia & Arquitectura</p>
+          </header>
+          <p class="week__desc">
+            Diseño arquitectónico de bases de datos relacionales, normalización y preparación de la infraestructura de
+            datos para <b>Párchate</b>, el integrador del clan.
+          </p>
+          <strong class="week__go">
+            En combate <svg aria-hidden="true"><use href="#arrow" /></svg>
+          </strong>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SECCIÓN: ARMAS / SKILLS -->
+    <section class="section" id="skills" aria-labelledby="t-skills">
+      <header class="section__head">
+        <h2 class="section__title" id="t-skills" data-reveal>Armas</h2>
+      </header>
+
+      <ul class="skills" data-reveal style="--d:80ms">
+        <li class="skill">SQL</li>
+        <li class="skill">PostgreSQL</li>
+        <li class="skill">MySQL</li>
+        <li class="skill">HTML5</li>
+        <li class="skill">CSS3</li>
+        <li class="skill">JavaScript</li>
+        <li class="skill">Tailwind CSS</li>
+        <li class="skill">Git & GitHub</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA (FOOTER) -->
+  <footer class="footer m-contact" id="contacto">
+    <section class="footer__top">
+      <h2 class="footer__cta" data-reveal>¿Una batalla? <em>Escríbeme.</em></h2>
+      <address class="footer__links">
+        <a class="pill" href="mailto:Jdquinterol-1994@gmail.com">
+          Jdquinterol-1994@gmail.com <svg aria-hidden="true"><use href="#arrow"/></svg>
+        </a>
+      </address>
+    </section>
+
+    <nav aria-label="Otros guerreros de la célula RAGNAROK">
+      <ul class="others">
+        <li><a href="../negro/index.html"><i style="--c:var(--negro)"></i>NEGRO</a></li>
+        <li><a href="../rosado/index.html"><i style="--c:var(--rosado)"></i>ROSA</a></li>
+        <li><a href="../azul/index.html"><i style="--c:var(--azul)"></i>AZUL</a></li>
+      </ul>
+    </nav>
+
+    <p class="footer__word" aria-hidden="true">JuanDA</p>
+
+    <footer class="footer__legal">
+      <small>© 2026 VERDE · RAGNAROK · Clan Tesla</small>
+      <a href="../../index.html">← Volver a la célula</a>
+    </footer>
+  </footer>
+
+</body>
+</html>
